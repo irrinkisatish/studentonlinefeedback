@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Register</title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+            body{
+
+                
+                background-size:cover;
+                display: flex;
+                flex-direction:column;
+                align-items:center;
+                padding:30px;
+            }
+            .register-card{
+                backdrop-filter: blur(10px);
+                background-color: rgba(255, 255, 255, 0.5);
+
+                border-radius: 25px;
+            }
+            h2{
+                
+                font-size:32px;
+                font-family:"Lobster";
+            }
+            button{
+                width: 100px;
+            }
+            @media screen and (max-width:1080px) {
+                label{
+            font-size: 32px;
+            
+        }
+        select{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        input{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        input[type="radio"]{
+        width:80px !important;
+
+    }
+    input[type="date"]{
+        border-width: 2px;
+
+    }
+    .btn-success{
+        width:220px;
+            height:100px;
+            font-size:32px;
+    }
+    h2{
+        font-size:50px;
+    }
+    .head-label{
+        font-weight: bold;
+    }
+                
+            }
+       
+
+        </style>
+    </head>
+    <body>
+    
+        <h2>Register Form</h2>
+        <div class="col-12 col-lg-4 register-card">
+            
+            <form  id="registerForm" enctype="multipart/form-data" class="d-flex flex-column">
+
+                 <label for="firstName" class="head-label">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br>
+
+        <label for="lastName" class="head-label">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br>
+
+        <label for="password" class="head-label">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="phone" class="head-label">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <label for="email" class="head-label">Email:</label>
+        <input type="text" id="email" name="email" required><br>
+        <label for="gender" class="head-label" required>Gender:</label>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-row">
+        <input type="radio" id="gender" value="Male" name="gender" >
+        <label for="gender">Male</label>
+    </div>
+    <div  class="d-flex flex-row">
+        <input type="radio" id="gender" value="Female" name="gender">
+        <label id="gender">Female</label>
+    </div>
+        </div>
+        <label for="dob" class="head-label" required>Date of Birth:</label>
+        <input type="date" id="dob" name="dob"><br>
+
+        <label for="address" class="head-label" required>Address:</label>
+        <input type="text" id="address" name="address"><br>
+        <label for="student_year" class="head-label">Studying Year:</label>
+        <select id="student_year" name="studentyear" required>
+      <option value="" disabled selected>Select Year</option>
+      <option value="1st Year">1st Year Students</option>
+      <option value="2nd Year">2nd Year Students</option>
+      <option value="3rd Year">3rd Year Students</option>
+      
+    </select>
+        <label for="branch" class="head-label">Branch:</label>
+        <select type="text" id="branchSelect" name="branch" onchange="updateGroups()">
+            <option value="" disabled selected>Select Option</option>
+            <option value="B.Sc">B.Sc</option>
+            <option value="BCA">BCA</option>
+            <option value="B.Com">B.Com</option>
+            
+            <option value="PG">PG</option>
+        </select>
+        <label for="group" class="head-label">Group:</label>
+        <select type="text" id="groupSelect" name="group">
+            <option value="" disabled selected>Select group</option>  
+        </select>
+
+        <label for="rollnumber" class="head-label" >Roll Number:</label>
+        <input type="text" id="rollnumber" name="rollnumber" required><br>
+
+        <label for="file" class="head-label"><span style="font-weight: bold;">Photo</span><br>Choose File:</label>
+        <input type="file" id="file" name="file" accept="image/*" required><br>
+        <div class="d-flex flex-row justify-content-center">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" id="cancelbtn" class="btn btn-success ml-3">Cancel</button>
+        </div>
+      
+        <div id="responseMessage" class="mt-3"></div>
+            </form>
+        </div>
+        
+
+        <script>
+          
+            function updateGroups() {
+                var branchSelect = document.getElementById('branchSelect');
+                var groupSelect = document.getElementById('groupSelect');
+                var selectedBranch = branchSelect.value;
+
+                // Clear existing options
+                groupSelect.innerHTML = '';
+                groupSelect.innerHTML='<option value="" disabled selected>Select group</option> ';
+                // Define the groups for each branchs
+                var branchGroups = {
+                    'B.Sc': ['MPCS',
+                        'MECS',
+                        'MCCS',
+                        'MPC',
+                        'MSCS'
+                           ],
+                           'BCA':['Computer Applications(B.C.A)'],
+                    'B.Com': ['Computers'],
+                    'PG': ['MSC','MCA']
+                };
+
+                // Add options based on the selected branch
+                if (branchGroups[selectedBranch]) {
+                    branchGroups[selectedBranch].forEach(function(group) {
+                        var option = document.createElement('option');
+                        option.text = group;
+                        option.value = group;
+                        groupSelect.add(option);
+                    });
+                } else {
+                    var defaultOption = document.createElement('option');
+                    defaultOption.text = 'Select Group';
+                    groupSelect.add(defaultOption);
+                }
+            }
+
+            // Initially populate groups based on the default selected branch
+            updateGroups();
+            document.getElementById("cancelbtn").onclick = function() {
+    // Make a GET request to the server endpoint for redirection
+    fetch("/redirect-to-studentlogin")
+    .then(response => {
+        if (response.ok) {
+            // If the redirection is successful, redirect the user to the login page
+            window.location.href = response.url;
+        } else {
+            console.error("Error redirecting to login page:", response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+};
+
+document.getElementById("registerForm").onsubmit = async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+
+            try {
+                const response = await fetch("/srform", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById("responseMessage").innerHTML = '<span class="text-success">' + result.message + '</span>';
+                } else {
+                    document.getElementById("responseMessage").innerHTML = '<span class="text-danger">' + result.message + '</span>';
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                document.getElementById("responseMessage").innerHTML = '<span class="text-danger">Error submitting form: ' + error.message + '</span>';
+            }
+        };
+        </script>
+       
+    </body>
+</html>
+
+

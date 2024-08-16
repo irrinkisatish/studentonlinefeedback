@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    <script src="https://kit.fontawesome.com/57cd5747a9.js" crossorigin="anonymous"></script>
+ 
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Alumni Feedback</title>
+        <style>
+           a{
+    color:#fff;
+}
+a:hover {
+        color: #eb134c;
+    }
+            carousel-item {
+            height: 60vh;
+      
+        }
+
+        .carousel-item img {
+           width: 1500px;
+           /* Or use object-fit: cover; if you want the image to cover the entire container */
+          height: 350px;
+        }
+        
+        
+        .Trending-image {
+    width:325px;
+    height:200px;
+}
+
+.Trending-top-card {
+    background-color: #ffffff;
+    background-size: cover;
+    width:325px;
+    
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.Trending-paragraph {
+    color: #1e2126;
+    font-size: 15px;
+    margin-bottom:0px;
+    font-family: "Roboto";
+}
+
+.Trending-top-banner-heading {
+    color: #183b56;
+    font-size:22px;
+    margin-bottom:0px;
+    font-weight: bold;
+}
+
+.Trending-bottom-heading {
+    color: #959ead;
+    margin-bottom:0px;
+    font-size: 15px;
+    font-family: "Roboto";
+}
+
+.Read-More-button {
+    color: #ff9f00;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+.Read-More-butto {
+    color: #f70fc9;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+            .form-div{
+                background-color:#7f8ca1;
+              padding:10px;
+                border-radius:20px;
+                color:#ffffff;
+                border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+                
+                
+            }
+           
+            h3{
+                text-align: center;
+                font-size:22px;
+                text-decoration: underline;
+                
+            }
+            .container1{
+                display:flex;
+                flex-direction:row;
+                justify-content:space-between;
+            }
+            p{
+                font-family: "Roboto";
+                font-size:12px;
+            }
+            h2{
+                color:#f55baf;
+                font-size:26px;
+                text-align:center;
+            }
+            .bottom-card{
+                
+                background-color:#150838;
+            }
+            /* footer-section*/
+.footer-section-card {
+    background-color: #0d2436;
+    background-size: cover;
+
+}
+
+.footer-image {
+    height: 60px;
+
+}
+
+.footer-icon {
+    color: #959ead;
+    font-size: 25px;
+}
+
+.footer-bar {
+    background-color: #959ead;
+
+}
+
+.footer-icon-card {
+    background-color: #152c3e;
+    padding: 12px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.footer-paragraph {
+    color: #ffffff;
+    font-family: "Roboto";
+    font-size: 15px;
+
+}
+.footer-paragraph1 {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 15px;
+
+}
+.footer-heading {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-mail {
+    font-size: 12px;
+}
+        </style>
+    </head>
+    <body>
+        
+            
+        
+         <div class="mt-1 col-12">
+                 <div class="">
+             <img src="imagesbvr/college1.jpg" width="150px">
+            
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="primages/1712585345954.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="primages/20240408_194756.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="primages/images (6).jpeg.jpg" class="d-block" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            
+             </div>
+     </div>
+           
+        <div class="container1 mt-5">
+        
+            <div class="col-md-3 ml-3">
+            <div class="d-flex flex-column">
+                <h2>Alumni Talks</h2>
+                <p>We're proud of our graduates and what they are achieving around the world. 
+                    Their personal stories are inspiring, make us reflect, and highlight the 
+                    remarkable things that can be achieved with an education from VISHNU. The focus 
+                    of the Office of Alumni Relations is to bring alumni's together to connect, 
+                    give back, socialize, and celebrate the spirit of VISHNU Institutions.</p>
+                    <div id="collegeTalksContainer">
+
+                    </div>
+                
+                <div class="d-flex flex-row justify-content-end mb-3">
+                <a href="alumnitalks.html" class="Read-More-butto ">View More
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+</svg></a>
+                </div>
+        </div> 
+           </div>
+             
+                       
+        
+            <div class="container  col-5">
+                <div class="form-div">
+                    <h3>Alumni Feedback Form</h3>
+                   
+                    <div class="d-flex flex-row justify-content-center">
+                    <div class="col-9">
+        <form action="/submitAlumniFeedback" method="post" class="d-flex flex-column">
+            <label for="nameAlumin">Name Of Alumnus</label>
+            <input type="text" id="nameAlumin" name="name" placeholder="Name of Alumnus">
+             <label for="statusandAddress">Present Status and Address</label>
+             <input type="text" id="statusandAddress" name="statusaddress" placeholder="Address">
+             <label for="numberAlumin">Contact Number</label>
+            <input type="number" id="numberAlumin" name="number" placeholder="Contact Number">
+             <label for="EmailAlumin Id">Email</label>
+            <input type="text" id="EmailAlumin" name="email" placeholder="Email">
+            <label for="coursecompletion">Name of Course Completed</label>
+             <select  id="coursecompletion" name="course">
+                 <option value="" disabled selected>Select Option</option>
+                 <option value="B.Com">B.Com</option>
+                 <option value="BA">BA</option>
+                 <option value="B.Sc">B.Sc</option>
+                 <option value="MCA">MCA</option>
+                 <option value="MSC">MSC</option>
+            </select>
+            <label for="yearcompletion">Year of completion of course</label> 
+            <select id="yearcompletion" name="year">
+                <option value="" disabled selected>Select Option</option>
+            </select>
+             <label for="q1">1. Relevance of content of curriculum with current job/ Occupation</label> 
+            <select id="q1" name="relevance_of_curriculum">
+                <option value="" disabled selected>Select Option</option>
+                
+            </select>
+             <label for="q2">2. Infrastructure, lab and library facilities available in the college</label> 
+            <select id="q2" name="infrastructure_facilities">
+                <option value="" disabled selected>Select Option</option>
+                
+            </select>
+             <label for="q3">3. Arrangement of guest lecturers in the college</label> 
+            <select id="q3" name="guest_lecturers_arrangement">
+                <option value="" disabled selected>Select Option</option>
+               
+            </select>
+             <label for="q4">4. Student teacher interaction in the college class room</label> 
+            <select id="q4" name="student_teacher_interaction">
+                <option value="" disabled selected>Select Option</option>
+               
+            </select>
+             <label for="q5">5. Cooperation from teachers, library and office staff</label> 
+            <select id="q5" name="cooperation_from_staff">
+                <option value="" disabled selected>Select Option</option>
+                
+            </select>
+             <label for="q6">6 Teaching faculties available in the class and lab of the college 
+            </label> 
+            <select id="q6" name="teaching_faculties_availability">
+                <option value="" disabled selected>Select Option</option>
+              
+            </select>
+             <label for="q7">7. Satisfaction with the overall facilities available as per curriculum: provided to you by college</label> 
+            <select id="q7" name="overall_facilities_satisfaction">
+                <option value="" disabled selected>Select Option</option>
+                
+            </select>
+             
+             <label for="eightq">8. How do you want to contribute to your college</label> 
+            <select id="eightq" name="contribution_to_college">
+                <option value="" disabled selected>Select Option</option>
+               
+            </select>
+             <label for="rating">9. How Much Percentage will give for this College ?</label> 
+            <select id="rating" name="rating">
+                <option value="" disabled selected>Select Option</option>
+               <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+            </select>
+             <label>Type Something</label>
+             <textarea name="suggestion_text" rows="3" placeholder="type something"></textarea>
+             <div class='d-flex flex-row justify-content-center mt-5 mb-0'>
+                 <button class="btn btn-danger"type="submit">Submit</button>
+             </div>
+        </form>
+                    </div>
+                    </div>
+                         </div>
+                    </div>
+                    <div class="col-md-3 mr-3">
+            <div class="d-flex flex-column" >
+                <h2>Events</h2>
+                <P>"Join us for an exciting lineup of college events this semester! From academic seminars and workshops to 
+                    cultural festivals and sports tournaments, there's something for everyone. Connect with peers, learn new skills, 
+                    and have fun while exploring a range of activities designed to enhance your college experience.
+                    Stay tuned for event announcements and mark your calendars for unforgettable moments!"</P>
+               <div id="collegeEventsContainer">
+
+               </div>
+                <div class="d-flex flex-row justify-content-end mb-3">
+                <a href="collegevents.html" class="Read-More-butto ">View More
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+</svg></a>
+                </div>
+        </div> 
+           </div>
+            
+            
+            
+        </div>
+         <div class="footer-section-card">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 mt-3" align="center">
+                    <div class="col-lg-6" align="center">
+                        <div class="text-center d-lg-none">
+                            <img src="imagesbvr/logo.jpg" class="footer-image" />
+                        </div>
+                        <div class="d-none d-lg-block ">
+                            <img src="imagesbvr/logo.jpg" class="footer-image" />
+                        </div>
+                        <div class="d-flex flex-row justify-content-center mt-3">
+                            <div class="footer-icon-card ">
+                                <i id="googleIcon" class="fa-brands fa-google footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="twitterIcon" class="fa-brands fa-twitter footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="instagramIcon" class="fa-brands fa-instagram footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="linkedin-icon" class="fa-brands fa-linkedin footer-icon"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="footer-paragraph text-center mt-3">Bv Raju College,Bhimavaram,Andhra Pradesh</p>
+                </div>
+                <div class="col-6 col-md-6 col-lg-3 mt-3">
+                    <h1 class="footer-heading">Contact Us</h1>
+                      <p class="footer-paragraph footer-mail"><a href="mailto:principal@bvricedegree.edu.in">principal@bvricedegree.edu.in</a></p>
+                    <p class="footer-paragraph"><a href="tel:08816 228461">08816 228461</a></p>
+                    <p class="footer-paragraph"><a href="tel:+918816251333">+91 8816 251 333</a></p>
+                    <a href="https://www.bvricedegree.edu.in/courses_offered.php" class="footer-paragraph1">Courses Offered</a>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3 mt-3">
+                    <h1 class="footer-heading">Our Campuses</h1>
+                    <p class="footer-paragraph"><a href="https://www.svecw.edu.in/">Shri Vishnu Engineering College for Women</a></p>
+                    <p class="footer-paragraph"><a href="https://vishnu.edu.in/">Vishnu Institute of Technology</a></p>
+                    <P class="footer-paragraph"><a href="https://seethapoly.edu.in/">Smt. B Seetha Polytechnic College</a></P>
+                    <P class="footer-paragraph"><a href="https://vishnuschool.edu.in/">Vishnu School, Bhimavaram</a></P>
+                </div>
+
+                <div class="col-12 text-center">
+                    <hr class="footer-bar m-0">
+                    <div class="d-flex flex-row justify-content-center mt-1">
+                        <i class="footer-icon fa-regular fa-copyright"></i>
+                        <p class="ml-1 footer-paragraph">Vishnu Educational Society</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <script>
+            fetch('/collegeeventes') 
+        .then(response => response.json())
+        .then(data => {
+            const collegeEventsContainer = document.getElementById('collegeEventsContainer');
+            collegeEventsContainer.innerHTML = ''; // Clear existing content
+            
+            data.forEach(event => {
+              
+                const div = document.createElement('div');
+                const videframe = document.createElement('div');
+                div.classList.add('mb-4');
+                div.innerHTML = `
+                    <img src="${event.eventimage}" class="Trending-image" />
+                    <div class="Trending-top-card shadow p-2">
+                        <p class="Trending-bottom-heading">${event.eventtopic}</p>
+                        <h1 class="Trending-top-banner-heading ">${event.eventname}</h1>
+                        <p class="Trending-paragraph">${event.eventabout.slice(0, 50)}</p>
+                        <a href="#" class="Read-More-button" onclick="openModal('${event.eventid}')">Read More
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                `;
+                videframe.innerHTML= `<div class="modal fade" id="modal${event.eventid}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                                <div class="modal-content p-5">
+                                    <h3>${event.eventname}</h3>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video id="videoFrame" class="embed-responsive-item" controls> <source src="${event.eventvideo}" type="video/mp4" ></video>
+</div>
+<h2 class="Trending-top-banner-heading ">${event.eventtopic}</h2>
+<p class="Trending-paragraph">${event.eventabout}</p>
+                                </div>
+                          </div>
+                      </div>`;
+                collegeEventsContainer.appendChild(div);
+                collegeEventsContainer.appendChild(videframe);
+                
+                    
+            });
+        })
+        .catch(error => console.error('Error fetching college events:', error));
+
+          var currentYear = new Date().getFullYear();
+        var pastYearsCount = currentYear-1999;
+        var selectElement = document.getElementById('yearcompletion');
+         
+        for (var i = 1; i <= pastYearsCount; i++) {
+          
+         
+            var year = currentYear - i;
+            var option = document.createElement('option');
+            option.value = year + '-' + (year + 1);
+            option.textContent = year + '-' + (year + 1);
+            selectElement.appendChild(option);
+            
+        }
+
+        // Set the default selected option to the current academic year
+        var currentOptionIndex = pastYearsCount;
+        selectElement.selectedIndex = 0;
+        
+         var EightselectElement = document.getElementById('eightq');
+         var options=["Donate","MOU","Guest","Interactive Sessions","Internship","Jobs recuriment","Others"];
+         options.forEach(function(optionText) {
+         var eightoption = document.createElement('option');
+         eightoption.value = optionText.toLowerCase(); // You can set the value to lowercase if needed
+         eightoption.textContent = optionText;
+        EightselectElement.appendChild(eightoption);
+  });
+         var qselectElements = document.querySelectorAll('[id^="q"]');
+    var optionsq = ["Agree", "Neither Agree Nor Disagree", "Disagree", "Strongly Disagree"];
+    qselectElements.forEach(function(qselectElement) {
+        optionsq.forEach(function(optionText) {
+            var optionq = document.createElement('option');
+            optionq.value = optionText.toLowerCase(); // You can set the value to lowercase if needed
+            optionq.textContent = optionText;
+            qselectElement.appendChild(optionq);
+        });
+        qselectElement.selectedIndex = 0;
+    });
+       const instagramIcon = document.getElementById('instagramIcon');
+        instagramIcon.addEventListener('click', function() {
+            window.open('https://www.instagram.com/satish_irrinki/', '_blank');
+        });
+        const twitterIcon = document.getElementById('twitterIcon');
+        twitterIcon.addEventListener('click', function() {
+            window.open('https://www.twitter.com/SatishIrri95076/', '_blank');
+        });
+        const googleIcon = document.getElementById('googleIcon');
+        googleIcon.addEventListener('click', function() {
+            window.open('https://www.google.com/', '_blank');
+        });
+        // Get the LinkedIn icon element
+        const linkedinIcon = document.getElementById('linkedin-icon');
+
+        
+
+        linkedinIcon.addEventListener('click', function() {
+            window.open('https://www.linkedin.com/in/satish-irrinki-19052419b/', '_blank');
+        });
+
+        fetch('/alumnitalkes') 
+        .then(response => response.json())
+        .then(data => {
+            const collegeTalksContainer = document.getElementById('collegeTalksContainer');
+            collegeTalksContainer.innerHTML = ''; // Clear existing content
+            
+            data.forEach(talk => {
+              
+                const div = document.createElement('div');
+                const videframe = document.createElement('div');
+                div.classList.add('mb-4');
+                div.innerHTML = `
+                    <img src="${talk.alumniimage}" class="Trending-image" />
+                    <div class="Trending-top-card shadow p-2">
+                        <p class="Trending-bottom-heading">${talk.alumnitopic}</p>
+                        <h1 class="Trending-top-banner-heading ">${talk.alumniname}</h1>
+                        <p class="Trending-paragraph">${talk.alumniabout.slice(0, 50)}</p>
+                        <a href="#" class="Read-More-button" onclick="openModal('${talk.id}')">Read More
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg>
+                        </a>
+                    </div>
+                `;
+                videframe.innerHTML= `<div class="modal fade" id="modal${talk.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                                <div class="modal-content p-5">
+                                    <h3>${talk.talkname}</h3>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video id="videoFrame" class="embed-responsive-item" controls> <source src="${talk.talkvideo}" type="video/mp4" ></video>
+</div>
+<h2 class="Trending-top-banner-heading ">${talk.talktopic}</h2>
+<p class="Trending-paragraph">${talk.talkabout}</p>
+                                </div>
+                          </div>
+                      </div>`;
+                      collegeTalksContainer.appendChild(div);
+                      collegeTalksContainer.appendChild(videframe);
+                
+                    
+            });
+        })
+        .catch(error => console.error('Error fetching college events:', error));
+        </script>
+    </body>
+</html>

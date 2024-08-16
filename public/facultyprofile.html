@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <title>Faculty Profile</title>
+        <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .profile-container {
+            max-width: 1080px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background-color: #3897f0;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+
+        .profile-details {
+            padding: 20px;
+        }
+
+        .profile-details h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .profile-details p {
+            margin-bottom: 8px;
+        }
+
+        .profile-details .label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .edit-profile-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #3578e5;
+        }
+        .head-label{
+            font-weight: bold;
+        }
+
+        
+@media screen and (max-width:1080px){
+    .profile-header img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+        h1{
+    text-align: center;
+    font-size:45px;
+    font-weight:400;
+}
+h2{
+    font-size:45px;
+    font-weight: bold;
+}
+#email{
+    font-size:38px;
+}
+.profile-details h2 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 39px;
+        }
+
+        .profile-details p {
+            margin-bottom: 8px;
+        }
+
+        .profile-details .label {
+            font-weight: bold;
+            margin-right: 5px;
+            font-size: 34px;
+        }
+        .profile-details p {
+           
+            
+            font-size: 34px;
+        }
+        .label{
+            font-size: 34px;
+            font-weight: bold;
+
+           
+        }
+        p{
+            font-size:34px;
+        }
+        .Read-More-button{
+            width:150px;
+            height:80px;
+            font-size: 34px;
+
+
+        }
+        .edit-profile-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            width:220px;
+            height:100px;
+            font-size:32px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #3578e5;
+        }
+        .modal-dialog-custom {
+            max-width: 100%; /* Adjust this value as needed */
+            width: 100%;
+        }
+
+        .modal-content-custom {
+            padding: 30px; /* Adjust padding as needed */
+        }
+        label{
+            font-size: 32px;
+            font-weight: bold;
+            
+        }
+        .head-label{
+            font-weight: bold;
+        }
+        select{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        input{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+       
+            .close-button-large {
+        font-size:5rem; /* Adjust size as needed */
+    }
+    .btn-success{
+        width:220px;
+            height:100px;
+            font-size:32px;
+    }
+    input[type="radio"]{
+        width:80px !important;
+
+    }
+    input[type="checkbox"]{
+        width:80px !important;
+
+    }
+   
+
+}
+            </style>
+    </head>
+    
+    <body>
+        <div class="profile-container">
+            <div class="profile-header">
+                <img id="profileImage" src="" alt="Profile Picture">
+                <h1 id="profileName"></h1>
+                <p id="profileEmail"></p>
+            </div>
+            <!-- Other profile details will be populated dynamically -->
+            <div class="profile-details">
+                <div class="profile-details">
+                    <h2>Profile Details</h2>
+                    <p><span class="label">Gender:</span> <span id="gender"></span></p>
+                    <p><span class="label">Date of Birth:</span> <span id="dob"></span></p>
+                    <p><span class="label">Address:</span> <span id="address"></span></p>
+                    <p><span class="label">Phone:</span> <span id="phone"></span></p>
+                    <p><span class="label">Level:</span> <span id="level"></span></p>
+                    <p><span class="label">Program:</span> <span id="program"></span></p>
+                    <p><span class="label">Subjects:</span> <span id="subjects"></span></p>
+                    <p><span class="label">Teaching Year:</span> <span id="teachingYear"></span></p>
+                </div>
+                
+            </div>
+            <button class="edit-profile-btn" onclick="openModal('your_faculty_id')">Edit Profile</button>
+        </div>
+       
+   <div class="modal fade" id="modalyour_faculty_id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-custom ">
+        <div class="modal-content modal-content-custom p-5">
+                                   
+                                  <form  action="/updatesfacultydata" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+                                       <input type="hidden" id="facultyId" name="facultyId" value="">
+                                      <label for="firstName" class="head-label">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br>
+
+        <label for="lastName" class="head-label">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br>
+
+        <label for="password" class="head-label">Password:</label>
+        <input type="password" id="password" name="password"><br>
+
+        <label for="phone" class="head-label">Phone Number:</label>
+        <input type="text" id="phone" name="phone"><br>
+
+        <label for="email" class="head-label">Email:</label>
+        <input type="text" id="email" name="email"><br>
+        <label for="gender" class="head-label">Gender:</label>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-row">
+        <input type="radio" id="gender" value="Male" name="gender" >
+        <label for="gender">Male</label>
+    </div>
+    <div  class="d-flex flex-row">
+        <input type="radio" id="gender" value="Female" name="gender">
+        <label id="gender">Female</label>
+    </div>
+        </div>
+        <label for="dob" class="head-label">Date of Birth:</label>
+        <input type="date" id="dob" name="dob"><br>
+
+        <label for="address" class="head-label">Address:</label>
+        <input type="text" id="address" name="address"><br>
+        
+        <label for="student_year" class="head-label">Teaching Year:</label>
+        <div id="yearCheckboxes">
+            <div class="d-flex flex-row">
+            <input type="checkbox" id="year1" name="teaching_year" value="1st Year">
+            <label for="year1">1st Year Students</label>
+        </div>
+        <div class="d-flex flex-row">
+            <input type="checkbox" id="year2" name="teaching_year" value="2nd Year">
+            <label for="year2">2nd Year Students</label>
+        </div>
+        <div class="d-flex flex-row"> 
+            <input type="checkbox" id="year3" name="teaching_year" value="3rd Year">
+            <label for="year3">3rd Year Students</label>
+        </div>
+        </div>
+        
+        <label for="branch" class="head-label">Teaching Branch:</label>
+        <div id="branchCheckboxes" style="display:none;">
+            <input type="checkbox" id="branchBSc" name="selected_branch" value="B.Sc">
+            <label for="branchBSc">B.Sc</label>
+            <input type="checkbox" id="branchBCom" name="selected_branch" value="B.Com">
+            <label for="branchBCom">B.Com</label>
+            <input type="checkbox" id="branchBA" name="selected_branch" value="BA">
+            <label for="branchBA">BA</label>
+            <input type="checkbox" id="branchMCA" name="selected_branch" value="MCA">
+            <label for="branchMCA">MCA</label>
+        </div>
+        
+        <label for="group" class="head-label">Group:</label>
+        <div id="groupCheckboxes" style="display:none;">
+            <!-- Options will be populated dynamically -->
+        </div>
+        
+        <label for="subjectSelect" class="head-label">Teaching Subjects:</label>
+        <div id="subjectCheckboxes" style="display:none;">
+            <!-- Options will be populated dynamically -->
+        </div>
+           <label for="file" class="head-label">Choose File:</label>
+        <input type="file" id="file" name="file" accept="image/*"><br>
+        <div class="d-flex flex-row justify-content-center">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+            </form>
+                                </div>
+                            </div>
+                        </div>
+            
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const params = new URLSearchParams(window.location.search);
+    
+    const facultyId = params.get("id");
+ document.getElementById("facultyId").value = facultyId;
+    fetch(`/facultyProfile/${facultyId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch faculty profile');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update profile details in HTML
+            console.log(data);
+            document.getElementById('gender').textContent = data.gender;
+            document.getElementById('dob').textContent = data.dob;
+            document.getElementById('address').textContent = data.address;
+            document.getElementById('phone').textContent = data.phone;
+            document.getElementById('level').textContent = data.teaching_branch;
+            document.getElementById('program').textContent = data.teaching_group;
+            document.getElementById('subjects').textContent = data.teaching_subject;
+            document.getElementById('teachingYear').textContent = data.teaching_year;
+
+            // Update profile image, name, and email if needed
+            document.getElementById('profileImage').src = data.faculty_imageurl;
+            document.getElementById('profileName').textContent = `${data.firstname} ${data.lastname}`;
+            document.getElementById('profileEmail').textContent = data.faculty_email;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error here
+        });
+});
+
+             document.getElementById('yearCheckboxes').addEventListener('change', function() {
+            updateBranches();
+        });
+
+        document.getElementById('branchCheckboxes').addEventListener('change', function() {
+            updateGroups();
+        });
+
+        document.getElementById('groupCheckboxes').addEventListener('change', function() {
+            updateSubjects();
+        });
+
+        function updateBranches() {
+            var yearCheckboxes = document.querySelectorAll('input[name="teaching_year"]:checked');
+            var branchCheckboxes = document.getElementById('branchCheckboxes');
+            branchCheckboxes.style.display = yearCheckboxes.length > 0 ? 'block' : 'none';
+
+            var branchOptions = {
+                '1st Year': ['B.Sc', 'B.Com', 'BA', 'PG'],
+                '2nd Year': ['B.Sc', 'B.Com', 'BA', 'PG'],
+                '3rd Year': ['B.Sc', 'B.Com', 'BA']
+            };
+
+            var branchDiv = document.getElementById('branchCheckboxes');
+            branchDiv.innerHTML = '';
+            yearCheckboxes.forEach(function(year) {
+                if (year.checked) {
+                    branchOptions[year.value].forEach(function(branch) {
+                        var checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.name = 'selected_branch';
+                        checkbox.value = branch;
+                        checkbox.id = branch;
+                        var label = document.createElement('label');
+                        label.htmlFor = branch;
+                        label.appendChild(document.createTextNode(branch));
+                        branchDiv.appendChild(checkbox);
+                        branchDiv.appendChild(label);
+                        branchDiv.appendChild(document.createElement('br'));
+                    });
+                }
+            });
+
+            updateGroups();
+        }
+
+        function updateGroups() {
+            var branchCheckboxes = document.querySelectorAll('input[name="selected_branch"]:checked');
+            var groupCheckboxes = document.getElementById('groupCheckboxes');
+            groupCheckboxes.style.display = branchCheckboxes.length > 0 ? 'block' : 'none';
+
+            var groupOptions = {
+                'B.Sc': ['MECS', 'MCCS', 'MPC'],
+                'B.Com': ['GroupA', 'GroupB', 'GroupC'],
+                'BA': ['GroupX', 'GroupY', 'GroupZ'],
+                'PG': ['MCA', 'MSC']
+            };
+
+            var groupDiv = document.getElementById('groupCheckboxes');
+            groupDiv.innerHTML = '';
+            branchCheckboxes.forEach(function(branch) {
+                if (branch.checked) {
+                    groupOptions[branch.value].forEach(function(group) {
+                        var checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.name = 'selected_group';
+                        checkbox.value = group;
+                        checkbox.id = group;
+                        var label = document.createElement('label');
+                        label.htmlFor = group;
+                        label.appendChild(document.createTextNode(group));
+                        groupDiv.appendChild(checkbox);
+                        groupDiv.appendChild(label);
+                        groupDiv.appendChild(document.createElement('br'));
+                    });
+                }
+            });
+        }
+
+        function updateSubjects() {
+            var groupCheckboxes = document.querySelectorAll('input[name="selected_group"]:checked');
+            var subjectCheckboxes = document.getElementById('subjectCheckboxes');
+            subjectCheckboxes.style.display = groupCheckboxes.length > 0 ? 'block' : 'none';
+
+            var subjectOptions = {
+                'MPC': ['Subject1', 'Subject2', 'Subject3'],
+                'MCCS': ['SubjectA', 'SubjectB', 'SubjectC'],
+                'MECS': ['SubjectX', 'SubjectY', 'SubjectZ'],
+                'MCA': ['IOT', 'DBMS','FLAT','CN','C & DS','CO','OS','WEB TECHONLOGY','OOSE']
+            };
+
+            var subjectDiv = document.getElementById('subjectCheckboxes');
+            subjectDiv.innerHTML = '';
+            groupCheckboxes.forEach(function(group) {
+                if (group.checked) {
+                    subjectOptions[group.value].forEach(function(subject) {
+                        var checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.name = 'selected_subject';
+                        checkbox.value = subject;
+                        checkbox.id = subject;
+                        var label = document.createElement('label');
+                        label.htmlFor = subject;
+                        label.appendChild(document.createTextNode(subject));
+                        subjectDiv.appendChild(checkbox);
+                        subjectDiv.appendChild(label);
+                        subjectDiv.appendChild(document.createElement('br'));
+                    });
+                }
+            });
+        }
+        function openModal(alumniId) {
+        var modalId = "modal" + alumniId;
+        var modalElement = document.getElementById(modalId);
+        var modal = new bootstrap.Modal(modalElement);
+        
+        modal.show();
+    }
+            </script>
+    </body>
+</html>

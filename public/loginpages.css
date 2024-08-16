@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+    * {
+ box-sizing: border-box;
+}
+
+body {
+ margin: 0px;
+}
+
+     h2{
+         color:black;
+         text-align:center;
+         font-size:24px;
+         font-family:"Lobster";
+         margin-top:8px;
+     }
+     
+     .btn-link-style {
+         background: none;
+         border: none;
+         color: blue;
+         cursor: pointer;
+         text-decoration: underline;
+         padding: 0;
+     }
+
+     .btn-link-style:hover {
+         color: navy;
+         text-decoration: underline;
+     }
+     .banner-image{
+       width: 1500px;
+        /* Or use object-fit: cover; if you want the image to cover the entire container */
+       height: 375px;
+     }
+   
+     .logo-top{
+       width: 150px;
+     }
+    
+     
+     h1{
+         font-size:25px;
+     }
+   
+
+#navItem2 {
+ color: #323f4b;
+ 
+ font-family: "Roboto";
+}
+#navItem2:hover {
+ color: red;
+ font-family: "Roboto";
+ text-decoration: underline;
+}
+#navItem3:hover {
+ color:red;
+ font-family: "Roboto";
+ text-decoration: underline;
+}
+#navItem4:hover {
+ color: red;
+ font-family: "Roboto";
+ text-decoration: underline;
+}
+
+#navItem3 {
+ color: #323f4b;
+ font-family: "Roboto";
+}
+
+#navItem4 {
+ color: #323f4b;
+ font-family: "Roboto";
+}
+         
+
+         
+@media screen and (max-width:1080px){
+
+
+  h2{
+    color:black;
+    text-align:center;
+    font-size:55px !important;
+    font-family:"Lobster";
+    margin-top:8px;
+}
+          
+      .banner-image{
+       width: 1080px;
+       /* Or use object-fit: cover; if you want the image to cover the entire container */
+      height: 500px;
+    }
+    .logo-top{
+      width: 230px;
+    }
+   
+  
+    input {
+        width: 100%;
+        height:100px;
+       padding: 10px;
+        font-size: 3rem !important;
+        margin-bottom: 10px;
+    }
+    input::placeholder {
+        font-size: 2rem !important; /* Increase this value as needed */
+    }
+    .sign-in-card{
+   
+  /* Adjust the blur value as needed */
+  background-color: rgba(73, 55, 55, 0.5);
+  /* Adjust the background color and opacity as needed */
+  padding-top: 40px !important;
+  border-radius: 25px;
+  height:800px;
+  
+  
+    }
+    label{
+      color:azure;
+      font-size:47px;
+    }
+    button{
+      height:100px;
+      width: 180px;
+      font-size: 35px !important;
+     
+    }
+  
+ 
+    #navItem2 {
+  color: #323f4b;
+  font-size: 32px;
+  font-family: "Roboto";
+  }
+  #navItem3 {
+  color: #323f4b;
+  font-size: 32px;
+  font-family: "Roboto";
+  }
+  #navItem4 {
+  color: #323f4b;
+  font-size: 32px;
+  font-family: "Roboto";
+  }
+  .custom-toggler {
+        padding: 1rem; /* Adjust padding as needed */
+    }
+  
+    .navbar-toggler-icon {
+        width: 80px !important;
+        height: 80px !important;
+        background-size: 2.5rem 2.5rem !important;
+       background-color:#ffffff !important;
+       border-color: #0d2436 !important;
+        
+    }
+    .navbar-toggler{
+        background-color: #eb134c !important;
+        width:100px !important;
+        margin-right: 14px;
+        
+       
+    }
+    .fpc{
+      font-size:42px;
+    }
+  
+  
+    }
+
+
+    .team-area{
+        padding-top: 5%;
+    }
+    .single-team{
+        background-color: #000;
+        margin-bottom: 10px;
+    }
+    .single-team:hover .social{
+        cursor: pointer;
+        opacity: 1;
+        transform: rotateY(0deg) scale(1, 1);
+    }
+    .img-area{
+        overflow: hidden;
+        position: relative;
+    }
+    .img-area img{
+        width: 100%;
+    }
+    .img-area:hover img{
+        transform: scale(1.2)
+    }
+    .img-area img{
+        transition: all 0.4s ease 0s;
+    }
+    @media (max-width: 768px){
+        .img-area img{
+            display: inline-block;
+        }
+    }
+    .img-area .social{
+        background-color: rgba(0,0,0,0.7);
+        position: absolute;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        transition: .5s;
+        transform: rotateY(180deg) scale(0.5, 0.5);
+    }
+    .img-area .social ul{
+        text-align: center;
+        position: relative;
+        top: 175px;
+    }
+    .img-area .social ul li a{
+        border: 1px solid #fff;
+        color: #fff;
+        display: block;
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .img-area .social ul li a:hover{
+        background-color: #fff;
+        color: #000;
+        border: 1px solid transparent;
+    }
+    .img-text{
+        padding: 25px;
+        color: #fff;
+        text-align: center;
+    }
+    .img-text h4{
+        margin: 0 0 5px;
+        font-size: 30px;
+        font-family: bignoodletitling;
+        letter-spacing: 5px;
+    }
+    .img-text h5{
+        font-size: 17px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+   
+    
+    .dd{
+        display: flex;
+        flex-direction: row ;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif !important;
+    }
+    @media screen and (max-width:1080px){
+        .dd{
+            display: flex;
+            
+            flex-direction: column ;
+            justify-content: center ;
+            align-items: center ;
+            font-family: "Poppins", sans-serif ;
+        }
+        .wrapper{
+            background: #fff;
+            
+            
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+        }
+      .readmore-button-aboutus{
+            height:100px;
+            width: 180px;
+            font-size: 30px !important;
+           margin-bottom: 10px;
+          }
+          .heading-about-us{
+            color:#eb134c;
+    font-size:38px !important;
+    font-weight: 800;
+    text-align: center;
+    
+          }
+          .about-us-paragraph{
+            font-size:35px;
+            font-weight: 400;
+            text-align: center;
+
+          }
+          .management-images{
+            width: 200px !important;
+            height: 200px !important;
+            border-radius: 50%;
+            margin: 10px;
+        }
+        .management-names{
+            text-align: center ;
+            font-size: 24px !important;
+            margin: 7px;
+        }
+
+        .members{
+            display: flex;
+            flex-wrap: wrap !important;
+            justify-content: center;
+        }
+        .faculty-thanks-paragraph{
+            font-size:30px;
+            
+        }
+       
+         
+    }
+    .wrapper{
+        background: #fff;
+        
+        border-radius: 15px;
+        padding: 20px;
+     
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    }
+    .management-heading{
+        text-align: center;
+    }
+    .faculty-thanks-heading{
+        color:rgb(236, 121, 140);
+        text-align: start;
+    }
+    hr{
+        width: 100px;
+        margin: 10px auto;
+    }
+    .members{
+        display: flex;
+     
+        justify-content: center;
+    }
+    .team-mem{
+        margin: 8px;
+    }
+    .management-images{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 10px;
+    }
+    .management-names{
+        text-align: center;
+        font-size: 12px ;
+        margin: 7px;
+    }
+  .heading-about-us{
+    color:#eb134c;
+    font-size:24px;
+    text-align: center;
+    
+  }

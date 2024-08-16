@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/57cd5747a9.js" crossorigin="anonymous"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <title>Student Profile</title>
+        <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+        .profile-container {
+            max-width: 1080px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background-color: #3897f0;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+
+        .profile-details {
+            padding: 20px;
+        }
+
+        .profile-details h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .profile-details p {
+            margin-bottom: 8px;
+        }
+
+        .profile-details .label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .edit-profile-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #3578e5;
+        }
+        .feedbackcards{
+            background-color:#5eebe8;
+            border-radius:15px;
+            padding:15px;
+       word-wrap: break-word;
+           
+        }
+        .Read-More-button {
+    color: #d4062c;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+h2{
+    font-size:24px;
+    font-weight: bold;
+}
+h1{
+    text-align: center;
+    font-size:17px;
+    font-weight:400;
+}
+
+@media screen and (max-width:1080px){
+    .profile-header img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+        h1{
+    text-align: center;
+    font-size:45px;
+    font-weight:400;
+}
+h2{
+    font-size:45px;
+    font-weight: bold;
+}
+#email{
+    font-size:38px;
+}
+.profile-details h2 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 39px;
+        }
+
+        .profile-details p {
+            margin-bottom: 8px;
+        }
+
+        .profile-details .label {
+            font-weight: bold;
+            margin-right: 5px;
+            font-size: 34px;
+        }
+        .profile-details p {
+           
+            
+            font-size: 34px;
+        }
+        .label{
+            font-size: 34px;
+            font-weight: bold;
+
+           
+        }
+        p{
+            font-size:34px;
+        }
+        .Read-More-button{
+            width:150px;
+            height:80px;
+            font-size: 34px;
+
+
+        }
+        .edit-profile-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            width:220px;
+            height:100px;
+            font-size:32px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #3578e5;
+        }
+        .modal-dialog-custom {
+            max-width: 100%; /* Adjust this value as needed */
+            width: 100%;
+        }
+
+        .modal-content-custom {
+            padding: 30px; /* Adjust padding as needed */
+        }
+        label{
+            font-size: 32px;
+            
+        }
+        select{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        input{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        .feedbackbtn{
+                
+                width:200px;
+                height: 100px;
+                font-family: "Roboto";
+                font-size:32px;
+            }
+            .feedbacknam{
+                font-size:44px;
+            }
+            .close-button-large {
+        font-size:5rem; /* Adjust size as needed */
+    }
+    .btn-success{
+        width:220px;
+            height:100px;
+            font-size:32px;
+    }
+
+}
+            </style>
+    </head>
+    
+    <body>
+       
+            
+        
+     <div class="profile-container " id="profile-containers">
+        <div class="profile-header">
+            <img id="profileImage" src="" alt="Profile Picture">
+            <h1 id="fullName"></h1>
+            <p id="email"></p>
+        </div>
+        <div class="profile-details" id="profileDetails">
+            <!-- Profile details will be populated dynamically -->
+        </div>
+        <div id="feedbackContainer">
+            <!-- Feedbacks will be populated dynamically -->
+        </div>
+     <div id="editbuttonn">
+
+     </div>
+    </div>
+    <div id="editprofiledoc">
+            
+    </div>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const studentId = params.get("id");
+    const editprofiledoc = document.getElementById("editprofiledoc");
+    const editbuttonele = document.getElementById("editbuttonn");
+    const profilecontainers = document.getElementById("profile-containers");
+
+    fetch(`/studentProfileData?id=${studentId}`)
+        .then(response => response.json())
+
+        .then(data => {
+           console.log(data)
+           
+const { student_id, fname, lname, email, image_url, gender, dob, address, phone, year, branch, group_name, rollnumber } = data[0];
+
+            
+            document.getElementById("profileImage").src = image_url;
+            document.getElementById("fullName").textContent = `${fname} ${lname}`;
+            document.getElementById("email").textContent = email;
+
+            const profileDetails = document.getElementById("profileDetails");
+            profileDetails.innerHTML = `
+                <h2>Profile Details</h2>
+                <p><span class="label">Gender:</span> ${gender}</p>
+                <p><span class="label">Date of Birth:</span> ${dob}</p>
+                <p><span class="label">Address:</span> ${address}</p>
+                <p><span class="label">Phone:</span> ${phone}</p>
+                <p><span class="label">Branch:</span> ${branch}</p>
+                <p><span class="label">Group Name:</span> ${group_name}</p>
+                <p><span class="label">Roll Number:</span> ${rollnumber}</p>
+                <p><span class="label">Year:</span> ${year}</p>
+            `;
+
+            const feedbackContainer = document.getElementById("feedbackContainer");
+            feedbackContainer.innerHTML = `<h2>Feedbacks</h2>`;
+          
+            data.forEach(feedback => {
+                console.log(feedback)
+                feedbackContainer.innerHTML += `
+                    <div class="mb-3 feedbackcards">
+                        <div class="d-flex flex-column">
+                            <p class="mb-1"><span class="label">Faculty Name:</span> ${feedback.firstname} ${feedback.lastname}</p>
+                            <p class="mb-1"><span class="label">Feedback:</span> ${feedback.feedback_text}</p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-end">
+                            <button class="Read-More-button" onclick="openModal('modalfeedback','${feedback.feedbackId}')">Edit</button>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modalfeedback${feedback.feedbackId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-custom ">
+                                <div class="modal-content modal-content-custom p-5">
+                                    <div class="d-flex flex-row justify-content-between">
+                <h1 style="text-align:center;" class="feedbacknam">${feedback.firstname} ${feedback.lastname}</h1> 
+              
+                <button type="button" class="close close-button-large" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+            
+                </div>
+                                    <form action="/updatefacultyfeedback" method="post" class="d-flex flex-column">
+                                        <input type="hidden" name="feedback_id" value="${feedback.feedbackId}">
+                                         <input type="hidden" name="studentid" value="${student_id}">
+                                    <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
+                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                      <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
+                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                       <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
+                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30"> Won’t teach at all</option>
+                                          <option value="47">Indifferently</option>
+                                          <option value="62">Poorly</option>
+                                          <option value="77">Satisfactorily</option>
+                                          <option value="92">Thoroughly</option>
+                                          
+                                      </select>
+                                       <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
+                                      <select id="teachingapproachq"name="teaching_approrach">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Poor</option>
+                                          <option value="47">Fair</option>
+                                          <option value="62">Good</option>
+                                          <option value="77">Very good</option>
+                                          <option value="92">Excellent</option>
+                                          
+                                      </select>
+                                        <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
+                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
+                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Very poor communication </option>
+                                          <option value="47">Generally ineffective</option>
+                                          <option value="62">Just satisfactorily</option>
+                                          <option value="77">Sometimes effective</option>
+                                          <option value="92">Always effective</option>
+                                          
+                                      </select>
+                                      <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
+                                      <select id="teacherillustrateq" name="teacherillustrate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
+                                      <select id="teacherencourageq" name="teacherencourage" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Strongly disagree</option>
+                                          <option value="47">Disagree </option>
+                                          <option value="62">Neutral</option>
+                                          <option value="77">Agree </option>
+                                          <option value="92">Strongly agree</option>
+    
+                                      </select>
+                                      <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
+                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label id="feedback">Write your opinion in text:-</label>
+                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something"></textarea>
+                                   <div class="d-flex flex-row justify-content-end mt-3">
+                                   <button type="submit"  class="btn btn-primary feedbackbtn">Submit</button>
+                                   </div>
+                                  </form>
+                                    </div>
+                         </div>
+                
+                        </div>
+                `;
+                editbuttonele.innerHTML=`<button class="edit-profile-btn" onclick="openModal('modalstudent','${student_id}')">Edit Profile</button>`;
+                editprofiledoc.innerHTML=`<div class="modal fade" id="modalstudent${student_id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-custom ">
+                                <div class="modal-content modal-content-custom p-5">
+                                    <div class="d-flex flex-row justify-content-between">
+              
+                <h1 class="feedbacknam">Edit Profile</h1>
+                <button type="button" class="close close-button-large" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+            
+                </div>
+           
+            <form action="/updatestudentdata" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+                <input name="studentId" type="hidden" id="studentId" value='${student_id}'>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required><br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="gender">Gender:</label>
+          
+                <select id="gender" name="gender">
+                    <option value="" selected hidden>Select</option>
+                    <option value="male">Male</option>
+                    <option value="Female">Female</option>
+                    </select>
+
+                    
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" placeholder="dd-mm-yyyy" required><br>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required><br>
+
+                <label for="student_year">Studying Year:</label>
+                <select id="student_year" name="studentyear" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1st Year">1st Year Students</option>
+                    <option value="2nd Year">2nd Year Students</option>
+                    <option value="3rd Year">3rd Year Students</option>
+                </select>
+
+                <label for="branch">Branch:</label>
+                <select id="branchSelect" name="branch" onchange="updateGroups()" required>
+                    <option value="" disabled selected>Select Branch</option>
+                    <option value="B.Sc">B.Sc</option>
+                    <option value="B.Com">B.Com</option>
+                    <option value="BA">BA</option>
+                    <option value="PG">PG</option>
+                </select>
+
+                <label for="group">Group:</label>
+                <select type="text" id="groupSelect" name="group">
+                    <!-- Options for groups will be dynamically populated based on the branch selection -->
+                </select>
+
+                <label for="rollnumber">Roll Number:</label>
+                <input type="text" id="rollnumber" name="rollnumber" required><br>
+
+                <label for="file">Choose File:</label>
+                <input type="file" id="file" name="file" accept="image/*"><br>
+
+                <div class="d-flex flex-row justify-content-center">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>`;
+
+            });
+            
+            
+        })
+        .catch(error => {
+            console.error('Error fetching student profile data:', error);
+        });
+});
+
+
+function openModal(modeltype, modelId) {
+  var modalId = modeltype + modelId;
+  var modalElement = document.getElementById(modalId);
+  var modal = new bootstrap.Modal(modalElement);
+  modal.show();
+}
+
+
+
+    
+      function updateGroups() {
+                var branchSelect = document.getElementById('branchSelect');
+                var groupSelect = document.getElementById('groupSelect');
+                var selectedBranch = branchSelect.value;
+
+                // Clear existing options
+                groupSelect.innerHTML = '';
+                groupSelect.innerHTML='<option value="" disabled selected>Select Group</option>';
+
+                // Define the groups for each branchs
+                var branchGroups = {
+                    'B.Sc': ['MPCS',
+                        'MECS',
+                        'MCCS',
+                        'MPC',
+                        'MSCS'
+                           ],
+                    'B.Com': ['English Literature',
+                        'History',
+                        'Psychology',
+                        'Sociology',
+                        'Economics',
+                        'Political Science',
+                        'Anthropology',
+                        'Philosophy',
+                        'Fine Arts','others'],
+                    'BA': [ 'English Literature',
+                        'History',
+                        'Psychology',
+                        'Sociology',
+                        'Economics',
+                        'Political Science',
+                        'Anthropology',
+                        'Philosophy',
+                        'Fine Arts',
+                        'Music',
+                        'Drama and Theatre Arts',
+                        'Languages (e.g., French, Spanish, German)',
+                        'Religious Studies',
+                        'Women\'s Studies',
+                        'Cultural Studies',
+                        'Media Studies',
+                        'Education',
+                        'Environmental Studies',
+                        'International Relations',
+                        'Legal Studies',
+                        'Communication Studies',
+                        'Archaeology',
+                        'Geography',
+                        'Social Work',
+                        'Linguistics',
+                        'Creative Writing',
+                        'Humanities'],
+                    'PG': ['MSC','MCA']
+                };
+
+                // Add options based on the selected branch
+                if (branchGroups[selectedBranch]) {
+                    branchGroups[selectedBranch].forEach(function(group) {
+                        var option = document.createElement('option');
+                        option.text = group;
+                        option.value = group;
+                        groupSelect.add(option);
+                    });
+                } else {
+                    var defaultOption = document.createElement('option');
+                    defaultOption.text = 'Select Group';
+                    groupSelect.add(defaultOption);
+                }
+            }
+
+            // Initially populate groups based on the default selected branch
+            updateGroups();
+            </script>
+            
+    </body>
+</html>

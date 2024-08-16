@@ -1,0 +1,207 @@
+
+<html>
+    <head>
+        <meta http-equiv="refresh" content="6; URL=main.html">
+        <script src="https://kit.fontawesome.com/57cd5747a9.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </head>
+<style>
+    *{
+  
+  box-sizing: border-box;
+  font-size: 100px;
+}
+
+.cubedesign{
+  min-width: 100%;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 20em;
+  perspective-origin: 77px 100px ;
+}
+
+.cube{
+
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: animate 15s linear infinite;
+
+
+}
+@keyframes animate{
+to{
+  transform: rotateY(360deg);
+}
+}
+.footer-icon {
+    color: #959ead;
+    font-size: 25px;
+}
+.footer-paragraph {
+    color: #ffffff;
+    font-family: "Roboto";
+    font-size: 15px;
+
+}
+.footer-bar {
+    background-color: #959ead;
+
+}
+.shadow{
+   position: absolute;
+   background: aqua;
+   width: 2em;
+   height: 2em;
+  transform:translateZ(-130px)
+   rotateX(90deg) rotateZ(3deg);
+   
+   bottom: -0.5em;  left: 5em;
+   box-shadow: 0 120px 100px 10px blue , 
+               50px 120px 200px 10px blue  ;
+   filter: blur(100px);
+}
+
+
+.top , .bottom , .left , .right , .front , .back{
+  height: 2em;
+  width: 2em;
+  background: aqua;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 50px 10px  blue  inset,
+          0 0 0 2em aqua inset ;
+    
+}
+
+
+
+
+.front{
+  transform: translateZ(1em);
+}
+
+.back{
+  transform: translateZ(-1em);
+}
+
+
+.top{
+  transform: translateY(-1em) rotateX(90deg);
+}
+.bottom{
+  transform: translateY(1em) rotateX(90deg);
+}
+.right{
+  transform: translateX(1em) rotateY(90deg);
+}
+.left{
+  transform: translateX(-1em) rotateY(90deg);
+}
+h1{
+    color:#fff;
+    font-size:50px;
+    text-align: center;
+   text-decoration: underline;
+    font-family: "Trirong";
+   
+}
+.footer{
+  height:2vh;
+}
+.container{
+  background-color: black;
+  height:100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+        .box-logo {
+            opacity: 0.5; /* Adjust this value as needed */
+        }
+        .image-ticker {
+    width: 100%; /* Ensure the ticker takes full width */
+    overflow: hidden; /* Hide the overflowing content */
+    white-space: nowrap; /* Prevent images from wrapping */
+}
+
+.image-ticker img {
+    display: inline-block; /* Display images in a row */
+    margin-right: 20px; /* Add some space between images */
+    vertical-align: middle; /* Align images vertically in the middle */
+    animation: ticker 10s linear infinite; /* Apply animation */
+}
+
+@keyframes ticker {
+    from { transform: translateX(100%); } /* Start from the right */
+    to { transform: translateX(-100%); } /* Move to the left */
+}
+
+</style>
+<body>
+ 
+  <div class="container col-12">
+    <div class="row">
+      <div class="col-12">
+    <div class="image-ticker">
+      <img src="imagesbvr/logo_2.gif" alt="Image 1" width="150px">
+      <img src="imagesbvr/college1.jpg" alt="Image 2" width="150px" >
+      <img src="imagesbvr/vishnu.png" alt="Image 3" width="150px" style="background-color: #fff;">
+      <img src="imagesbvr/svecw-logo.webp" alt="Image 4" width="150px">
+      <img src="imagesbvr/logo_red.png"alt="Image 5" width="150px" style="background-color: #fff;">
+    </div>
+  </div>
+
+    <div class="col-12">
+      <h1 >Welcome To B V Raju</h1>
+      </div>
+
+      
+        
+    
+
+    <div class="cubedesign mb-3">
+ 
+      <div class="cube mb-3">
+       
+          <div class="top"> </div>
+          <div class="bottom"> </div>
+          <div class="left">  <img class="box-logo" src="imagesbvr/WhatsApp Image 2024-08-16 at 16.10.04_a1d0da11.jpg" width="198px" height="198px"></div>
+          <div class="right"><img class="box-logo" src="imagesbvr/WhatsApp Image 2024-08-16 at 16.10.04_a1d0da11.jpg" width="198px" height="198px"> </div>
+          <div class="front"><img class="box-logo" src="imagesbvr/WhatsApp Image 2024-08-16 at 16.10.04_a1d0da11.jpg" width="198px" height="198px"> </div>
+          <div class="back"> <img class="box-logo" src="imagesbvr/WhatsApp Image 2024-08-16 at 16.10.04_a1d0da11.jpg" width="198px" height="198px"> </div>
+          
+          </div>
+        <div class="shadow">
+          
+        </div>
+      
+      </div>
+      
+      <div class="col-12 footer text-center fixed-bottom mb-1">
+        <hr class="footer-bar m-0">
+        <div class="d-flex flex-row justify-content-center" style="margin-top: 4px;">
+            <i class="footer-icon fa-regular fa-copyright"></i>
+            <p class="ml-1 footer-paragraph">Developed By MCA - 23-25</p>
+        </div>
+        </div>
+  </div>
+</div>
+  
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Admin</title>
+        <style>
+            h1{
+                font-size:21px;
+                text-align:center;
+            }
+            
+             th{
+                 text-align: center;
+                 padding:3px;
+                 font-size: 14px;
+             }
+             tr{
+                 text-align:center;
+             }
+        #viewstddocument tr:nth-child(odd) {
+            background: linear-gradient(to right, #08bf5a, #ffffff);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+
+        
+        #viewstddocument tr:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #08bf5a);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+        #viewfacultydoc tr:nth-child(odd) {
+            background: linear-gradient(to right, #ebc05b, #ffffff);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+
+        
+        #viewfacultydoc tr:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #ebc05b);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+        
+        #viewfeedbackdoc tr:nth-child(odd) {
+            background: linear-gradient(to right, #63baf7, #ffffff);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+
+        
+        #viewfeedbackdoc tr:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #63baf7);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+        @keyframes gradientTransition {
+            from {
+                background-position: 200% 0;
+            }
+            to {
+                background-position: 0 0;
+            }
+        }
+
+        td {
+            padding: 5px;
+        }
+        /*alumni-feedback-css*/
+           .heading-names-feedback {
+           color:#ffffff;
+            text-align: center;
+          
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        #outputName
+         {
+            color: #333;
+            font-family: "Trirong";
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        h2{
+            font-size:24px;
+        }
+
+        li {
+            color:#0744a6;
+            font-family: "Roboto";
+            font-weight:bold;
+            margin-bottom: 10px;
+        }
+        strong{
+            color:#333;
+        }
+         #outputContact {
+            color: #333;
+        }
+        label{
+           font-size: 15px;
+           font-family:"Roboto";
+           font-weight:bold;
+           
+        }
+        </style>
+    </head>
+    <body>
+        <div class="d-flex flex-row justify-content-center mt-3">
+        <div>
+         <div class="d-flex justify-content-center">
+        <button type="submit" id="homebtn" class="btn btn-primary">Log Out</button>
+        <button type="submit" id="viewstd" class="btn btn-success ml-3">View Student</button>
+        <button type="submit" id="viewfaculty" class="btn btn-danger ml-3">View Faculty</button>
+
+        <button type="submit" id="viewFeedback" class="btn btn-danger ml-3">View Faculty Feedback</button>
+        <button type="submit" id="viewAlumniFeedback" class="btn btn-danger ml-3">View Alumni Feedback</button>
+        <button type="submit" id="postalumnitalkbtn" class="btn btn-danger ml-3">Post Alumni Talk</button>
+        <button type="submit" id="posteventsbtn" class="btn btn-danger ml-3">Post Events</button>
+        <button type="submit" id="IHNbtn" class="btn btn-danger ml-3">Import Hallticket Numbers</button>
+        <button type="submit" id="coursebtn" class="btn btn-danger ml-3">Courses</button>
+        </div>
+        <div id="viewstddocument" class="d-none mt-3">
+            <form  id="coursestudentForm">
+                <select id="coursebelongs" name="course">
+             
+                        <option value="" disabled selected>Select Option</option>
+         
+                </select>
+                <select id="yearbelongs" name="year">
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="viewstudents" class="d-none">
+            <h1>Students Details</h1>
+            <div class="d-flex flex-row justify-content-end mb-3">
+                <button id="downloadstudent" type="submit">Download To Excel</button>
+                </div>
+            <table id="studentsTable" border="1">
+                
+            </table>
+            </div>
+            <div id="viewsearchstudents" class="d-none">
+                <h1>Students search Details</h1>
+                <div class="d-flex flex-row justify-content-end mb-3">
+                    <button id="downloadsearchstudent" type="submit">Download To Excel</button>
+                    </div>
+                <table id="studentsearchTable" border="1">
+                    
+                </table>
+                </div>
+        </div>
+        <div id="viewfacultydoc" class="d-none mt-3">
+            <h1>Faculty Details</h1>
+            <table id="facultyTable" border="1">
+                
+                <!-- Table rows will be dynamically added here -->
+            </table>
+        </div>
+        <div id="viewfeedbackdoc" class="d-none mt-3">
+            <form  id="coursefeedbackForm">
+                <select id="coursebelongsfeedback" name="course">
+             
+                    <option value="" disabled selected>Select Option</option>
+     
+            </select>
+                <select id="yearbelongs" name="year">
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="searchfeedbackdoc" class="d-none">
+                <h1>Searched Faculty Feedback</h1>
+                <div class="d-flex flex-row justify-content-end mb-3">
+                    <button id="downloadsearchfacultyfeedback" type="submit">Download To Excel</button>
+                    </div>
+                <table id="feedbacksearchTable" border="1">
+                    
+                    <!-- Table rows will be dynamically added here -->
+                </table>
+
+            </div>
+            <div id="allfacultyfeedbackdoc" class="d-none">
+
+            <h1>Feedback Details</h1>
+            <div class="d-flex flex-row justify-content-end mb-3">
+            <button id="downloadallfacultyfeedback" type="submit">Download To Excel</button>
+            </div>
+            <table id="feedbackTable" border="1">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student Year</th>
+                    <th>Roll Number</th>
+                    <th>Group Name</th>
+                    <th>Faculty Name</th>
+                    <th>Faculty Subject</th>
+                    <th>Feed Back</th>
+                    <th>Rating</th>
+                    <th>Posted Date</th>
+                    <th>Overall Faculty Performance</th>
+                </tr>
+                <!-- Table rows will be dynamically added here -->
+            </table>
+        </div>
+        </div>
+        
+        <div id="alumnifeedbackviewdoc" class="d-none mt-3">
+            <form  id="courseForm">
+                <select id="coursecompletion" name="course">
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="B.Com">B.Com</option>
+                    <option value="BA">BA</option>
+                    <option value="B.Sc">B.Sc</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MSC">MSC</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="searchalumnidoc" class="d-none">
+                
+                <!-- Feedback section will be populated dynamically -->
+            </div>
+            <div id="allalumnifeedback" class="d-none">
+                <h1>Alumni Feedbacks</h1>
+                <h1 id="overallalumnipercentage"></h1>
+                <div id="feedbackList"></div>
+              </div>
+        </div>
+        <div id="postalumnitalkdoc" class="d-none mt-5">
+            <h1 class="mb-3">Post Alumni Talks</h1>
+            <div class="d-flex flex-row justify-content-center">
+            <form  action="/alumnitalkserverpost" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+            <label for="an">name of alumni</label>
+            <input id="an" name="alumniname" type="text">
+            <label for="atd">Topic Heading</label>
+            <input id="atd" name="alumnitopic" type="text">
+            <label for="aa">About</label>
+            <textarea id="aa" name="alumniabout" placeholder="write something about topic"row="5"></textarea>
+            <label for="ai">banner image</label>
+            <input id="ai" name="alumniimage" type="file" accept="image/*">
+            <label for="av">alumni talk video</label>
+            <input id="av" name="alumnivideo" type="file" accept="video/*">
+            <div  class="d-flex flex-row justify-content-center mt-4">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+        </div>
+        </div>
+
+        <div id="posteventsformdoc" class="d-none mt-5">
+            <h1 class="mb-3">Post College Events</h1>
+            <div class="d-flex flex-row justify-content-center">
+       <form  action="/eventpostserver" method="post" enctype="multipart/form-data" class="d-flex flex-column">
+       
+           <label for="an">name of Event</label>
+           <input id="an" name="eventname" type="text">
+           <label for="atd">Topic Heading</label>
+           <input id="atd" name="eventtopic" type="text">
+           <label for="aa">About</label>
+           <textarea id="aa" name="eventabout" placeholder="write something about topic"row="5"></textarea>
+           <label for="ai">Event banner image</label>
+           <input id="ai" name="eventimage" type="file" accept="image/*">
+           <label for="av">Event video</label>
+           <input id="av" name="eventvideo" type="file" accept="video/*">
+           <div class=" d-flex flex-row justify-content-center mt-4">
+           <button class="btn btn-primary" type="submit">Submit</button>
+           </div>
+       </form>
+   </div>
+        </div>
+        <div id="importhallticektformdoc" class="d-none mt-5">
+            <h1>Import Hall Ticket Numbers</h1>
+            <div class="d-flex flex-row justify-content-center">
+            <form id="uploadhallticketForm" enctype="multipart/form-data" class="d-flex flex-column">
+                <input type="file" id="excelFile" name="excelFile" class="m-5">
+        <button type="submit" class="btn btn-success" style="width: 100px;" >Upload</button>
+              </form>
+            </div>
+            </div>
+
+
+            <div id="courses" class="d-none ">
+                <h1>Manage Course Data</h1>
+                <div style="display: flex; align-items: center;flex-direction: column;justify-content: center; ">
+                    <form id="select-table-form">
+                        <label for="table_name">Select Table:</label>
+                        <select id="table_name" name="table_name" required>
+                            <option value="">-- Select Table --</option>
+                            <option value="branches">Branches</option>
+                            <option value="group_details">Groups</option>
+                            <option value="subjects">Subjects</option>
+                        </select>
+                        <br><br>
+                        <button type="submit" class="btn-primary">Load Data</button>
+                    </form>
+                
+                    <div id="data-management" style="display: none;">
+                        <h2>Table Data</h2>
+                        <table id="table-data" border="1">
+                            <thead id="table-header"></thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                
+                        <div id="add-delete-section" style="display: none;" class="d-flex flex-row mt-5">
+                            <div>
+                            <h2>Add Row</h2>
+                            <form id="add-row-form"></form>
+                        </div>
+                        <div class="ml-3">
+
+                      
+                            <h2>Delete Row</h2>
+                            <form id="delete-row-form">
+                                <label for="delete_row_id">Row ID:</label>
+                                <input type="number" id="delete_row_id" name="delete_row_id" required>
+                                <br><br>
+                                <button type="submit" class="btn-warning">Delete Row</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                
+                    <div id="subjects-container" style="display: none;">
+                        <h2>Subjects</h2>
+                        <label for="group_name">Select Group:</label>
+                        <select id="group_name" name="group_name" required>
+                            <option value="">-- Select Group --</option>
+                        </select>
+                        <div id="subjects-table-container" style="display:none;">
+                            <table id="subjects-table" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Group ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <div id="add-subject-section" style="display: none;" class="d-flex flex-row mt-5">
+                            <div>
+                            <h2>Add Subject</h2>
+                            <form id="add-subject-form">
+                                <label for="subject_name">Name:</label>
+                                <input type="text" id="subject_name" name="name" required>
+                                <input type="hidden" id="subject_group_id" name="group_id">
+                                <br><br>
+                                <button type="submit" class="btn-success">Add Subject</button>
+                            </form>
+                        </div>
+                        <div class="ml-3">
+                            <h2>Delete Subject</h2>
+                            <form id="delete-subject-form">
+                                <label for="delete_subject_id">Subject ID:</label>
+                                <input type="number" id="delete_subject_id" name="subject_id" required>
+                                <br><br>
+                                <button type="submit" class="btn-warning">Delete Subject</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                
+    </div>
+
+            </div>
+
+    </div>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="table2excel.js"></script>
+        <script>
+           $(document).ready(function () {
+    // Fetch groups and populate dropdown
+    $.get('http://localhost:3305/formgroups', function (data) {
+        data.forEach(function (group) {
+            $('#coursebelongs').append(`<option value="${group.name}">${group.name}</option>`);
+            $('#coursebelongsfeedback').append(`<option value="${group.name}">${group.name}</option>`);
+        });
+    });
+});
+
+            document.getElementById("coursebtn").onclick=()=>{
+                document.getElementById("courses").classList.remove("d-none");
+                document.getElementById("importhallticektformdoc").classList.add("d-none");
+                document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+                document.getElementById("searchalumnidoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none")
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+        $(document).ready(function () {
+            // Handle form submission to load table data
+            $('#select-table-form').on('submit', function (e) {
+                e.preventDefault();
+                const tableName = $('#table_name').val();
+                document.getElementById("data-management").classList.remove("d-none")
+                if (tableName) {
+                    $.get(`http://localhost:3305/columns/${tableName}`, function (data) {
+                        $('#table-header').empty();
+                        $('#table-body').empty();
+                        const headerRow = $('<tr></tr>');
+                        data.columns.forEach(function (column) {
+                            headerRow.append(`<th>${column}</th>`);
+                        });
+                        $('#table-header').append(headerRow);
+
+                        data.rows.forEach(function (row) {
+                            const rowElement = $('<tr></tr>');
+                            data.columns.forEach(function (column) {
+                                rowElement.append(`<td>${row[column]}</td>`);
+                            });
+                            $('#table-body').append(rowElement);
+                        });
+
+                        // Show the appropriate form based on the selected table
+                        if (tableName === 'subjects') {
+                            document.getElementById("data-management").classList.add("d-none")
+                            $('#subjects-container').show();
+                            $('#add-delete-section').hide();
+                            $.get('http://localhost:3305/formgroups', function (groups) {
+                                $('#group_name').empty();
+                                $('#group_name').append('<option value="">-- Select Group --</option>');
+                                groups.forEach(function (group) {
+                                    $('#group_name').append(`<option value="${group.id}">${group.name}</option>`);
+                                });
+                            });
+                        } else if (tableName === 'branches' || tableName === 'group_details') {
+                            $('#subjects-container').hide();
+                            $('#add-delete-section').show();
+                            // Prepare Add Row Form
+                            $('#add-row-form').empty();
+                            data.columns.forEach(function (column) {
+                                if (column !== 'id') { // Assuming 'id' is the primary key and auto-incremented
+                                    $('#add-row-form').append(`
+                                        <label for="${column}">${column}:</label>
+                                        <input type="text" id="${column}" name="${column}" required><br><br>
+                                    `);
+                                }
+                            });
+                            $('#add-row-form').append('<button type="submit" class="btn-success">Add Row</button>');
+                        } else {
+                            $('#subjects-container').hide();
+                            $('#add-delete-section').hide();
+                        }
+
+                        // Show the data management section
+                        $('#data-management').show();
+                    });
+                }
+            });
+
+            // Handle adding a new row
+            $('#add-row-form').on('submit', function (e) {
+                e.preventDefault();
+                const tableName = $('#table_name').val();
+                const formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: `http://localhost:3305/add-row/${tableName}`,
+                    data: formData,
+                    success: function (response) {
+                        alert('Row added successfully!');
+                        $('#select-table-form').submit(); // Refresh table data
+                    },
+                    error: function (error) {
+                        alert('Failed to add row!');
+                    }
+                });
+            });
+
+            // Handle deleting a row
+            $('#delete-row-form').on('submit', function (e) {
+                e.preventDefault();
+                const tableName = $('#table_name').val();
+                const rowId = $('#delete_row_id').val();
+                $.ajax({
+                    type: 'POST',
+                    url: `http://localhost:3305/delete-row/${tableName}`,
+                    data: { id: rowId },
+                    success: function (response) {
+                        alert('Row deleted successfully!');
+                        $('#select-table-form').submit(); // Refresh table data
+                    },
+                    error: function (error) {
+                        alert('Failed to delete row!');
+                    }
+                });
+            });
+
+            // Fetch subjects based on selected group and display in table
+            $('#group_name').on('change', function () {
+                const groupId = $(this).val();
+                if (groupId) {
+                    $.get(`http://localhost:3305/subjects/${groupId}`, function (data) {
+                        const $tableBody = $('#subjects-table tbody');
+                        $tableBody.empty();
+                        data.forEach(function (subject) {
+                            $tableBody.append(`
+                                <tr>
+                                    <td>${subject.id}</td>
+                                    <td>${subject.name}</td>
+                                    <td>${subject.group_id}</td>
+                                </tr>
+                            `);
+                        });
+                        $('#subjects-table-container').show();
+                        $('#add-subject-section').show();
+                        $('#subject_group_id').val(groupId);
+                    });
+                } else {
+                    $('#subjects-table-container').hide();
+                    $('#add-subject-section').hide();
+                }
+            });
+
+            // Handle adding a new subject
+            $('#add-subject-form').on('submit', function (e) {
+                e.preventDefault();
+                const groupId = $('#subject_group_id').val();
+                const formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: `http://localhost:3305/add-row/subjects`,
+                    data: formData,
+                    success: function (response) {
+                        alert('Subject added successfully!');
+                        $('#group_name').change(); // Refresh subjects data
+                    },
+                    error: function (error) {
+                        alert('Failed to add subject!');
+                    }
+                });
+            });
+
+            // Handle deleting a subject
+            $('#delete-subject-form').on('submit', function (e) {
+                e.preventDefault();
+                const subjectId = $('#delete_subject_id').val();
+                $.ajax({
+                    type: 'POST',
+                    url: `http://localhost:3305/delete-row/subjects`,
+                    data: { id: subjectId },
+                    success: function (response) {
+                        alert('Subject deleted successfully!');
+                        $('#group_name').change(); // Refresh subjects data
+                    },
+                    error: function (error) {
+                        alert('Failed to delete subject!');
+                    }
+                });
+            });
+        });
+            }
+            document.getElementById("IHNbtn").onclick=()=>{
+                document.getElementById("courses").classList.add("d-none");
+                document.getElementById("importhallticektformdoc").classList.remove("d-none");
+                document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+                document.getElementById("searchalumnidoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none")
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById('uploadhallticketForm').addEventListener('submit', async (event) => {
+            event.preventDefault()
+      
+
+            const formData = new FormData();
+            const fileInput = document.getElementById('excelFile');
+            formData.append('excelFile', fileInput.files[0]);
+
+            try {
+                const response = await fetch('/uploadhallticketexcel', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                alert(data.message);
+            } catch (error) {
+                console.error('Error uploading file:', error);
+                alert('Failed to upload file');
+            }
+            })
+        };
+             document.getElementById('coursebelongs').addEventListener('change', function() {
+        console.log('Course changed:', this.value);
+    });
+          document.getElementById("downloadallfacultyfeedback").onclick = () => {
+    const table2excel = new Table2Excel();
+    const tableToExport = document.querySelector("#feedbackTable");
+    table2excel.export(tableToExport);
+};
+
+          document.getElementById("downloadsearchfacultyfeedback").onclick = () => {
+    const table2excel = new Table2Excel();
+    const tableToExport = document.querySelector("#feedbacksearchTable");
+    table2excel.export(tableToExport);
+};
+document.getElementById("downloadsearchstudent").onclick = () => {
+    const table2excel = new Table2Excel();
+    const tableToExport = document.querySelector("#studentsearchTable");
+    table2excel.export(tableToExport);
+};
+document.getElementById("downloadstudent").onclick = () => {
+    const table2excel = new Table2Excel();
+    const tableToExport = document.querySelector("#studentsTable");
+    table2excel.export(tableToExport);
+};
+            document.getElementById("viewAlumniFeedback").onclick=()=>{
+                document.getElementById("courses").classList.add("d-none");
+                document.getElementById("importhallticektformdoc").classList.add("d-none");
+                document.getElementById("alumnifeedbackviewdoc").classList.remove("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+                document.getElementById("searchalumnidoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none")
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+       
+                fetch('/api/alumniFeedback')
+      .then(response => response.json())
+      .then(data => {
+        const feedbackList = document.getElementById('feedbackList');
+        feedbackList.innerHTML="";
+        // Iterate through the fetched data and create HTML elements for display
+        data.forEach(feedback => {
+            console.log(feedback);
+           document.getElementById("overallalumnipercentage").textContent = `Overall Average Rating:- ${parseInt(feedback.average_rating)}%`;
+          const feedbackSection = document.createElement('section');
+          feedbackSection.innerHTML = `
+            <div class="heading-names-feedback">
+              <h3 id="outputName">${feedback.name_of_alumnus}</h3>
+              <p id="outputContact">${feedback.year} | ${feedback.course} | ${feedback.address} | ${feedback.contact_number} | <a href="mailto:${feedback.email}" target="_blank">${feedback.email}</a></p>
+            </div>
+            <h2>Feedback:</h2>
+            <ul>
+              <li><strong>1. ${feedback.relevance_question}?</strong><br>Ans: ${feedback.relevance_of_curriculum}<br></li>
+              <li><strong>2. ${feedback.infrastructure_question}?</strong><br>Ans: ${feedback.infrastructure_facilities}<br></li>
+              <li><strong>3. ${feedback.guest_lecturers_arrangement_question}?</strong><br>Ans: ${feedback.guest_lecturers_arrangement}<br></li>
+              <li><strong>4. ${feedback.student_teacher_interaction_question}?</strong><br>Ans: ${feedback.student_teacher_interaction}<br></li>
+    <li><strong>5. ${feedback.cooperation_from_staff_question}?</strong><br>Ans: ${feedback.cooperation_from_staff}<br></li>
+    <li><strong>6. ${feedback.teaching_faculties_availability_question}?</strong><br>Ans: ${feedback.teaching_faculties_availability}<br></li>
+    <li><strong>7. ${feedback.overall_facilities_satisfaction_question}?</strong><br>Ans: ${feedback.overall_facilities_satisfaction}<br></li>
+    <li><strong>8. ${feedback.contribution_to_college_question}?</strong><br>Ans: ${feedback.contribution_to_college}<br></li>
+    <li><strong>9. How much will you give for this college?</strong><br>Ans: ${feedback.rating}%</li>
+                            <li><strong>Few More Words</strong><br>${feedback.suggestion_text}</li>
+            </ul>
+          `;
+
+          feedbackList.appendChild(feedbackSection);
+        });
+        document.getElementById("allalumnifeedback").classList.remove("d-none");
+      })
+      .catch(error => console.error('Error fetching alumni feedback:', error));
+
+
+                const courseForm = document.getElementById('courseForm');
+                const searchAlumniDoc = document.getElementById('searchalumnidoc');
+
+            courseForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+        
+        const formData = new FormData(courseForm);
+        const selectedCourse = formData.get('course');
+
+        try {
+            const response = await fetch(`/api/alumni-feedback?course=${selectedCourse}`);
+            const alumniFeedbackData = await response.json();
+            searchAlumniDoc.classList.remove("d-none");
+            document.getElementById("allalumnifeedback").classList.add("d-none");
+            document.getElementById("searchalumnidoc").classList.remove("d-none");
+            if (alumniFeedbackData.length > 0) {
+                searchAlumniDoc.innerHTML = ''; // Clear previous content
+                
+                const overallRating = alumniFeedbackData[0].average_rating;
+                const headingSearchele = document.createElement("h1");
+                headingSearchele.textContent = 'Alumni Searched Feedbacks';
+                searchAlumniDoc.appendChild(headingSearchele);
+                const overallRatingSection = document.createElement('h1');
+                overallRatingSection.textContent = `Overall Rating: ${overallRating}%`;
+                searchAlumniDoc.appendChild(overallRatingSection);
+
+                alumniFeedbackData.forEach(feedback => {
+                    const feedbackSection = document.createElement('section');
+                    feedbackSection.innerHTML = `
+                    
+                        <div class="heading-names-feedback">
+                            <h3 id="outputName">${feedback.name_of_alumnus}</h3>
+                            <p id="outputContact">${feedback.year} | ${feedback.course} | ${feedback.address} | ${feedback.contact_number} | <a href="mailto:${feedback.email}" target="_blank">${feedback.email}</a></p>
+                        </div>
+                        <h2>Feedback:</h2>
+                        <ul>
+                            <li><strong>1. ${feedback.relevance_question}?</strong><br>Ans: ${feedback.relevance_of_curriculum}<br></li>
+              <li><strong>2. ${feedback.infrastructure_question}?</strong><br>Ans: ${feedback.infrastructure_facilities}<br></li>
+              <li><strong>3. ${feedback.guest_lecturers_arrangement_question}?</strong><br>Ans: ${feedback.guest_lecturers_arrangement}<br></li>
+              <li><strong>4. ${feedback.student_teacher_interaction_question}?</strong><br>Ans: ${feedback.student_teacher_interaction}<br></li>
+    <li><strong>5. ${feedback.cooperation_from_staff_question}?</strong><br>Ans: ${feedback.cooperation_from_staff}<br></li>
+    <li><strong>6. ${feedback.teaching_faculties_availability_question}?</strong><br>Ans: ${feedback.teaching_faculties_availability}<br></li>
+    <li><strong>7. ${feedback.overall_facilities_satisfaction_question}?</strong><br>Ans: ${feedback.overall_facilities_satisfaction}<br></li>
+    <li><strong>8. ${feedback.contribution_to_college_question}?</strong><br>Ans: ${feedback.contribution_to_college}<br></li>
+                            <li><strong>9. How much will you give for this college?</strong><br>Ans: ${feedback.rating}%</li>
+                            <li><strong>Few More Words</strong><br>${feedback.suggestion_text}</li>
+                        </ul>
+                    `;
+                    searchAlumniDoc.appendChild(feedbackSection);
+                });
+                
+            } else {
+                searchAlumniDoc.innerHTML = '<p>No feedback found for the selected course.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching alumni feedback:', error);
+        }
+    });
+    
+            }
+
+
+            document.getElementById("viewFeedback").onclick=()=>{
+                document.getElementById("courses").classList.add("d-none");
+            document.getElementById("importhallticektformdoc").classList.add("d-none");
+            document.getElementById("searchfeedbackdoc").classList.add("d-none");
+            document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.remove("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none");
+        document.getElementById("allfacultyfeedbackdoc").classList.remove("d-none");
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+               
+                const feedbackTable = document.getElementById('feedbackTable');
+                const searchtablefaculty = document.getElementById('feedbacksearchTable');
+                feedbackTable.innerHTML="";
+                searchtablefaculty.innerHTML="";
+                feedbackTable.innerHTML=`<tr>
+                        <th>Student Name</th>
+                        <th>Student Year</th>
+                        <th>Roll Number</th>
+                        <th>Group Name</th>
+                        <th>Faculty Name</th>
+                        <th>Faculty Subject</th>
+                        <th>Feed Back</th>
+                        <th>Rating</th>
+                        <th>Posted Date</th>
+                        <th>Overall Faculty Performance</th>
+                    </tr>`;
+    // Fetch feedback data from API endpoint
+    fetch('/apiadmin/feedback')
+        .then(response => response.json())
+        .then(feedbackData => {
+            console.log(feedbackData);
+
+            feedbackData.forEach(feedback => {
+                const row = feedbackTable.insertRow();
+                const { fname,lname, year, rollnumber, group_name, firstname,lastname, subjectName, feedback_text, ATA, posted_date, AverageOverall} = feedback;
+                const StudentFullname = fname +" " +lname;
+                const FacultyFullname = firstname+" "+lastname;
+                [StudentFullname, year,rollnumber, group_name, FacultyFullname, subjectName, feedback_text, ATA, posted_date, AverageOverall].forEach(value => {
+                    const cell = row.insertCell();
+                    cell.textContent = value;
+                });
+            });
+           
+        })
+        
+        .catch(error => console.error('Error fetching feedback data:', error));
+        const coursefacultyForm = document.getElementById('coursefeedbackForm');
+        const searchfacultyDoc = document.getElementById('searchfeedbackdoc');
+        
+        
+        coursefacultyForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            searchfacultyDoc.classList.remove("d-none");
+            document.getElementById("allfacultyfeedbackdoc").classList.add("d-none");
+        const formfacultyData = new FormData(coursefacultyForm);
+        const selectedCourse = formfacultyData.get('course');
+        const selectedYear = formfacultyData.get('year');
+       
+        searchtablefaculty.innerHTML="";
+        
+        searchtablefaculty.innerHTML=`<tr>
+                        <th>Student Name</th>
+                        <th>Student Year</th>
+                        <th>Roll Number</th>
+                        <th>Group Name</th>
+                        <th>Faculty Name</th>
+                        <th>Faculty Subject</th>
+                        <th>Feed Back</th>
+                        <th>Rating</th>
+                        <th>Posted Date</th>
+                        <th>Overall Faculty Performance</th>
+                    </tr>`;
+        const response = await fetch(`/api/faculty-feedback?course=${selectedCourse}&year=${selectedYear}`);
+            const facultyFeedbackData = await response.json();
+            
+           
+            if (facultyFeedbackData.length > 0) {
+                // Clear previous content
+                facultyFeedbackData.forEach(feedback => {
+                
+                const row = searchtablefaculty.insertRow();
+                const { fname,lname, year, rollnumber,group_name, firstname,lastname, subjectName, feedback_text, ATA, posted_date, AverageOverall} = feedback;
+                console.log(fname);
+                const StudentFullname = fname +" " +lname;
+                const FacultyFullname = firstname+" "+lastname;
+                [StudentFullname, year,rollnumber, group_name, FacultyFullname, subjectName, feedback_text, ATA, posted_date, AverageOverall].forEach(value => {
+                    const cell = row.insertCell();
+                    cell.textContent = value;
+              
+            });
+                })    
+            }
+            });
+            }
+            document.getElementById("viewfaculty").onclick = () => {
+    const facultyTable = document.getElementById('facultyTable');
+    facultyTable.innerHTML = '';
+    facultyTable.innerHTML = `
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Teaching Year</th>
+            <th>Teaching Level</th>
+            <th>Teaching Program</th>
+            <th>Teaching Subject</th>
+            <th>Date of Register</th>
+            <th>Photo</th>
+            <th>Remove</th>
+        </tr>`;
+
+    // Fetch faculty data from API endpoint
+    fetch('/apiadmin/faculty')
+        .then(response => response.json())
+        .then(faculty => {
+        faculty.forEach(person => {
+            if (Object.values(person).some(value => value !== null && value !== undefined && value !== '')) {
+                const row = facultyTable.insertRow();
+                Object.entries(person).forEach(([key, value]) => {
+                    // Skip the 'id' key
+                    if (key !== 'id') {
+                        const cell = row.insertCell();
+                        if (key === 'faculty_imageurl' && typeof value === 'string' && value.includes('.jpg')) {
+                            const img = document.createElement('img');
+                            img.src = value;
+                            img.width = 100;
+                            cell.appendChild(img);
+                        } else if (key === 'date_of_registration') {
+                            cell.textContent = new Date(value).toLocaleDateString();
+                        } else {
+                            cell.textContent = value;
+                        }
+                    }
+                });
+
+                // Add delete button with event listener
+                const deleteCell = row.insertCell();
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.className = 'btn btn-danger delete-btn';
+                deleteBtn.dataset.type = 'faculty';
+                deleteBtn.dataset.id = person.id;
+                deleteBtn.addEventListener('click', () => {
+                    deleteFaculty(person.id, row);
+                });
+                deleteCell.appendChild(deleteBtn);
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching faculty data:', error));
+    // Function to delete a faculty record
+    const deleteFaculty = (facultyId, row) => {
+        fetch(`/apidelete/faculty/${facultyId}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the row from the table
+                    facultyTable.deleteRow(row.rowIndex);
+                } else {
+                    console.error('Error deleting faculty:', response.statusText);
+                }
+            })
+            .catch(error => console.error('Error deleting faculty:', error));
+    };
+
+    document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+    document.getElementById("viewfeedbackdoc").classList.add("d-none");
+    document.getElementById("viewfacultydoc").classList.remove("d-none");
+    document.getElementById("courses").classList.add("d-none");
+    document.getElementById("importhallticektformdoc").classList.add("d-none");
+    document.getElementById("viewstddocument").classList.add("d-none");
+    document.getElementById("postalumnitalkdoc").classList.add("d-none");
+    document.getElementById("posteventsformdoc").classList.add("d-none");
+};
+
+            document.getElementById("viewstd").onclick=()=>{
+                const studentssearchTable = document.getElementById('studentsearchTable');
+                document.getElementById("coursestudentForm").addEventListener("submit", function (event) {
+
+    event.preventDefault(); // Prevent default form submission
+document.getElementById("viewstudents").classList.add("d-none");
+    const formData = new FormData(this);
+    const searchParams = new URLSearchParams(formData).toString();
+    studentssearchTable.innerHTML='';
+    studentssearchTable.innerHTML=`<tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Date Of Birth</th>
+                        <th>Address</th>
+                        <th>Level</th>
+                        <th>Program</th>
+                        <th>Studying_year</th>
+                        <th>Roll Number</th>
+                        <th>Register_date</th>
+                        <th>Photo</th>
+                        <th>Remove</th>
+                    </tr>`;
+    fetch(`/search-students?${searchParams}`)
+    
+    .then(response => response.json())
+    
+
+        .then(students => {
+            students.forEach(student => {
+        const row = studentssearchTable.insertRow();
+        Object.entries(student).forEach(([key, value]) => {
+            if (key !== 'student_id') { // Skip inserting student_id into the table
+                const cell = row.insertCell();
+                if (typeof value === 'string' && value.includes('.jpg')) {
+                    const img = document.createElement('img');
+                    img.src = value;
+                    img.width = 100;
+                    cell.appendChild(img);
+                } else {
+                    cell.textContent = value;
+                }
+            }
+        });
+
+                // Add delete button
+                const deleteCell = row.insertCell();
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.className = 'btn btn-danger delete-btn';
+                deleteBtn.dataset.type = 'student';
+                deleteBtn.dataset.id = student.student_id;
+                deleteBtn.addEventListener('click', () => {
+                    deleteStudent(student.student_id, row);
+                });
+                deleteCell.appendChild(deleteBtn);
+            });
+            document.getElementById("viewstudents").classList.add("d-none");
+            document.getElementById("viewsearchstudents").classList.remove("d-none");
+        })
+        .catch(error => {
+            console.error('Error fetching students data:', error);
+        });
+});
+
+                const studentsTable = document.getElementById('studentsTable');
+                studentsTable.innerHTML="";
+                studentsTable.innerHTML=` <tr>
+                   
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th> 
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Date Of Birth</th>
+                    <th>Address</th>
+                    <th>Level</th>
+                    <th>Program</th>
+                    <th>studying_Year</th>
+                    <th>Roll Number</th>
+                    <th>Photo</th>
+                    <th>Date Time</th>
+                    <th>Remove</th>
+                </tr>`;
+
+               console.log("hi");
+    // Fetch student data from API endpoint
+    fetch('/adminapi/students')
+        .then(response => response.json())
+        .then(students => {
+            students.forEach(student => {
+        const row = studentsTable.insertRow();
+        Object.entries(student).forEach(([key, value]) => {
+            if (key !== 'student_id') { // Skip inserting student_id into the table
+                const cell = row.insertCell();
+                if (typeof value === 'string' && value.includes('.jpg')) {
+                    const img = document.createElement('img');
+                    img.src = value;
+                    img.width = 100;
+                    cell.appendChild(img);
+                } else {
+                    cell.textContent = value;
+                }
+            }
+        });
+                // Add delete button
+                const deleteCell = row.insertCell();
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.className = 'btn btn-danger delete-btn';
+                deleteBtn.dataset.type = 'student';
+                deleteBtn.dataset.id = student.student_id;
+                console.log(student.student_id)
+                deleteBtn.addEventListener('click', () => {
+                    deleteStudent(student.student_id, row);
+                });
+                deleteCell.appendChild(deleteBtn);
+            });
+            document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.remove("d-none");
+        document.getElementById("courses").classList.add("d-none");
+        document.getElementById("importhallticektformdoc").classList.add("d-none");
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("viewstudents").classList.remove("d-none");
+        document.getElementById("viewsearchstudents").classList.add("d-none");
+        })
+        .catch(error => console.error('Error fetching data:', error));
+        const deleteStudent = (studentId, row) => {
+        fetch(`/apidelete/students/${studentId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.ok) {
+                // Remove the row from the table
+                studentsTable.deleteRow(row.rowIndex);
+                studentssearchTable.deleteRow(row.rowIndex);
+               
+            } else {
+                console.error('Error deleting student:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Error deleting student:', error));
+    };
+
+}
+document.getElementById("postalumnitalkbtn").onclick=()=>{
+    document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none");
+        document.getElementById("courses").classList.add("d-none");
+        document.getElementById("importhallticektformdoc").classList.add("d-none");
+        document.getElementById("postalumnitalkdoc").classList.remove("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+}
+document.getElementById("posteventsbtn").onclick=()=>{
+    document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none");
+        document.getElementById("courses").classList.add("d-none");
+        document.getElementById("importhallticektformdoc").classList.add("d-none");
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.remove("d-none");
+}
+document.getElementById('homebtn').addEventListener('click', () => {
+  fetch('/adminlogout') // Assuming your logout endpoint is '/logout'
+    .then(response => {
+      if (response.ok) {
+        // Redirect to adminlogin.html after logout
+        window.location.href = '/adminlogin.html';
+      } else {
+        console.error('Logout failed:', response.statusText);
+        alert('Logout failed. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Logout error:', error);
+      alert('Logout failed. Please try again.');
+    });
+});
+
+
+        </script>
+    </body>
+</html>

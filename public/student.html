@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="https://kit.fontawesome.com/57cd5747a9.js" crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+       
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Student</title>
+        <style>
+                
+                * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+.feedbackbtn{
+                
+                width:100px;
+            }
+            h1{
+                font-size:21px;
+              
+            }
+            
+            th{
+                 text-align: center;
+                 padding:3px;
+                 font-size: 14px;
+             }
+             tr{
+                 text-align:center;
+             }
+        #searchResultsContainer tr:nth-child(odd) {
+            background: linear-gradient(to right, #08bf5a, #ffffff);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+
+        
+        #searchResultsContainer tr:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #08bf5a);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+        #viewfacultydoc tr:nth-child(odd) {
+            background: linear-gradient(to right, #ebc05b, #ffffff);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+
+        
+        #viewfacultydoc tr:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #ebc05b);
+            background-size: 200% 100%;
+            animation: gradientTransition 1s ease;
+        }
+        
+        @keyframes gradientTransition {
+            from {
+                background-position: 200% 0;
+            }
+            to {
+                background-position: 0 0;
+            }
+        }
+
+        td {
+            padding: 5px;
+        }
+        label{
+            margin-top:5px;
+        }
+         /* Style the buttons to look like anchor elements */
+        .btn-link-style {
+            background: none;
+            border: none;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .btn-link-style:hover {
+            color: navy;
+            text-decoration: underline;
+        }
+        h3{
+           color:#f23aaf;
+            font-family: "Sofia";
+            font-size:25px;
+        }
+        .Trending-image {
+             width:100%;
+           
+        }
+
+.Trending-top-card {
+    background-color: #ffffff;
+    background-size: cover;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.Trending-paragraph {
+    color: #1e2126;
+    font-size: 15px;
+    margin-bottom:0px;
+    font-family: "Roboto";
+}
+
+.Trending-top-banner-heading {
+    color: #183b56;
+    font-size:22px;
+    margin-bottom:0px;
+    font-weight: bold;
+}
+
+.Trending-bottom-heading {
+    color: #959ead;
+    margin-bottom:0px;
+    font-size: 15px;
+    font-family: "Roboto";
+}
+
+.Read-More-button {
+    color: #ff9f00;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+            .form-div{
+                background-color:#7f8ca1;
+              padding:10px;
+                border-radius:20px;
+                color:#ffffff;
+                border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+                
+                
+            }
+           
+            h3{
+                text-align: center;
+                font-size:22px;
+                text-decoration: underline;
+                margin-bottom:5px;
+                
+            }
+            .container1{
+                display:flex;
+                flex-direction:row;
+                justify-content:space-between;
+            }
+            p{
+                font-family: "Roboto";
+                font-size:12px;
+            }
+            h2{
+                color:#f55baf;
+                font-size:26px;
+                text-align:center;
+            }
+            .bottom-card{
+                
+                background-color:#150838;
+            }
+            /* footer-section*/
+.footer-section-card {
+    background-color: #0d2436;
+    background-size: cover;
+
+}
+
+.footer-image {
+    height: 60px;
+
+}
+
+.footer-icon {
+    color: #959ead;
+    font-size: 25px;
+}
+
+.footer-bar {
+    background-color: #959ead;
+
+}
+
+.footer-icon-card {
+    background-color: #152c3e;
+    padding: 12px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.footer-paragraph {
+    color: #ffffff;
+    font-family: "Roboto";
+    font-size: 15px;
+
+}
+a{
+    color:#fff;
+}
+a:hover {
+        color: #eb134c;
+    }
+.footer-paragraph1 {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 15px;
+
+}
+.footer-heading {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-mail {
+    font-size: 12px;
+}
+
+.Read-More-butto{
+    color: blue;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+.logo-top{
+          width: 150px;
+        }
+        .banner-image{
+           width: 1500px;
+           /* Or use object-fit: cover; if you want the image to cover the entire container */
+          height: 375px;
+        }
+        @media screen and (max-width:1080px){
+          .banner-image{
+           width: 1000px;
+           /* Or use object-fit: cover; if you want the image to cover the entire container */
+          height: 500px;
+        }
+        .logo-top{
+          width: 230px;
+        }
+        #viewfaculty {
+    color: #323f4b;
+    font-size: 32px;
+    font-family: "Roboto";
+      }
+       #yourprofile {
+    color: #323f4b;
+    font-size: 32px;
+    font-family: "Roboto";
+       }
+         #logoutButton {
+    color: #323f4b;
+    font-size: 32px;
+    font-family: "Roboto";
+         }
+
+      #searchbtn {
+            height: 80px; /* Adjust the form height as needed */
+        }
+
+        #searchInput {
+            height: 100%; /* Make the input take the full height of the form */
+            font-size: 22px;
+        }
+        .btn-success{
+        width:180px;
+        font-size: 24px;
+    }
+    .custom-toggler {
+            padding: 1rem; /* Adjust padding as needed */
+        }
+
+        .navbar-toggler-icon {
+            width: 80px;
+            height: 80px;
+            background-size: 2.5rem 2.5rem;
+           background-color:#ffffff;
+           border-color: #0d2436;
+            
+        }
+        .navbar-toggler{
+            background-color: #eb134c;
+        }
+        h3{
+                text-align: center;
+                font-size:45px;
+                text-decoration: underline;
+                margin-bottom:5px;
+                
+            }
+            .Trending-image {
+             width:100%;
+            
+        }
+        .Trending-paragraph {
+    color: #1e2126;
+    font-size: 32px;
+    margin-bottom:0px;
+    font-family: "Roboto";
+}
+
+.Trending-top-banner-heading {
+    color: #183b56;
+    font-size:38px;
+    margin-bottom:0px;
+    font-weight: bold;
+}
+
+.Trending-bottom-heading {
+    color: #959ead;
+    margin-bottom:0px;
+    font-size: 28px;
+    font-family: "Roboto";
+}
+.Read-More-butto{
+    color: blue;
+    font-size: 38px;
+    
+    font-weight: bold;
+    font-family: "Roboto";
+}
+.c{
+    margin-right:19px;
+}
+.Read-More-button {
+    color: #ff9f00;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+.footer-image {
+    width:130px;
+    height: 130px;
+
+}
+
+.footer-icon {
+    color: #959ead;
+    font-size: 55px;
+}
+
+.footer-bar {
+    background-color: #959ead;
+
+}
+
+.footer-icon-card {
+    background-color: #152c3e;
+    padding: 12px;
+    height: 80px;
+    width: 80px;
+    border-radius: 25px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.footer-paragraph {
+    color: #ffffff;
+    font-family: "Roboto";
+    font-size: 29px;
+
+}
+a{
+    color:#fff;
+}
+a:hover {
+        color: #eb134c;
+    }
+.footer-paragraph1 {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 35px;
+
+}
+.footer-heading {
+    color: #eb134c;
+    font-family: "Roboto";
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.footer-mail {
+    font-size: 29px;
+}
+.modal-dialog-custom {
+            max-width: 100%; /* Adjust this value as needed */
+            width: 100%;
+        }
+
+        .modal-content-custom {
+            padding: 30px; /* Adjust padding as needed */
+        }
+        label{
+            font-size: 32px;
+            
+        }
+        select{
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+        }
+        .feedbackbtn{
+                
+                width:200px;
+                height: 100px;
+                font-family: "Roboto";
+                font-size:32px;
+            }
+            .feedbacknam{
+                font-size:44px;
+            }
+            .close-button-large {
+        font-size:5rem; /* Adjust size as needed */
+    }
+
+    }
+    
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white ">
+            <div class="container col-12">
+              
+                <a class="navbar-brand" href="#">
+                  <img src="/imagesbvr/college1.jpg"  class="logo-top">
+                </a>
+            
+                <div class="mt-1">
+                    <form id="searchbtn" class="d-flex ml-3" role="search" width="100" height="500px">
+                    <input id="searchInput" class="form-control mr-2"  placeholder="Enter Faculty Name" aria-label="Search">
+                    <button class="btn btn-success"  type="submit">Search</button>
+                  </form>
+                </div>
+              
+                <button class="navbar-toggler" type="button"  data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" ></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-auto ">
+                        
+                        <button type="submit" id="viewfaculty" class="btn btn-link-style">View Faculty</button>
+                        <button type="submit" id="yourprofile" class="btn btn-link-style">Your Profile</button>
+                          <button  id="logoutButton" class="btn btn-link-style">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+         
+       
+       
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/primages/1712585345954.jpg"  class="d-block banner-image" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/primages/20240408_194756.jpg"  class="d-block banner-image" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/primages/images (6).jpeg.jpg"  class="d-block banner-image" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            
+           
+        
+         <div id="collegeevents" class="col-12">
+                    <div class="container1 mt-5">
+        
+                      <div class="col-md-12 ">
+                          <h3>Alumni Talks</h3>
+                
+                            <div class="d-flex flex-row flex-wrap" id="alumnitalkcontainer">
+               
+                            
+              
+                
+                             </div>
+        
+                        </div>
+        
+                     </div>
+                       <div class="d-flex flex-row justify-content-end c">
+                               <a href="alumnitalks.html" class="Read-More-butto">View More
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                               </svg>
+                              </a>
+                      </div>
+         
+                    <div class="container1 mt-5">
+        
+                        <div class="col-md-12 ">
+                            <h3>College Events</h3>
+                
+                            <div class="d-flex flex-row flex-wrap" id="collegeventsdoc">
+               
+       
+               
+                            </div>
+         
+                        </div>
+         
+                    </div>
+                        <div class="d-flex flex-row justify-content-end">
+                                  <a href="collegevents.html" class="Read-More-butto">View More
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                            </svg>
+                             </a>
+                         </div>
+        </div>
+        
+         <div class="d-flex flex-row justify-content-center mt-3 mb-3">
+        <div>
+       
+        <div  id="searchResultsContainer"  class="d-none mt-3">
+            <h1>Faculty Details</h1>
+            <table border="1" id="searchTable">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Teaching Year</th>
+                        <th>Teaching Branch</th>
+                        <th>Teaching Group</th>
+                        <th>Teaching Subject</th>
+                        <th>Faculty Photo</th>
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+            
+        <div id="viewfacultydoc" class="mt-3 d-none">
+            <h1 style="text-align: center;">Faculty Details</h1>
+            <table border="1" id="facultyTable">
+                
+            </table>
+        </div>
+       
+         </div>
+       
+         </div>
+         <div class=" container footer-section-card col-12">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-3 mt-5" align="center">
+                    
+                        <div class="text-center d-lg-none">
+                            <img src="imagesbvr/logo.jpg" class="footer-image" />
+                        </div>
+                        <div class="d-none d-lg-block ">
+                            <img src="imagesbvr/logo.jpg" class="footer-image" />
+                        </div>
+                        <div class="d-flex flex-row justify-content-center mt-3">
+                            <div class="footer-icon-card ">
+                                <i id="googleIcon" class="fa-brands fa-google footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="twitterIcon" class="fa-brands fa-twitter footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="instagramIcon" class="fa-brands fa-instagram footer-icon"></i>
+                            </div>
+                            <div class="footer-icon-card">
+                                <i id="linkedin-icon" class="fa-brands fa-linkedin footer-icon"></i>
+                            </div>
+                        </div>
+
+                   
+                    <p class="footer-paragraph text-center mt-3">Bv Raju College,Bhimavaram,Andhra Pradesh</p>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                <div class="col-6 col-lg-6  mt-3">
+                
+                    <h1 class="footer-heading">Contact Us</h1>
+                    <p class="footer-paragraph footer-mail"><a href="mailto:principal@bvricedegree.edu.in">principal@bvricedegree.edu.in</a></p>
+                    <p class="footer-paragraph"><a href="tel:08816 228461">08816 228461</a></p>
+                    <p class="footer-paragraph"><a href="tel:+918816251333">+91 8816 251 333</a></p>
+                    <a href="https://www.bvricedegree.edu.in/courses_offered.php" class="footer-paragraph1">Courses Offered</a>
+                </div>
+
+                <div class="col-6 col-lg-6  mt-3">
+                    <h1 class="footer-heading">Our Campuses</h1>
+                    <p class="footer-paragraph"><a href="https://www.svecw.edu.in/">Shri Vishnu Engineering College for Women</a></p>
+                    <p class="footer-paragraph"><a href="https://vishnu.edu.in/">Vishnu Institute of Technology</a></p>
+                    <P class="footer-paragraph"><a href="https://seethapoly.edu.in/">Smt. B Seetha Polytechnic College</a></P>
+                    <P class="footer-paragraph"><a href="https://vishnuschool.edu.in/">Vishnu School, Bhimavaram</a></P>
+                </div>
+
+           
+            </div>
+        </div>
+            <div class="col-12 text-center">
+                <hr class="footer-bar m-0">
+                <div class="d-flex flex-row justify-content-center mt-1">
+                    <i class="footer-icon fa-regular fa-copyright"></i>
+                    <p class="ml-1 footer-paragraph">Vishnu Educational Society</p>
+                </div>
+            </div>
+      
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <!-- Optionally include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Example: Include jQuery from a CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            // Use jQuery in noConflict mode
+var $j = jQuery.noConflict();
+
+          
+          const facultydoc = document.getElementById('viewfacultydoc');
+
+            var collegeeventsele = document.getElementById("collegeevents");
+            var viewstdele = document.getElementById("searchResultsContainer");
+            
+
+
+
+//var userID = parseInt(id);
+//console.log(userID);
+document.getElementById("yourprofile").onclick = function() {
+    const accessToken = localStorage.getItem('jwtToken');
+
+// Construct headers with the access token
+const headers = {
+    'Authorization': `Bearer ${accessToken}`,
+    'Content-Type': 'application/json'
+};
+
+// Send a fetch request to your Node.js API
+fetch(`/studentgoprofile`, {
+    method: 'GET', // Adjust the method as per your API endpoint requirements
+    headers: headers
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log(data);
+    // Redirect to studentprofile.html with the userID parameter in the URL
+    const userID = data.studentId; // Adjust this to match the actual structure of your API response
+    window.location.href = `studentprofile.html?id=${userID}`;
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+    // Handle error scenario as per your requirements (e.g., show an error message)
+});
+};
+
+
+        document.getElementById("viewfaculty").onclick = async function () {
+           
+            try {
+        // Disable the button temporarily
+        this.disabled = true;
+
+        // Retrieve the access token from localStorage
+        const accessToken = localStorage.getItem('jwtToken');
+
+        // Construct the URL with parameters for the fetch request
+        const url = `/api/getFacultyData`;
+
+        // Construct headers with the access token
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+
+        // Make the fetch request with headers
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: headers
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+       console.log(data);
+
+        // Populate the table with data
+        const table = document.getElementById('facultyTable');
+        
+        facultydoc.classList.remove('d-none');
+        viewstdele.classList.add("d-none");
+        collegeeventsele.classList.add("d-none");
+        const thead = document.createElement('tr');
+
+        table.innerHTML = '';
+        thead.innerHTML = `
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Teaching Year</th>
+        <th>Teaching Branch</th>
+        <th>Teaching Group</th>
+        <th>Teaching Subject</th>
+        <th>Faculty Photo</th>
+        <th>Feedback</th>
+    </tr>
+`;
+table.appendChild(thead); // Clear existing table content
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            const model = document.createElement('div');
+            //console.log(row.faculty_imageurl);
+                        tr.innerHTML = `
+                <td>${row.firstname}</td>
+                <td>${row.lastname}</td>
+                <td>${row.teaching_year}</td>
+                <td>${row.teaching_branch}</td>
+                <td>${row.teaching_group}</td>
+                <td>${row.teaching_subject}</td>
+                
+                <td><img src="${row.faculty_imageurl}" width="100px" alt="Image"></td>
+                <td><button type="button" onclick="openModal('${row.id}', 'facultymodal')">Click Here</button></td>`;
+                model.innerHTML = `<div class="modal fade col-12" id="facultymodal${row.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-custom">
+                                <div class="modal-content modal-content-custom p-5">
+                                    <div class="d-flex flex-row justify-content-between">
+                <h1 style="text-align:center;" class="feedbacknam">${row.firstname} ${row.lastname}</h1> 
+              
+                <button type="button" class="close close-button-large" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+            
+                </div>
+                <form id="studentfeedbackform${row.id}"  method="post" class="d-flex flex-column">
+                    <label for="subjectselectq">Select Subject to give feedback on particular subject ?</label>
+                    <select id="subjectselectq" name="groupname" id="facultyGroup">
+                        <option value="" disabled selected>Select Option</option>
+  ${row.teaching_subject.split(',').map(roll => `<option value="${roll.trim()}">${roll.trim()}</option>`).join('')}
+</select>
+
+<input type="hidden" name="facultyId" value="${row.id}">
+                                      <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
+                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                      <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
+                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                       <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
+                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30"> Won’t teach at all</option>
+                                          <option value="47">Indifferently</option>
+                                          <option value="62">Poorly</option>
+                                          <option value="77">Satisfactorily</option>
+                                          <option value="92">Thoroughly</option>
+                                          
+                                      </select>
+                                       <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
+                                      <select id="teachingapproachq"name="teaching_approrach">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Poor</option>
+                                          <option value="47">Fair</option>
+                                          <option value="62">Good</option>
+                                          <option value="77">Very good</option>
+                                          <option value="92">Excellent</option>
+                                          
+                                      </select>
+                                        <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
+                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
+                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Very poor communication </option>
+                                          <option value="47">Generally ineffective</option>
+                                          <option value="62">Just satisfactorily</option>
+                                          <option value="77">Sometimes effective</option>
+                                          <option value="92">Always effective</option>
+                                          
+                                      </select>
+                                      <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
+                                      <select id="teacherillustrateq" name="teacherillustrate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
+                                      <select id="teacherencourageq" name="teacherencourage" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Strongly disagree</option>
+                                          <option value="47">Disagree </option>
+                                          <option value="62">Neutral</option>
+                                          <option value="77">Agree </option>
+                                          <option value="92">Strongly agree</option>
+    
+                                      </select>
+                                      <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
+                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+
+                                   <label id="feedback">Write your opinion in text:-</label>
+                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something"></textarea>
+                                   <div class="d-flex flex-row justify-content-end mt-3">
+                                   <button type="submit" class="btn btn-primary feedbackbtn">Submit</button>
+                                   </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+               
+            `;
+            table.appendChild(tr);
+            console.log(table);
+            facultydoc.appendChild(model);
+        });
+
+        // Show the faculty details section
+     
+       
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        alert('Error fetching data from the server.');
+    } finally {
+        // Enable the button after data is fetched or on error
+        this.disabled = false;
+    }
+        
+document.addEventListener('submit', async function(event) {
+        if (event.target && event.target.id.startsWith('studentfeedbackform')) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const facultyId = formData.get('facultyId');
+
+            const accessToken = localStorage.getItem('jwtToken');
+            const headers = {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            };
+            try {
+                const response = await fetch('/studentfeedback', {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(Object.fromEntries(formData))
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to submit feedback');
+                }
+                alert('Feedback submitted successfully!');
+                $(`#studentfeedbackform${facultyId}`).hide();
+                window.location.reload();
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                alert('Error submitting feedback.');
+            }
+        }
+    });
+
+};
+        
+
+ 
+        
+document.addEventListener('DOMContentLoaded', () => {
+    var searchForm = document.getElementById("searchbtn");
+    var searchInput = document.getElementById("searchInput");
+    var searchResultsContainer = document.getElementById("searchResultsContainer");
+
+    const searchtableele = document.getElementById("searchTable");
+    //console.log(searchInput);
+
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var searchText = searchInput.value.trim();
+
+        const accessToken = localStorage.getItem('jwtToken');
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`
+        };
+
+        fetch(`/searchrequest?firstname=${searchText}`, {
+            method: 'GET',
+            headers: headers
+        })
+        .then(response => {
+            console.log('Response Status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Search Results Data:', data);
+            const thead = document.createElement('tr');
+
+            searchtableele.innerHTML = ''; 
+            thead.innerHTML = `
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Teaching Year</th>
+        <th>Teaching Branch</th>
+        <th>Teaching Group</th>
+        <th>Teaching Subject</th>
+        <th>Faculty Photo</th>
+        <th>Feedback</th>
+    </tr>
+`;
+searchtableele.appendChild(thead)// Clear existing table content
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            const model = document.createElement('div');
+                        tr.innerHTML = `
+                <td>${row.firstname}</td>
+                <td>${row.lastname}</td>
+                <td>${row.teaching_year}</td>
+                <td>${row.teaching_branch}</td>
+                <td>${row.teaching_group}</td>
+                <td>${row.teaching_subject}</td>
+                <td><img src="${row.faculty_imageurl}" width="100px" alt="Image"></td>
+                <td><button type="button" onclick="openModal('${row.id}', 'searchfacmodal')">Click Here</button></td>`;
+                model.innerHTML='';
+                model.innerHTML = `<div class="modal fade" id="searchfacmodal${row.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-custom">
+                                <div class="modal-content modal-content-custom p-5">
+                <div class="d-flex flex-row justify-content-between">
+                <h1 style="text-align:center;" class="feedbacknam">${row.firstname} ${row.lastname}</h1> 
+              
+                <button type="button" class="close close-button-large" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+            
+                </div>
+                <form id="searchabcd${row.id}"  action="/studentsearchfeedback" method="post" class="d-flex flex-column">
+                    <label for="subjectselectq">Select Subject to give feedback on particular subject ?</label>
+                    <select id="subjectselectq" name="groupname" id="facultyGroup">
+                        <option value="" disabled selected>Select Option</option>
+  ${row.teaching_subject.split(',').map(roll => `<option value="${roll.trim()}">${roll.trim()}</option>`).join('')}
+</select>
+                    <input type="hidden" name="facultyId" value="${row.id}">
+                                      <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
+                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                      <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
+                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Below 30%</option>
+                                          <option value="47">30 to 54%</option>
+                                          <option value="62">55 to 69%</option>
+                                          <option value="77">70 to 84% </option>
+                                          <option value="92">85 to 100%</option>
+                                          
+                                      </select>
+                                       <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
+                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30"> Won’t teach at all</option>
+                                          <option value="47">Indifferently</option>
+                                          <option value="62">Poorly</option>
+                                          <option value="77">Satisfactorily</option>
+                                          <option value="92">Thoroughly</option>
+                                          
+                                      </select>
+                                       <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
+                                      <select id="teachingapproachq"name="teaching_approrach">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Poor</option>
+                                          <option value="47">Fair</option>
+                                          <option value="62">Good</option>
+                                          <option value="77">Very good</option>
+                                          <option value="92">Excellent</option>
+                                          
+                                      </select>
+                                        <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
+                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
+                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Very poor communication </option>
+                                          <option value="47">Generally ineffective</option>
+                                          <option value="62">Just satisfactorily</option>
+                                          <option value="77">Sometimes effective</option>
+                                          <option value="92">Always effective</option>
+                                          
+                                      </select>
+                                      <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
+                                      <select id="teacherillustrateq" name="teacherillustrate" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
+                                      <select id="teacherencourageq" name="teacherencourage" >
+                                        <option value="" disabled selected>Select Option</option>
+                                          <option value="30">Strongly disagree</option>
+                                          <option value="47">Disagree </option>
+                                          <option value="62">Neutral</option>
+                                          <option value="77">Agree </option>
+                                          <option value="92">Strongly agree</option>
+    
+                                      </select>
+                                      <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                      <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
+                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="30">Never</option>
+                                          <option value="47">Rarely</option>
+                                          <option value="62">Occasionally/Sometimes</option>
+                                          <option value="77">Usually</option>
+                                          <option value="92">Every time</option>
+                                          
+                                      </select>
+                                   <label id="feedback">Write your opinion in text:-</label>
+                                   <textarea id="feedback"  type="text" name="feedback" placeholder="write something"></textarea>
+                                   <div class="d-flex flex-row justify-content-end mt-3">
+                                   <button type="submit"  class="btn btn-primary feedbackbtn">Submit</button>
+                                   </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+               
+            `;
+            searchtableele.appendChild(tr);
+            searchResultsContainer.appendChild(model);
+            searchResultsContainer.classList.remove("d-none");
+          
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+               collegeeventsele.classList.add("d-none");
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching search results:', error);
+            alert('Error fetching data from the server.');
+        });
+        
+    });
+
+
+   
+});
+         function openModal(alumniId, isAlumniModal) {
+            if (isAlumniModal ==="modalalumni"){
+                modalId = isAlumniModal+alumniId;
+
+            }else if(isAlumniModal === "modalevent"){
+                modalId = isAlumniModal+alumniId;
+            }else if(isAlumniModal==="facultymodal"){
+                modalId = isAlumniModal+alumniId;
+            }else{
+                console.log(isAlumniModal);
+                modalId = isAlumniModal+alumniId;
+                console.log(modalId);
+             
+
+                
+    // Event delegation for form submission
+    document.addEventListener('submit', async function(event) {
+        if (event.target && event.target.id.startsWith('searchabcd')) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const facultyId = formData.get('facultyId');
+
+            const accessToken = localStorage.getItem('jwtToken');
+            const headers = {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            };
+            try {
+                const response = await fetch('/studentsearchfeedback', {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(Object.fromEntries(formData))
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to submit feedback');
+                }
+                console.log(facultyId)
+                alert('Feedback submitted successfully!');
+                $j(`#searchfacmodal${facultyId}`).hide();
+                window.location.reload();
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                alert('Error submitting feedback.');
+            }
+        }
+    });
+            }
+          
+    var modalElement = document.getElementById(modalId);
+    var modal = new bootstrap.Modal(modalElement);
+    modal.show();
+}
+
+
+
+        
+document.addEventListener('DOMContentLoaded', function() {
+    var videoFrame = document.getElementById('videoFrame');
+    videoFrame.addEventListener('click', function() {
+      if (videoFrame.paused) {
+        videoFrame.play();
+      } else {
+        videoFrame.pause();
+      }
+    });
+  });
+
+            const alumnitalkconele = document.getElementById('alumnitalkcontainer');
+            fetch('/alumnitalks', {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+    }
+})
+                .then(response => response.json())
+                .then(data => {
+                    //console.log('Alumnitalks Data:', data);
+                    // Now you have access to alumnitalksData in the client-side script
+                    let alumnitalkinner=''
+                    data.forEach(alumnitalk => {
+                        alumnitalkinner += `<div class="col-6 col-lg-3 mb-4">
+             
+             <img src="${alumnitalk.alumniimage}" class="Trending-image" />
+             <div class="Trending-top-card shadow p-2">
+                 <p class="Trending-bottom-heading">${alumnitalk.alumnitopic}</p>
+                 <h1 class="Trending-top-banner-heading ">${alumnitalk.alumniname}</h1>
+                 <p class="Trending-paragraph">${alumnitalk.alumniabout}</p>
+                 <a href="#" class="Read-More-button " onclick="openModal('${alumnitalk.id}', 'modalalumni')">Read More
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                     </svg>
+                 </a>
+             </div>
+      
+         </div> <div class="modal fade" id="modalalumni${alumnitalk.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-custom">
+                                <div class="modal-content modal-content-custom p-5">
+                                    <h3>${alumnitalk.alumniname}</h3>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video id="videoFrame" class="embed-responsive-item" controls> <source src="${alumnitalk.alumnivideo}" type="video/mp4" ></video>
+</div>
+<h2 class="Trending-top-banner-heading ">${alumnitalk.alumnitopic}</h2>
+<p class="Trending-paragraph">${alumnitalk.alumniabout}</p>
+                                </div>
+                          </div>
+                      </div>`
+                    });
+                      // Set the innerHTML of alumnitalkconele after the loop
+            alumnitalkconele.innerHTML = alumnitalkinner;
+                })
+                .catch(error => console.error('Error fetching alumnitalks data:', error));
+        
+
+
+        function fetchcollegeventsData() {
+            const collegetalkconele = document.getElementById('collegeventsdoc');
+            fetch('/collegevents', {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+    }
+})
+                .then(response => response.json())
+                .then(data => {
+                    //console.log('collegeevents Data:', data);
+                    // Now you have access to alumnitalksData in the client-side script
+                    let collegeveninner=''
+                    data.forEach(collegevent => {
+                        collegeveninner += `<div class="col-6 col-lg-3  mb-4">
+             
+             <img src="${collegevent.eventimage}" class="Trending-image" />
+             <div class="Trending-top-card shadow p-2">
+                 <p class="Trending-bottom-heading">${collegevent.eventtopic}</p>
+                 <h1 class="Trending-top-banner-heading ">${collegevent.eventname}</h1>
+                 <p class="Trending-paragraph">${collegevent.eventabout}</p>
+                 <a href="#" class="Read-More-button " onclick="openModal('${collegevent.eventid}', 'modalevent')">Read More
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                     </svg>
+                 </a>
+             </div>
+      
+         </div> <div class="modal fade " id="modalevent${collegevent.eventid}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-custom">
+                                <div class="modal-content  modal-content-custom p-5">
+                                    <h3>${collegevent.eventname}</h3>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video id="videoFrame" class="embed-responsive-item" controls> <source src="${collegevent.eventvideo}" type="video/mp4" ></video>
+</div>
+<h2 class="Trending-top-banner-heading ">${collegevent.eventtopic}</h2>
+<p class="Trending-paragraph">${collegevent.eventabout}</p>
+                                </div>
+                          </div>
+                      </div>`
+                    });
+                      // Set the innerHTML of alumnitalkconele after the loop
+                      collegetalkconele.innerHTML = collegeveninner;
+                })
+                .catch(error => console.error('Error fetching alumnitalks data:', error));
+        }
+
+        // Call the function to fetch alumnitalksData
+        fetchcollegeventsData()
+        const handleLogout = () => {
+    fetch('/studentlogout', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Clear local storage
+            localStorage.removeItem('jwtToken');
+            
+           
+            setTimeout(() => {
+                window.location.href="studentlogin.html";
+              
+            }, 1000);
+           
+           
+        } else {
+            throw new Error('Logout request failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error logging out:', error);
+        // Handle error or display error message to the user
+    });
+};
+
+
+document.getElementById('logoutButton').addEventListener('click', handleLogout);
+
+        </script>
+    </body>
+</html>
