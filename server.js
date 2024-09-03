@@ -236,7 +236,7 @@ app.post('/studentloginform', async (req, res) => {
 
 app.get('/alumnitalks',authenticatestudentToken , (req, res) => {
   // Fetch alumnitalks data from the database
-  const query = 'SELECT * FROM alumnitalk ORDER BY id DESC';
+  const query = 'SELECT * FROM alumnitalk ORDER BY id DESC LIMIT 4';
   db.query(query, (err, alumnitalksData) => {
     if (err) {
       console.error('Error fetching alumnitalks data:', err);
@@ -250,7 +250,7 @@ app.get('/alumnitalks',authenticatestudentToken , (req, res) => {
 
 app.get('/collegevents',authenticatestudentToken , (req, res) => {
   // Fetch alumnitalks data from the database
-  const query = 'SELECT * FROM eventposts ORDER BY eventid DESC';
+  const query = 'SELECT * FROM eventposts ORDER BY eventid DESC LIMIT 4';
   db.query(query, (err, eventsData) => {
     if (err) {
       console.error('Error fetching alumnitalks data:', err);
@@ -844,7 +844,7 @@ app.post('/updatesfacultydata', facultyupload.single('file'), async(req, res) =>
 });
 
 app.get('/facultycollegevents',authenticatefacultyToken,(req, res) => {
-  const query = 'SELECT * FROM eventposts ORDER BY eventid DESC';
+  const query = 'SELECT * FROM eventposts ORDER BY eventid DESC LIMIT 4';
   db.query(query, (error, results) => {
       if (error) {
           res.status(500).json({ error: 'Error fetching college events' });
@@ -855,7 +855,7 @@ app.get('/facultycollegevents',authenticatefacultyToken,(req, res) => {
 });
 
 app.get('/facultyalumnitalks',authenticatefacultyToken, (req, res) => {
-  const query = 'SELECT * FROM alumnitalk ORDER BY id DESC';
+  const query = 'SELECT * FROM alumnitalk ORDER BY id DESC LIMIT 4';
   db.query(query, (error, results) => {
       if (error) {
           res.status(500).json({ error: 'Error fetching alumni talks' });
@@ -1544,7 +1544,30 @@ app.get('/collegeeventes',(req, res) => {
   });
 });
 
+app.get('/alumnialumnitalkes', (req, res) => {
+  const query = 'SELECT * FROM alumnitalk ORDER BY id DESC LIMIT 4';
+  console.log("hi");
+  db.query(query, (error, results) => {
+      if (error) {
+          res.status(500).json({ error: 'Error fetching alumni talks' });
+      } else {
+        console.log(results);
+          res.json(results);
+      }
+  });
+});
 
+
+app.get('/alumnicollegeeventes',(req, res) => {
+  const query = 'SELECT * FROM eventposts ORDER BY eventid DESC LIMIT 4';
+  db.query(query, (error, results) => {
+      if (error) {
+          res.status(500).json({ error: 'Error fetching college events' });
+      } else {
+          res.json(results);
+      }
+  });
+});
 // Express route for logging out
 app.get('/adminlogout', (req, res) => {
   res.status(200).json({ message: 'Logout successful' });
