@@ -99,17 +99,28 @@ body {
             font-size:25px;
         }
         .Trending-image {
-             width:100%;
+            width:325px;
+    height:200px;
+}
            
-        }
+        
 
 .Trending-top-card {
     background-color: #ffffff;
     background-size: cover;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:325px;
+    height:200px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+.posts-card-matter{
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
 }
 
 .Trending-paragraph {
@@ -654,20 +665,17 @@ var $j = jQuery.noConflict();
 
 
 
-//var userID = parseInt(id);
-//console.log(userID);
 document.getElementById("yourprofile").onclick = function() {
     const accessToken = localStorage.getItem('jwtToken');
 
-// Construct headers with the access token
+
 const headers = {
     'Authorization': `Bearer ${accessToken}`,
     'Content-Type': 'application/json'
 };
 
-// Send a fetch request to your Node.js API
 fetch(`/studentgoprofile`, {
-    method: 'GET', // Adjust the method as per your API endpoint requirements
+    method: 'GET', 
     headers: headers
 })
 .then(response => {
@@ -678,13 +686,13 @@ fetch(`/studentgoprofile`, {
 })
 .then(data => {
     console.log(data);
-    // Redirect to studentprofile.html with the userID parameter in the URL
-    const userID = data.studentId; // Adjust this to match the actual structure of your API response
+
+    const userID = data.studentId; 
     window.location.href = `studentprofile.html?id=${userID}`;
 })
 .catch(error => {
     console.error('Error fetching data:', error);
-    // Handle error scenario as per your requirements (e.g., show an error message)
+    
 });
 };
 
@@ -692,21 +700,20 @@ fetch(`/studentgoprofile`, {
         document.getElementById("viewfaculty").onclick = async function () {
            
             try {
-        // Disable the button temporarily
+       
         this.disabled = true;
 
-        // Retrieve the access token from localStorage
+  
         const accessToken = localStorage.getItem('jwtToken');
 
-        // Construct the URL with parameters for the fetch request
         const url = `/api/getFacultyData`;
 
-        // Construct headers with the access token
+       
         const headers = {
             'Authorization': `Bearer ${accessToken}`
         };
 
-        // Make the fetch request with headers
+       
         const response = await fetch(url, {
             method: 'GET',
             headers: headers
@@ -719,7 +726,7 @@ fetch(`/studentgoprofile`, {
         const data = await response.json();
        console.log(data);
 
-        // Populate the table with data
+      
         const table = document.getElementById('facultyTable');
         
         facultydoc.classList.remove('d-none');
@@ -740,11 +747,11 @@ fetch(`/studentgoprofile`, {
         <th>Feedback</th>
     </tr>
 `;
-table.appendChild(thead); // Clear existing table content
+table.appendChild(thead); 
         data.forEach(row => {
             const tr = document.createElement('tr');
             const model = document.createElement('div');
-            //console.log(row.faculty_imageurl);
+           
                         tr.innerHTML = `
                 <td>${row.firstname}</td>
                 <td>${row.lastname}</td>
@@ -768,14 +775,14 @@ table.appendChild(thead); // Clear existing table content
                 </div>
                 <form id="studentfeedbackform${row.id}"  method="post" class="d-flex flex-column">
                     <label for="subjectselectq">Select Subject to give feedback on particular subject ?</label>
-                    <select id="subjectselectq" name="groupname" id="facultyGroup">
+                    <select id="subjectselectq" name="groupname" id="facultyGroup" required>
                         <option value="" disabled selected>Select Option</option>
   ${row.teaching_subject.split(',').map(roll => `<option value="${roll.trim()}">${roll.trim()}</option>`).join('')}
 </select>
 
-<input type="hidden" name="facultyId" value="${row.id}">
+<input type="hidden" name="facultyId" value="${row.id}" required>
                                       <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
-                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                      <select id="syllabuscoveredq"name="syllabus_covered" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -785,7 +792,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                       <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
-                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                      <select id="teachertoolusedq"name="teacheruses_tools" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -795,7 +802,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                        <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
-                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                      <select id="prepapreforclassesq"name="prepapreforclasses" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30"> Won’t teach at all</option>
                                           <option value="47">Indifferently</option>
@@ -805,7 +812,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                        <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
-                                      <select id="teachingapproachq"name="teaching_approrach">
+                                      <select id="teachingapproachq"name="teaching_approrach" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Poor</option>
                                           <option value="47">Fair</option>
@@ -815,7 +822,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                         <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
-                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                      <select id="identifytoovercomeq"name="identifytoovercome" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -825,7 +832,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                       <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
-                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                      <select id="teachercommunicateq" name="teachercommunicate" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Very poor communication </option>
                                           <option value="47">Generally ineffective</option>
@@ -835,7 +842,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                       <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
-                                      <select id="teacherillustrateq" name="teacherillustrate" >
+                                      <select id="teacherillustrateq" name="teacherillustrate" required >
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -845,7 +852,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                       <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
-                                      <select id="teacherencourageq" name="teacherencourage" >
+                                      <select id="teacherencourageq" name="teacherencourage" required >
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Strongly disagree</option>
                                           <option value="47">Disagree </option>
@@ -855,7 +862,7 @@ table.appendChild(thead); // Clear existing table content
     
                                       </select>
                                       <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
-                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" required>
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -865,7 +872,7 @@ table.appendChild(thead); // Clear existing table content
                                           
                                       </select>
                                       <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
-                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                      <select id="teacherfairneessq" name="teacherfairneess" required>
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -876,7 +883,7 @@ table.appendChild(thead); // Clear existing table content
                                       </select>
 
                                    <label id="feedback">Write your opinion in text:-</label>
-                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something"></textarea>
+                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something" required></textarea>
                                    <div class="d-flex flex-row justify-content-end mt-3">
                                    <button type="submit" class="btn btn-primary feedbackbtn">Submit</button>
                                    </div>
@@ -891,7 +898,7 @@ table.appendChild(thead); // Clear existing table content
             facultydoc.appendChild(model);
         });
 
-        // Show the faculty details section
+
      
        
 
@@ -899,7 +906,7 @@ table.appendChild(thead); // Clear existing table content
         console.error('Error fetching data:', error);
         alert('Error fetching data from the server.');
     } finally {
-        // Enable the button after data is fetched or on error
+      
         this.disabled = false;
     }
         
@@ -944,7 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var searchResultsContainer = document.getElementById("searchResultsContainer");
 
     const searchtableele = document.getElementById("searchTable");
-    //console.log(searchInput);
+   ;
 
     searchForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -980,7 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <th>Feedback</th>
     </tr>
 `;
-searchtableele.appendChild(thead)// Clear existing table content
+searchtableele.appendChild(thead)
         data.forEach(row => {
             const tr = document.createElement('tr');
             const model = document.createElement('div');
@@ -1007,13 +1014,13 @@ searchtableele.appendChild(thead)// Clear existing table content
                 </div>
                 <form id="searchabcd${row.id}"  action="/studentsearchfeedback" method="post" class="d-flex flex-column">
                     <label for="subjectselectq">Select Subject to give feedback on particular subject ?</label>
-                    <select id="subjectselectq" name="groupname" id="facultyGroup">
+                    <select id="subjectselectq" name="groupname" id="facultyGroup" required>
                         <option value="" disabled selected>Select Option</option>
   ${row.teaching_subject.split(',').map(roll => `<option value="${roll.trim()}">${roll.trim()}</option>`).join('')}
 </select>
-                    <input type="hidden" name="facultyId" value="${row.id}">
+                    <input type="hidden" name="facultyId" value="${row.id}" required>
                                       <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
-                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                      <select id="syllabuscoveredq"name="syllabus_covered" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -1023,7 +1030,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                       <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
-                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                      <select id="teachertoolusedq"name="teacheruses_tools" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -1033,7 +1040,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                        <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
-                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                      <select id="prepapreforclassesq"name="prepapreforclasses" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30"> Won’t teach at all</option>
                                           <option value="47">Indifferently</option>
@@ -1043,7 +1050,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                        <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
-                                      <select id="teachingapproachq"name="teaching_approrach">
+                                      <select id="teachingapproachq"name="teaching_approrach" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Poor</option>
                                           <option value="47">Fair</option>
@@ -1053,7 +1060,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                         <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
-                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                      <select id="identifytoovercomeq"name="identifytoovercome" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -1063,7 +1070,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                       <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
-                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                      <select id="teachercommunicateq" name="teachercommunicate" required >
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Very poor communication </option>
                                           <option value="47">Generally ineffective</option>
@@ -1074,7 +1081,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                       </select>
                                       <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
                                       <select id="teacherillustrateq" name="teacherillustrate" >
-                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="" disabled selected>Select Option</option required> 
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
                                           <option value="62">Occasionally/Sometimes</option>
@@ -1083,7 +1090,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                       <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
-                                      <select id="teacherencourageq" name="teacherencourage" >
+                                      <select id="teacherencourageq" name="teacherencourage" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Strongly disagree</option>
                                           <option value="47">Disagree </option>
@@ -1093,7 +1100,7 @@ searchtableele.appendChild(thead)// Clear existing table content
     
                                       </select>
                                       <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
-                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" required>
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -1103,7 +1110,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                       <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
-                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                      <select id="teacherfairneessq" name="teacherfairneess" required>
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -1113,7 +1120,7 @@ searchtableele.appendChild(thead)// Clear existing table content
                                           
                                       </select>
                                    <label id="feedback">Write your opinion in text:-</label>
-                                   <textarea id="feedback"  type="text" name="feedback" placeholder="write something"></textarea>
+                                   <textarea id="feedback"  type="text" name="feedback" placeholder="write something" required></textarea>
                                    <div class="d-flex flex-row justify-content-end mt-3">
                                    <button type="submit"  class="btn btn-primary feedbackbtn">Submit</button>
                                    </div>
@@ -1217,22 +1224,27 @@ document.addEventListener('DOMContentLoaded', function() {
 })
                 .then(response => response.json())
                 .then(data => {
-                    //console.log('Alumnitalks Data:', data);
-                    // Now you have access to alumnitalksData in the client-side script
+      
                     let alumnitalkinner=''
                     data.forEach(alumnitalk => {
                         alumnitalkinner += `<div class="col-6 col-lg-3 mb-4">
              
              <img src="${alumnitalk.alumniimage}" class="Trending-image" />
              <div class="Trending-top-card shadow p-2">
+                <div class="posts-card-matter">
+
+
                  <p class="Trending-bottom-heading">${alumnitalk.alumnitopic}</p>
                  <h1 class="Trending-top-banner-heading ">${alumnitalk.alumniname}</h1>
                  <p class="Trending-paragraph">${alumnitalk.alumniabout}</p>
+                 </div>
+                 <div >
                  <a href="#" class="Read-More-button " onclick="openModal('${alumnitalk.id}', 'modalalumni')">Read More
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                      </svg>
                  </a>
+                 </div>
              </div>
       
          </div> <div class="modal fade" id="modalalumni${alumnitalk.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1265,22 +1277,25 @@ document.addEventListener('DOMContentLoaded', function() {
 })
                 .then(response => response.json())
                 .then(data => {
-                    //console.log('collegeevents Data:', data);
-                    // Now you have access to alumnitalksData in the client-side script
+            
                     let collegeveninner=''
                     data.forEach(collegevent => {
                         collegeveninner += `<div class="col-6 col-lg-3  mb-4">
              
              <img src="${collegevent.eventimage}" class="Trending-image" />
              <div class="Trending-top-card shadow p-2">
+                    <div class="posts-card-matter">
                  <p class="Trending-bottom-heading">${collegevent.eventtopic}</p>
                  <h1 class="Trending-top-banner-heading ">${collegevent.eventname}</h1>
                  <p class="Trending-paragraph">${collegevent.eventabout}</p>
+                 </div>
+                 <div>
                  <a href="#" class="Read-More-button " onclick="openModal('${collegevent.eventid}', 'modalevent')">Read More
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                      </svg>
                  </a>
+                 </div>
              </div>
       
          </div> <div class="modal fade " id="modalevent${collegevent.eventid}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1296,13 +1311,13 @@ document.addEventListener('DOMContentLoaded', function() {
                           </div>
                       </div>`
                     });
-                      // Set the innerHTML of alumnitalkconele after the loop
+                    
                       collegetalkconele.innerHTML = collegeveninner;
                 })
                 .catch(error => console.error('Error fetching alumnitalks data:', error));
         }
 
-        // Call the function to fetch alumnitalksData
+   
         fetchcollegeventsData()
         const handleLogout = () => {
     fetch('/studentlogout', {
@@ -1313,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => {
         if (response.ok) {
-            // Clear local storage
+       
             localStorage.removeItem('jwtToken');
             
            
@@ -1329,7 +1344,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => {
         console.error('Error logging out:', error);
-        // Handle error or display error message to the user
+
     });
 };
 

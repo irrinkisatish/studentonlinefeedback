@@ -118,12 +118,20 @@ a:hover {
 .Trending-top-card {
     background-color: #ffffff;
     background-size: cover;
-    
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:325px;
+    height:200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
-
+.posts-card-matter{
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
 .Trending-paragraph {
     color: #1e2126;
     font-size: 15px;
@@ -258,7 +266,7 @@ h3{
         }
         .banner-image{
            width: 1500px;
-           /* Or use object-fit: cover; if you want the image to cover the entire container */
+          
           height: 375px;
         }
 
@@ -315,7 +323,7 @@ h3{
                 
             }
             .Trending-image {
-             width:100%;
+             width: 50%;;
             
         }
         .Trending-paragraph {
@@ -682,6 +690,7 @@ a:hover {
     </form>
 </div>
 
+
 <div id="Dateandtimeattendance" class="d-none ">
     <div class="mt-5">
         <h1 style="text-align: center;" class="mb-3 tables-headings">Attendance View</h1>
@@ -1027,7 +1036,7 @@ document.getElementById("attendance").onclick=()=>{
     document.getElementById('attendanceReport').classList.add('d-none');
     document.getElementById("Dateandtimeattendance").classList.add("d-none");
     const facultyYearParam = facultyyear;
-
+    document.getElementById('studentsList').innerHTML = "";
     document.getElementById("facultyid").value=id;
     document.getElementById("teachingyears").value=facultyyear;
     document.getElementById("teachingbranch").value=facultybranch;
@@ -1080,9 +1089,22 @@ document.getElementById("attendance").onclick=()=>{
         const selectedGroup = this.value;
 
         try {
-            const response = await fetch(`/fetch_attendance_students?year=${selectedYear}&group=${selectedGroup}`);
+            const accessToken = localStorage.getItem('jwtToken'); // Retrieve JWT token from localStorage
+
+        const response = await fetch(`/fetch_attendance_students?year=${selectedYear}&group=${selectedGroup}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`, // Include JWT token in headers
+                'Content-Type': 'application/json' // Optional: Good to include for JSON responses
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
             const studentsHTML = await response.text();
 
+           
             document.getElementById('studentsList').innerHTML = studentsHTML;
         } catch (error) {
             console.error('Error fetching students:', error);
@@ -1158,6 +1180,7 @@ function renderSearchResults(data) {
 }
 document.getElementById("viewstudents").onclick=()=>{
     document.getElementById("viewfeedbackdoc").classList.add("d-none");
+    searchResultsContainer.classList.add("d-none"); 
         document.getElementById("viewstudentdoc").classList.remove("d-none");
         document.getElementById("attendanceregdoc").classList.add("d-none");
         document.getElementById("collegeevents").classList.add("d-none");
@@ -1166,10 +1189,10 @@ document.getElementById("viewstudents").onclick=()=>{
     const yearSelect = document.getElementById('studentviewyear');
     yearSelect.innerHtml="";
     yearSelect.innerHTML=`<option value="" disabled selected>Select Year</option>`;
-    // Split the comma-separated string into an array of years
+
     const yearOptions =facultyyear.split(',');
 
-    // Create and add option elements for each year
+    
     yearOptions.forEach((year) => {
         const option = document.createElement('option');
         option.value = year.trim();
@@ -1180,10 +1203,10 @@ document.getElementById("viewstudents").onclick=()=>{
     const classSelect = document.getElementById('studentviewclass');
     classSelect.innerHTML="";
     classSelect.innerHTML=`<option value="" disabled selected>Select Group</option>`;
-    // Split the comma-separated string into an array of group names
+   
     const classNames = groupNamesParam.split(',');
 
-    // Create and add option elements for each group name
+  
     classNames.forEach((className) => {
         const option = document.createElement('option');
         option.value = className.trim();
@@ -1196,7 +1219,7 @@ document.getElementById("viewstudents").onclick=()=>{
     const studentgroup = this.value;
 
     
-    //fetch('/api/students?facultyYear='+facultyyear+'&facultyBranch='+facultybranch)
+ 
     const accessToken = localStorage.getItem('jwtToken');
     const headers = {
         'Authorization': `Bearer ${accessToken}`,
@@ -1213,7 +1236,7 @@ document.getElementById("viewstudents").onclick=()=>{
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        studentTableBody.innerHTML = ''; // Clear previous data
+        studentTableBody.innerHTML = ''; 
 
         data.forEach(student => {
             const row = document.createElement('tr');
@@ -1229,22 +1252,21 @@ document.getElementById("viewstudents").onclick=()=>{
             `;
             studentTableBody.appendChild(row);
         });
-        searchResultsContainer.classList.add("d-none"); // Assuming this is defined elsewhere
+     
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 });
 };
 document.getElementById("viewfeedback").onclick=()=>{
-     //fetch('/api/facultyfeedback?facultyId='+id)
+ 
      
 const yearSelect = document.getElementById('yearreq');
 yearSelect.innerHTML="";
     yearSelect.innerHTML=`<option value="" disabled selected>Select Year</option>`;
-    // Split the comma-separated string into an array of years
+   
     const yearOptions = facultyyear.split(',');
 
-    // Create and add option elements for each year
     yearOptions.forEach((year) => {
         const option = document.createElement('option');
         option.value = year.trim();
@@ -1256,10 +1278,10 @@ yearSelect.innerHTML="";
     const classSelect = document.getElementById('classreq');
     classSelect.innerHTML="";
     classSelect.innerHTML=`<option value="" disabled selected>Select Group</option>`;
-    // Split the comma-separated string into an array of group names
+
     const classNames = groupNamesParam.split(',');
 
-    // Create and add option elements for each group name
+   
     classNames.forEach((className) => {
         const option = document.createElement('option');
         option.value = className.trim();
@@ -1273,10 +1295,10 @@ yearSelect.innerHTML="";
     const subjectSelect = document.getElementById('subjectreq');
     subjectSelect.innerHTML="";
     subjectSelect.innerHTML=`<option value="" disabled selected>Select Subject</option>`;
-    // Split the comma-separated string into an array of subject names
+   
     const subjectNames = subjectNamesParam.split(',');
 
-    // Create and add option elements for each subject name
+
     subjectNames.forEach((subjectName) => {
         const option = document.createElement('option');
         option.value = subjectName.trim();
@@ -1291,7 +1313,6 @@ yearSelect.innerHTML="";
     const studentsubject = this.value;
 
     
-    //fetch('/api/students?facultyYear='+facultyyear+'&facultyBranch='+facultybranch)
     const accessToken = localStorage.getItem('jwtToken');
     const headers = {
         'Authorization': `Bearer ${accessToken}`,
@@ -1311,7 +1332,7 @@ yearSelect.innerHTML="";
         const feedbackTableBody = document.getElementById('feedbackTableBody');
         const overparEle = document.getElementById('overparEle');
         overparEle.textContent ="";
-        studentTableBody.innerHTML = ''; // Clear previous data
+        studentTableBody.innerHTML = ''; 
 
         data.forEach(feedback => {
            
@@ -1364,7 +1385,7 @@ yearSelect.innerHTML="";
     .then(data => {
         const feedbackTableBody = document.getElementById('feedbackTableBody');
         const overparEle = document.getElementById('overparEle');
-        
+        feedbackTableBody.innerHTML=""
         data.forEach(feedback => {
             const row = document.createElement('tr');
             console.log(feedback)
@@ -1422,14 +1443,18 @@ function fetchAlumniTalksData() {
              
             <img src="${alumnitalk.alumniimage}" class="Trending-image" />
             <div class="Trending-top-card shadow p-2">
+                <div class="posts-card-matter">
                 <p class="Trending-bottom-heading">${alumnitalk.alumnitopic}</p>
                 <h1 class="Trending-top-banner-heading ">${alumnitalk.alumniname}</h1>
                 <p class="Trending-paragraph">${alumnitalk.alumniabout}</p>
+                </div>
+                <div>
                 <a href="#" class="Read-More-button " onclick="openModal('${alumnitalk.id}', 'modalalumni')">Read More
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                     </svg>
                 </a>
+                </div>
             </div>
       
             </div> 
@@ -1474,14 +1499,18 @@ function fetchcollegeventsData() {
              
             <img src="${collegevent.eventimage}" class="Trending-image" />
             <div class="Trending-top-card shadow p-2">
+                <div class="posts-card-matter">
                 <p class="Trending-bottom-heading">${collegevent.eventtopic}</p>
                 <h1 class="Trending-top-banner-heading ">${collegevent.eventname}</h1>
                 <p class="Trending-paragraph">${collegevent.eventabout}</p>
+                </div>
+                <div>
                 <a href="#" class="Read-More-button " onclick="openModal('${collegevent.eventid}', 'modalevent')">Read More
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                     </svg>
                 </a>
+                </div>
             </div>
       
             </div> <div class="modal fade" id="modalevent${collegevent.eventid}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

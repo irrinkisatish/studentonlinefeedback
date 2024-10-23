@@ -39,10 +39,20 @@ a:hover {
 .Trending-top-card {
     background-color: #ffffff;
     background-size: cover;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:325px;
+    height:200px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+.posts-card-matter{
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
 }
 
 .Trending-paragraph {
@@ -297,14 +307,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 div.innerHTML = `
                     <img src="${event.eventimage}" class="Trending-image" />
                     <div class="Trending-top-card shadow p-2">
+                        <div class="posts-card-matter">
                         <p class="Trending-bottom-heading">${event.eventtopic}</p>
                         <h1 class="Trending-top-banner-heading ">${event.eventname}</h1>
-                        <p class="Trending-paragraph">${event.eventabout.slice(0, 50)}</p>
+                        <p class="Trending-paragraph">${event.eventabout}</p>
+                        </div>
+                        <div>
                         <a href="#" class="Read-More-button" onclick="openModal('${event.eventid}')">Read More
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                             </svg>
                         </a>
+                        </div>
                     </div>
                 `;
                 videframe.innerHTML= `<div class="modal fade" id="modal${event.eventid}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

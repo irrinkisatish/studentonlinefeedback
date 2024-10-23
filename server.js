@@ -134,6 +134,33 @@ const authenticatefacultyToken = (request, response, next) => {
     });
   }
 };
+app.get('/facultynamesforfeedback', (req, res) => {
+  const { course, year } = req.query;  // Get course and year from query params
+ console.log(course)
+  const sql = 'SELECT firstname,lastname FROM faculty WHERE FIND_IN_SET(?, teaching_group) AND FIND_IN_SET(?, teaching_year)';
+
+  db.query(sql, [course, year], (err, result) => {
+      if (err) throw err;
+      console.log(result)
+      res.json(result);  // Send result as JSON to the frontend
+  });
+});
+
+app.get('/subjectsnamesforfeedback', (req, res) => {
+  const { course, year,name } = req.query;  // Get course and year from query params
+  const splitname = name.split(" ")
+  console.log(splitname)
+  console.log(course)
+  const firstname  = splitname[0]
+  const lastname = splitname[1]
+  const sql = 'SELECT  teaching_subject FROM faculty WHERE FIND_IN_SET(?, teaching_group) AND FIND_IN_SET(?, teaching_year) AND firstname = ? AND lastname=?';
+
+  db.query(sql, [course, year,firstname,lastname], (err, result) => {
+      if (err) throw err;
+      console.log(result)
+      res.json(result);  // Send result as JSON to the frontend
+  });
+});
 
 //--------------------------------------student-page-api----------------------------------------------------------------------
 app.post('/srform', studentupload.single('file'), async (req, res) => {
@@ -376,7 +403,9 @@ LEFT JOIN
 LEFT JOIN 
   faculty fac ON fac.id = f.faculty_id
 WHERE 
-  s.student_id = ?;
+  s.student_id = ?
+  ORDER BY f.id DESC;
+
 
   `, [studentId], (error, studentResults) => {
     if (error) {
@@ -540,7 +569,7 @@ app.get('/api/facultyfeedback', authenticatefacultyToken ,(req, res) => {
     SELECT *, AVG((teaching_approrach + syllabus_covered + teacheruses_tools + identifytoovercome + prepapreforclasses + teachercommunicate + teacherillustrate + teacherencourage + teacherperdiscess + teacherfairneess) / 10) AS ATA,
     (SELECT AVG((teaching_approrach + syllabus_covered + teacheruses_tools + identifytoovercome + prepapreforclasses + teachercommunicate + teacherillustrate + teacherencourage + teacherperdiscess + teacherfairneess) / 10) AS AverageOverall
     FROM feedback WHERE faculty_id = ? GROUP BY faculty_id) AS OverallPerformance
-    FROM feedback fb JOIN student f ON fb.student_id = f.student_id WHERE fb.faculty_id = ? GROUP BY fb.id
+    FROM feedback fb JOIN student f ON fb.student_id = f.student_id WHERE fb.faculty_id = ? GROUP BY fb.id ORDER BY fb.id DESC;
   `;
 
   db.query(query, [facultyId, facultyId], (error, results) => {
@@ -611,7 +640,8 @@ WHERE
     s.year = ? AND 
     s.group_name = ?
 GROUP BY 
-    fb.id;
+    fb.id
+    ORDER BY fb.id DESC;
 
 
   `;
@@ -664,6 +694,7 @@ app.post('/api/students', authenticatefacultyToken ,(req, res) => {
   SELECT *
   FROM student
   WHERE year =? AND group_name =?
+  ORDER BY rollnumber ASC;
   `;
 
   // Execute the SQL query with parameters using db connection
@@ -702,7 +733,7 @@ app.get('/fetch_attendance_students', async (req, res) => {
     const selectedGroup = req.query.group;
 
     db.query(
-      'SELECT * FROM student WHERE year = ? AND group_name = ?',
+      'SELECT * FROM student WHERE year = ? AND group_name = ? ORDER BY rollnumber ASC;',
       [selectedYear, selectedGroup],
       (err, results, fields) => {
         if (err) {
@@ -711,14 +742,25 @@ app.get('/fetch_attendance_students', async (req, res) => {
           return;
         }
 
-        let studentsHTML = '';
+        let studentsHTML = '<table border="1"><tr><th>Select</th><th>Full Name</th><th>Roll Number</th></tr>';
         results.forEach((row) => {
           studentsHTML += `
-            <input type="checkbox" id="student${row.student_id}" name="students[]" value="${row.student_id}">
-            <label for="student${row.student_id}">${row.fname} ${row.lname}</label><br>
+  <tr>
+    <td>
+      <input type="checkbox" id="student${row.student_id}" name="students[]" value="${row.student_id}">
+    </td>
+    <td>
+      <label for="student${row.student_id}">${row.fname} ${row.lname}</label>
+    </td>
+    <td>
+      <label for="student${row.student_id}">${row.rollnumber}</label>
+    </td>
+  </tr>
+
+
           `;
         });
-
+studentsHTML.innerHTML += '</table>';
         res.send(studentsHTML);
       }
     );
@@ -731,28 +773,29 @@ app.get('/fetch_attendance_students', async (req, res) => {
 app.post('/submitAttendance', async (req, res) => {
   try {
     const { facultyid,teachingsubject,teachingbranch,teachingyears, subject_name: facultysubject, students, date } = req.body;
-    console.log(req.body);
+   
 
-    // Check if students array is empty or not provided
+    
     if (!Array.isArray(students) || students.length === 0) {
       return res.status(400).send('Invalid students data');
     }
 
-    // Use a loop to insert attendance data for each student
+   
     for (const studentId of students) {
-      // Insert attendance data into the database
+     
       db.query(
         'INSERT INTO attendance (student_id, faculty_id, date, subject_name) VALUES (?, ?, ?, ?)',
         [studentId, facultyid, date, facultysubject],
         (err, results, fields) => {
           if (err) {
             console.error('Error executing query:', err);
-            // If an error occurs, send an internal server error response
+         
             return res.status(500).send('Internal Server Error');
           }
-          // Do nothing here, as the loop continues for other students
+      
         }
       );
+      sendAttendanceEmailtoStudent(studentId,facultyid,facultysubject,res);
     }
 
     res.redirect(`/faculty.html?msg=attendance submit success`);
@@ -768,14 +811,14 @@ app.post('/submitAttendance', async (req, res) => {
 app.post('/fetchAttendanceData', (req, res) => {
     const { attfacultyid, studentyear, studentclass,studentsubject, todate, fromdate } = req.body;
     console.log(req.body);
-  const sql = `SELECT a.student_id, s.fname, s.lname, a.subject_name, 
+  const sql = `SELECT a.student_id, s.fname, s.lname, a.subject_name,s.rollnumber, 
   COUNT(*) AS attendance_count, 
   ROUND((COUNT(*) / (DATEDIFF(?, ?) + 1)) * 100) AS average_attendance 
 FROM attendance a 
 JOIN student s ON a.student_id = s.student_id 
 WHERE a.faculty_id = ? AND s.year = ? AND s.group_name = ? AND a.subject_name = ?
  AND a.date BETWEEN ? AND ? 
-GROUP BY a.student_id, s.fname, s.lname, a.subject_name;
+GROUP BY a.student_id, s.fname, s.lname, a.subject_name ORDER BY s.rollnumber ASC;
 `;
 
   db.query(sql, [fromdate, todate, attfacultyid, studentyear, studentclass,studentsubject, todate, fromdate], (err, results) => {
@@ -784,10 +827,10 @@ GROUP BY a.student_id, s.fname, s.lname, a.subject_name;
           res.status(500).send('Internal Server Error');
       } else {
           let htmlResponse = '<h2 style="text-align: center;" class="mb-3 tables-headings">Attendance Counts</h2> <div class="d-flex flex-row justify-content-end mb-3"><button id="downloadattendancedetails" class="btn btn-primary">Download to Excel</button></div> <table border="1" id="attendancedata">';
-          htmlResponse += '<tr><th>Student ID</th><th>First Name</th><th>Last Name</th><th>Subject</th><th>Attendance Count</th><th>Average Attendance</th></tr>';
+          htmlResponse += '<tr><th>Register No</th><th>First Name</th><th>Last Name</th><th>Subject</th><th>Attendance Count</th><th>Average Attendance</th></tr>';
 
           results.forEach((row) => {
-              htmlResponse += `<tr><td>${row.student_id}</td><td>${row.fname}</td><td>${row.lname}</td><td>${row.subject_name}</td><td>${row.attendance_count}</td><td>${row.average_attendance}%</td></tr>`;
+              htmlResponse += `<tr><td>${row.rollnumber}</td><td>${row.fname}</td><td>${row.lname}</td><td>${row.subject_name}</td><td>${row.attendance_count}</td><td>${row.average_attendance}%</td></tr>`;
           });
 
           htmlResponse += '</table>';
@@ -1084,7 +1127,7 @@ app.post('/delete-row/:tableName', (req, res) => {
 });
 
 app.get('/adminapi/students', (req, res) => {
-  const query = 'SELECT * FROM student';
+  const query = 'SELECT * FROM student ORDER BY student_id DESC;';
   db.query(query, (error, results) => {
     if (error) {
       console.error('Error executing MySQL query:', error);
@@ -1228,7 +1271,8 @@ JOIN (
   GROUP BY faculty_id, subjectName
 ) avg_feedback ON f.faculty_id = avg_feedback.faculty_id AND f.subjectName = avg_feedback.subjectName
 JOIN student s ON f.student_id = s.student_id 
-JOIN faculty t ON f.faculty_id = t.id;
+JOIN faculty t ON f.faculty_id = t.id
+ORDER BY f.id DESC;
 
 `;
 
@@ -1247,7 +1291,7 @@ JOIN faculty t ON f.faculty_id = t.id;
 app.get('/search-students', (req, res) => {
   const { course, year } = req.query;
   
-    const query =`select * from student where group_name='${course}' and year='${year}';`
+    const query =`select * from student where group_name='${course}' and year='${year}' order by rollnumber ASC;`
     console.log(query);
   db.query(query, (error, results) => {
     if (error) {
@@ -1269,12 +1313,16 @@ app.get('/search-students', (req, res) => {
 app.get('/api/faculty-feedback', (req, res) => {
   const selectedCourse = req.query.course;
   const selectedYear = req.query.year;
-  console.log(selectedYear);
+  const selectsub = req.query.subject;
+  const selectfname = req.query.name
+  const splittedname = selectfname.split(" ")
+  const firstname = splittedname[0];
+  const lastname  = splittedname[1];
   const query = `
   SELECT 
-  s.*, t.*, f.*,
-  f.student_id,
-  f.faculty_id,
+  s.rollnumber,
+  t.firstname,t.lastname,
+  f.feedback_text,
   f.subjectName,
   f.teaching_approrach,
   f.syllabus_covered,
@@ -1301,7 +1349,13 @@ JOIN student s ON f.student_id = s.student_id
 JOIN faculty t ON f.faculty_id = t.id
 WHERE 
   FIND_IN_SET('${selectedCourse}', t.teaching_group) > 0 
-  AND FIND_IN_SET('${selectedYear}', t.teaching_year) > 0;
+  AND FIND_IN_SET('${selectedYear}', t.teaching_year) > 0
+  AND f.subjectName  = '${selectsub}'
+  AND t.firstname = '${firstname}' AND t.lastname='${lastname}'
+
+ORDER BY s.rollnumber ASC;
+
+  ;
 
 
 `;
@@ -1312,7 +1366,7 @@ WHERE
       res.status(500).json({ error: 'Internal Server Error' });
       return;
     }
-   
+   console.log(results)
     res.json(results);
     
   });
@@ -1378,7 +1432,8 @@ LEFT JOIN
   alumnifeedbackanswers cc_contribution ON a.contribution_to_college_answer_id = cc_contribution.answer_id
 LEFT JOIN
   alumnifeedbackquestion q_contribution ON cc_contribution.question_id = q_contribution.question_id
-      WHERE a.course = ?;
+      WHERE a.course = ?
+      ORDER BY a.alumni_id DESC;
   `;
 
   db.query(query, [selectedCourse, selectedCourse], (error, results) => {
@@ -1455,6 +1510,8 @@ LEFT JOIN
   alumnifeedbackanswers cc_contribution ON a.contribution_to_college_answer_id = cc_contribution.answer_id
 LEFT JOIN
   alumnifeedbackquestion q_contribution ON cc_contribution.question_id = q_contribution.question_id
+  ORDER BY
+  a.alumni_id DESC;
 `;
 
   db.query(query, (error, results) => {
@@ -1639,8 +1696,8 @@ var transporter = nm.createTransport(
         port: 587,
         secure: false,
         auth: {
-            user: 'irrinkisatish8@gmail.com',
-            pass: 'ezut igac gcie irop'
+            user: 'studentonlinefeedbackbvrc@gmail.com',
+            pass: 'uzmy qciu fnbu gxsn'
         }
     }
 );
@@ -1663,9 +1720,9 @@ app.post('/sendotp', (req, res) => {
     
         }
         var options = {
-            from: 'irrinkisatish8@gmail.com',
+            from: 'studentonlinefeedbackbvrc@gmail.com',
             to: `${email}`,
-            subject: "Testing node emails",
+            subject: "Reset Password OTP",
             html: `<img src="cid:unique@banner.image" alt="Banner Image" width="1080px"/>
             <p>Enter the otp: ${otp} to verify your email address</p>
             `,
@@ -1736,9 +1793,9 @@ db.query(sql, values, (err, result) => {
   
       }
       var options = {
-          from: 'irrinkisatish8@gmail.com',
+          from: 'studentonlinefeedbackbvrc@gmail.com',
           to: `${email}`,
-          subject: "Testing node emails",
+          subject: "Reset Password OTP",
           html: `<img src="cid:unique@banner.image" alt="Banner Image" width="1080px"/>
           <p>Enter the otp: ${otp} to verify your email address</p>
           `,
@@ -1819,6 +1876,7 @@ app.post("/resetfacultypassword", async(req,res)=>{
 });
 
 const XLSX = require('xlsx');
+const { resourceLimits } = require('worker_threads');
 
 
 const upload = multer({ dest: 'uploads/' });
@@ -1859,8 +1917,146 @@ app.post('/uploadhallticketexcel', upload.single('excelFile'), (req, res) => {
     res.status(500).json({ error: 'Failed to process the Excel file' });
   }
 });
+app.post('/send-respectiveemail', upload.single('attachment'), (req, res) => {
+  const { course, year, subject, message } = req.body;
+  const attachment = req.file;
+
+  // Fetch student emails based on selected course and year
+  const query = 'SELECT email FROM student WHERE group_name  = ? AND year = ?';
+  db.query(query, [course, year], (err, results) => {
+      if (err) {
+          console.log(err);
+          return res.status(500).send('Database query error');
+      }
+
+      if (results.length === 0) {
+          return res.status(404).send('No students found for the selected course and year');
+      }
+
+      // Extract email addresses
+      const emailAddresses = results.map(row => row.email);
+
+      // Email options
+      const mailOptions = {
+          from: 'studentonlinefeedbackbvrc@gmail.com',
+          bcc: emailAddresses, // Send email to all fetched students
+          subject: subject,
+          text: message,
+          attachments: attachment ? [{
+              filename: attachment.originalname,
+              path: attachment.path
+          }] : []
+      };
+
+      // Send email using Nodemailer
+      transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              console.log(error);
+              res.status(500).send('Error sending email');
+          } else {
+              console.log('Email sent: ' + info.response);
+              res.send('Emails sent successfully');
+          }
+
+          // Remove the uploaded file after sending email
+          if (attachment) {
+              fs.unlink(attachment.path, (err) => {
+                  if (err) {
+                      console.error('Failed to delete uploaded file:', err);
+                  }
+              });
+          }
+      });
+  });
+});
+
+function sendAttendanceEmailtoStudent(studentId, facultyid, facultySubject, res) {
+  const result = `
+    SELECT a.student_id, 
+           s.fname, 
+           s.lname, 
+           a.subject_name, 
+           s.email, 
+           s.rollnumber,
+           f.firstname,
+           f.lastname,
+           COUNT(*) AS attendance_count,
+           (SELECT COUNT(DISTINCT date) 
+            FROM attendance 
+            WHERE faculty_id = a.faculty_id 
+              AND subject_name = a.subject_name) AS unique_days_count
+    FROM attendance a 
+    JOIN student s 
+      ON a.student_id = s.student_id
+    JOIN faculty f
+      ON f.id = a.faculty_id
+    WHERE a.faculty_id = ${facultyid} 
+      AND a.subject_name = '${facultySubject}'
+      AND a.student_id = ${studentId}
+    GROUP BY a.student_id, s.fname, s.lname, s.email, s.rollnumber, a.subject_name 
+    ORDER BY s.rollnumber ASC;
+  `;
+
+  db.query(result, (err, results) => {
+    if (err) {
+      console.error("Error executing query:", err);
+      return res.status(500).send('Error executing query');
+    }
+    if (results.length === 0) {
+      return res.status(404).send('No records found for the selected student and subject');
+    }
+
+    const result = results[0];
+    const emailAddresses = result.email;
+    const subject = `Attendance Report for ${result.subject_name}`;
+    
+
+    const mailOptions = {
+      from: 'studentonlinefeedbackbvrc@gmail.com',
+      to: emailAddresses, 
+      subject: subject,
+      attachments: [{
+        filename: 'banner.jpg',
+        path: bannerPath,
+        cid: 'unique@banner.image' // Same CID as in the HTML img src
+    }],
+      html: `<img src="cid:unique@banner.image" alt="Banner Image" width="1080px"/>
+      <p>Dear ${result.fname} ${result.lname},</p>
+    <p>We hope this message finds you well. We would like to share your attendance report for the ${result.subject_name} subject, taught by faculty ${result.firstname} ${result.lastname}.</p>
+    <p>Here are your details:</p>
+    <ul>
+      <li>Subject: ${result.subject_name}</li>
+      <li>Roll Number: ${result.rollnumber}</li>
+      <li>Total Classes Attended: ${result.attendance_count}</li>
+      <li>Total Classes Absent: ${result.unique_days_count - result.attendance_count}</li>
+    </ul>
+    <p>Thank you for your continued participation and dedication to your studies. Regular attendance is crucial for your academic success, and we encourage you to maintain consistent attendance moving forward.</p>
+    <p>If you have any questions or concerns regarding your attendance, please feel free to reach out to us.</p>
+    <p>Best regards,<br>[${result.firstname} ${result.lastname}]<br>[B V Raju College]</p>
+         
+            `,
+           
+    
+    
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log('Error sending email:', error);
+        return res.status(500).send('Error sending email');
+      } else {
+        console.log('Email sent: ' + info.response);
+        return res.send('Email sent successfully');
+      }
+    });
+  });
+}
+
+
+
 
 const port = 3305;
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
 });
+

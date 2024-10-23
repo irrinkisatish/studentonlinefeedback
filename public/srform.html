@@ -116,16 +116,11 @@
       
     </select>
         <label for="branch" class="head-label">Branch:</label>
-        <select type="text" id="branchSelect" name="branch" onchange="updateGroups()">
+        <select type="text" id="branchSelect" name="branch" onchange="updateGroups()" required>
             <option value="" disabled selected>Select Option</option>
-            <option value="B.Sc">B.Sc</option>
-            <option value="BCA">BCA</option>
-            <option value="B.Com">B.Com</option>
-            
-            <option value="PG">PG</option>
         </select>
-        <label for="group" class="head-label">Group:</label>
-        <select type="text" id="groupSelect" name="group">
+        <label for="group" class="head-label" >Group:</label>
+        <select type="text" id="groupSelect" name="group" required>
             <option value="" disabled selected>Select group</option>  
         </select>
 
@@ -145,45 +140,52 @@
         
 
         <script>
-          
-            function updateGroups() {
-                var branchSelect = document.getElementById('branchSelect');
-                var groupSelect = document.getElementById('groupSelect');
-                var selectedBranch = branchSelect.value;
+             function updateGroups() {
+            const branchSelect = document.getElementById('branchSelect');
+            const branchName = branchSelect.value;
+            const groupSelect = document.getElementById('groupSelect');
 
-                // Clear existing options
-                groupSelect.innerHTML = '';
-                groupSelect.innerHTML='<option value="" disabled selected>Select group</option> ';
-                // Define the groups for each branchs
-                var branchGroups = {
-                    'B.Sc': ['MPCS',
-                        'MECS',
-                        'MCCS',
-                        'MPC',
-                        'MSCS'
-                           ],
-                           'BCA':['Computer Applications(B.C.A)'],
-                    'B.Com': ['Computers'],
-                    'PG': ['MSC','MCA']
-                };
+            // Clear the group select dropdown
+            groupSelect.innerHTML = '<option value="" disabled selected>Select group</option>';
 
-                // Add options based on the selected branch
-                if (branchGroups[selectedBranch]) {
-                    branchGroups[selectedBranch].forEach(function(group) {
-                        var option = document.createElement('option');
-                        option.text = group;
-                        option.value = group;
+            // Fetch groups related to the selected branch
+            fetch(`http://localhost:3305/groups/${branchName}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the group select options
+                    data.forEach(group => {
+                        const option = document.createElement('option');
+                        option.value = group.name;
+                        option.text = group.name;
                         groupSelect.add(option);
                     });
-                } else {
-                    var defaultOption = document.createElement('option');
-                    defaultOption.text = 'Select Group';
-                    groupSelect.add(defaultOption);
-                }
-            }
+                })
+                .catch(error => console.error(`Error fetching groups for branch ${branchName}:`, error));
+        }
+             document.addEventListener('DOMContentLoaded', function () {
+        // Function to populate the branch select dropdown
+        function fetchBranches() {
+            fetch('http://localhost:3305/branches')
+                .then(response => response.json())
+                .then(data => {
+                    const branchSelect = document.getElementById('branchSelect');
+                    // Populate the branch select options
+                    data.forEach(branch => {
+                        const option = document.createElement('option');
+                        option.value = branch.name;
+                        option.text = branch.name;
+                        branchSelect.add(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching branches:', error));
+        }
 
-            // Initially populate groups based on the default selected branch
-            updateGroups();
+        // Function to update groups based on selected branch
+       
+
+        // Initially populate the branch select on page load
+        fetchBranches();
+    });
             document.getElementById("cancelbtn").onclick = function() {
     // Make a GET request to the server endpoint for redirection
     fetch("/redirect-to-studentlogin")

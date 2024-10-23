@@ -260,43 +260,36 @@ h2{
         <label for="address" class="head-label">Address:</label>
         <input type="text" id="address" name="address"><br>
         
-        <label for="student_year" class="head-label">Teaching Year:</label>
+        <label for="student_year" class="head-label"  style="font-weight: bold;">Teaching Year:</label>
         <div id="yearCheckboxes">
             <div class="d-flex flex-row">
-            <input type="checkbox" id="year1" name="teaching_year" value="1st Year">
-            <label for="year1">1st Year Students</label>
-        </div>
-        <div class="d-flex flex-row">
-            <input type="checkbox" id="year2" name="teaching_year" value="2nd Year">
-            <label for="year2">2nd Year Students</label>
-        </div>
-        <div class="d-flex flex-row"> 
-            <input type="checkbox" id="year3" name="teaching_year" value="3rd Year">
-            <label for="year3">3rd Year Students</label>
-        </div>
-        </div>
-        
-        <label for="branch" class="head-label">Teaching Branch:</label>
-        <div id="branchCheckboxes" style="display:none;">
-            <input type="checkbox" id="branchBSc" name="selected_branch" value="B.Sc">
-            <label for="branchBSc">B.Sc</label>
-            <input type="checkbox" id="branchBCom" name="selected_branch" value="B.Com">
-            <label for="branchBCom">B.Com</label>
-            <input type="checkbox" id="branchBA" name="selected_branch" value="BA">
-            <label for="branchBA">BA</label>
-            <input type="checkbox" id="branchMCA" name="selected_branch" value="MCA">
-            <label for="branchMCA">MCA</label>
+                <input type="checkbox" id="year1" name="teaching_year" value="1st Year">
+                <label for="year1">1st Year Students</label>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="checkbox" id="year2" name="teaching_year" value="2nd Year">
+                <label for="year2">2nd Year Students</label>
+            </div>
+            <div class="d-flex flex-row"> 
+                <input type="checkbox" id="year3" name="teaching_year" value="3rd Year">
+                <label for="year3">3rd Year Students</label>
+            </div>
         </div>
         
-        <label for="group" class="head-label">Group:</label>
-        <div id="groupCheckboxes" style="display:none;">
-            <!-- Options will be populated dynamically -->
-        </div>
-        
-        <label for="subjectSelect" class="head-label">Teaching Subjects:</label>
-        <div id="subjectCheckboxes" style="display:none;">
-            <!-- Options will be populated dynamically -->
-        </div>
+        <label for="selected_branch" style="font-weight: bold;">Select Branch:</label>
+        <div id="selected_branch" class="checkbox-group">
+            <!-- Branch checkboxes will be appended here -->
+        </div><br>
+    
+        <label for="selected_group" style="font-weight: bold;">Select Group:</label>
+        <div id="selected_group" class="checkbox-group">
+            <!-- Group checkboxes will be appended here -->
+        </div><br>
+    
+        <label for="selected_subject" style="font-weight: bold;">Select Subject:</label>
+        <div id="selected_subject" class="checkbox-group">
+            <!-- Subject checkboxes will be appended here -->
+        </div><br>
            <label for="file" class="head-label">Choose File:</label>
         <input type="file" id="file" name="file" accept="image/*"><br>
         <div class="d-flex flex-row justify-content-center">
@@ -306,7 +299,7 @@ h2{
                                 </div>
                             </div>
                         </div>
-            
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const params = new URLSearchParams(window.location.search);
@@ -343,117 +336,66 @@ h2{
         });
 });
 
-             document.getElementById('yearCheckboxes').addEventListener('change', function() {
-            updateBranches();
+    // Fetch branches and populate checkboxes
+    $.get('http://localhost:3305/branches', function (data) {
+        data.forEach(function (branch) {
+            $('#selected_branch').append(`
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="selected_branch" value="${branch.name}"> ${branch.name}
+                    </label>
+                </div>
+            `);
         });
+    });
 
-        document.getElementById('branchCheckboxes').addEventListener('change', function() {
-            updateGroups();
+    // Handle branch selection to fetch related groups
+    $(document).on('change', 'input[name="selected_branch"]', function () {
+        const selectedBranches = $('input[name="selected_branch"]:checked').map(function() {
+            return this.value;
+        }).get();
+
+        $('#selected_group').empty(); // Clear existing options
+        $('#selected_subject').empty(); // Clear existing options
+
+        selectedBranches.forEach(function(branchName) {
+            $.get(`http://localhost:3305/groups/${branchName}`, function (data) {
+                data.forEach(function (group) {
+                    $('#selected_group').append(`
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="selected_group" value="${group.name}"> ${group.name}
+                            </label>
+                        </div>
+                    `);
+                });
+            });
         });
+    });
 
-        document.getElementById('groupCheckboxes').addEventListener('change', function() {
-            updateSubjects();
+    // Handle group selection to fetch related subjects
+    $(document).on('change', 'input[name="selected_group"]', function () {
+        const selectedGroups = $('input[name="selected_group"]:checked').map(function() {
+            return this.value;
+        }).get();
+
+        $('#selected_subject').empty(); // Clear existing options
+
+        selectedGroups.forEach(function(groupName) {
+            $.get(`http://localhost:3305/registersubjects/${groupName}`, function (data) {
+                data.forEach(function (subject) {
+                    $('#selected_subject').append(`
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="selected_subject" value="${subject.name}"> ${subject.name}
+                            </label>
+                        </div>
+                    `);
+                });
+            });
         });
+    });
 
-        function updateBranches() {
-            var yearCheckboxes = document.querySelectorAll('input[name="teaching_year"]:checked');
-            var branchCheckboxes = document.getElementById('branchCheckboxes');
-            branchCheckboxes.style.display = yearCheckboxes.length > 0 ? 'block' : 'none';
-
-            var branchOptions = {
-                '1st Year': ['B.Sc', 'B.Com', 'BA', 'PG'],
-                '2nd Year': ['B.Sc', 'B.Com', 'BA', 'PG'],
-                '3rd Year': ['B.Sc', 'B.Com', 'BA']
-            };
-
-            var branchDiv = document.getElementById('branchCheckboxes');
-            branchDiv.innerHTML = '';
-            yearCheckboxes.forEach(function(year) {
-                if (year.checked) {
-                    branchOptions[year.value].forEach(function(branch) {
-                        var checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.name = 'selected_branch';
-                        checkbox.value = branch;
-                        checkbox.id = branch;
-                        var label = document.createElement('label');
-                        label.htmlFor = branch;
-                        label.appendChild(document.createTextNode(branch));
-                        branchDiv.appendChild(checkbox);
-                        branchDiv.appendChild(label);
-                        branchDiv.appendChild(document.createElement('br'));
-                    });
-                }
-            });
-
-            updateGroups();
-        }
-
-        function updateGroups() {
-            var branchCheckboxes = document.querySelectorAll('input[name="selected_branch"]:checked');
-            var groupCheckboxes = document.getElementById('groupCheckboxes');
-            groupCheckboxes.style.display = branchCheckboxes.length > 0 ? 'block' : 'none';
-
-            var groupOptions = {
-                'B.Sc': ['MECS', 'MCCS', 'MPC'],
-                'B.Com': ['GroupA', 'GroupB', 'GroupC'],
-                'BA': ['GroupX', 'GroupY', 'GroupZ'],
-                'PG': ['MCA', 'MSC']
-            };
-
-            var groupDiv = document.getElementById('groupCheckboxes');
-            groupDiv.innerHTML = '';
-            branchCheckboxes.forEach(function(branch) {
-                if (branch.checked) {
-                    groupOptions[branch.value].forEach(function(group) {
-                        var checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.name = 'selected_group';
-                        checkbox.value = group;
-                        checkbox.id = group;
-                        var label = document.createElement('label');
-                        label.htmlFor = group;
-                        label.appendChild(document.createTextNode(group));
-                        groupDiv.appendChild(checkbox);
-                        groupDiv.appendChild(label);
-                        groupDiv.appendChild(document.createElement('br'));
-                    });
-                }
-            });
-        }
-
-        function updateSubjects() {
-            var groupCheckboxes = document.querySelectorAll('input[name="selected_group"]:checked');
-            var subjectCheckboxes = document.getElementById('subjectCheckboxes');
-            subjectCheckboxes.style.display = groupCheckboxes.length > 0 ? 'block' : 'none';
-
-            var subjectOptions = {
-                'MPC': ['Subject1', 'Subject2', 'Subject3'],
-                'MCCS': ['SubjectA', 'SubjectB', 'SubjectC'],
-                'MECS': ['SubjectX', 'SubjectY', 'SubjectZ'],
-                'MCA': ['IOT', 'DBMS','FLAT','CN','C & DS','CO','OS','WEB TECHONLOGY','OOSE']
-            };
-
-            var subjectDiv = document.getElementById('subjectCheckboxes');
-            subjectDiv.innerHTML = '';
-            groupCheckboxes.forEach(function(group) {
-                if (group.checked) {
-                    subjectOptions[group.value].forEach(function(subject) {
-                        var checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.name = 'selected_subject';
-                        checkbox.value = subject;
-                        checkbox.id = subject;
-                        var label = document.createElement('label');
-                        label.htmlFor = subject;
-                        label.appendChild(document.createTextNode(subject));
-                        subjectDiv.appendChild(checkbox);
-                        subjectDiv.appendChild(label);
-                        subjectDiv.appendChild(document.createElement('br'));
-                    });
-                }
-            });
-        }
         function openModal(alumniId) {
         var modalId = "modal" + alumniId;
         var modalElement = document.getElementById(modalId);

@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin</title>
         <style>
+          
             h1{
                 font-size:21px;
                 text-align:center;
@@ -17,9 +18,7 @@
                  padding:3px;
                  font-size: 14px;
              }
-             tr{
-                 text-align:center;
-             }
+            
         #viewstddocument tr:nth-child(odd) {
             background: linear-gradient(to right, #08bf5a, #ffffff);
             background-size: 200% 100%;
@@ -45,18 +44,53 @@
             animation: gradientTransition 1s ease;
         }
         
-        #viewfeedbackdoc tr:nth-child(odd) {
-            background: linear-gradient(to right, #63baf7, #ffffff);
-            background-size: 200% 100%;
-            animation: gradientTransition 1s ease;
-        }
+/* Ensure the table is responsive and scrollable */
+.table-container {
+    max-width: 100%; /* Ensure the table doesn't overflow the parent container */
+    overflow-x: auto; /* Add horizontal scroll if necessary */
+    overflow-y: hidden; /* Prevent vertical scroll */
+    margin-bottom: 20px; /* Add space below the table */
+}
 
-        
-        #viewfeedbackdoc tr:nth-child(even) {
-            background: linear-gradient(to right, #ffffff, #63baf7);
-            background-size: 200% 100%;
-            animation: gradientTransition 1s ease;
-        }
+#feedbackTable {
+    width: 100%; /* Ensure the table takes the full width of the container */
+    border-collapse: collapse;
+    table-layout: fixed; /* Fix the layout to ensure consistent column width */
+    white-space: nowrap; /* Prevent text from wrapping within the cells */
+}
+
+#feedbackTable th, #feedbackTable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    overflow: hidden; /* Hide overflow */
+   
+    white-space: wrap; /* Prevent text from wrapping */
+}
+
+/* Set specific widths to prevent cutting off text */
+#feedbackTable th:nth-child(1),
+#feedbackTable td:nth-child(1) {
+    min-width: 120px; /* Roll Number column */
+}
+
+#feedbackTable th:nth-child(2),
+#feedbackTable td:nth-child(2) {
+    min-width: 150px; /* Faculty Name column */
+}
+
+/* Optional: Adding styling for table header */
+#feedbackTable th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Optional: Add zebra stripes to the table rows for better readability */
+#feedbackTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
         @keyframes gradientTransition {
             from {
                 background-position: 200% 0;
@@ -117,12 +151,13 @@
            font-weight:bold;
            
         }
+        
+       
         </style>
     </head>
     <body>
-        <div class="d-flex flex-row justify-content-center mt-3">
-        <div>
-         <div class="d-flex justify-content-center">
+        <div class="container col-12">
+         <div class="d-flex justify-content-center ">
         <button type="submit" id="homebtn" class="btn btn-primary">Log Out</button>
         <button type="submit" id="viewstd" class="btn btn-success ml-3">View Student</button>
         <button type="submit" id="viewfaculty" class="btn btn-danger ml-3">View Faculty</button>
@@ -133,7 +168,9 @@
         <button type="submit" id="posteventsbtn" class="btn btn-danger ml-3">Post Events</button>
         <button type="submit" id="IHNbtn" class="btn btn-danger ml-3">Import Hallticket Numbers</button>
         <button type="submit" id="coursebtn" class="btn btn-danger ml-3">Courses</button>
+        <button type="submit" id="mailbtn" class="btn btn-danger ml-3">Send Mail</button>
         </div>
+        <div class="d-flex justify-content-center mt-3">
         <div id="viewstddocument" class="d-none mt-3">
             <form  id="coursestudentForm">
                 <select id="coursebelongs" name="course">
@@ -169,25 +206,36 @@
                 </table>
                 </div>
         </div>
-        <div id="viewfacultydoc" class="d-none mt-3">
+        <div id="viewfacultydoc" class="d-none mt-3 ">
             <h1>Faculty Details</h1>
             <table id="facultyTable" border="1">
                 
                 <!-- Table rows will be dynamically added here -->
             </table>
         </div>
+       
         <div id="viewfeedbackdoc" class="d-none mt-3">
-            <form  id="coursefeedbackForm">
-                <select id="coursebelongsfeedback" name="course">
+            <form  id="coursefeedbackForm" class="d-flex justify-content-center">
+                <select id="coursebelongsfeedback" name="course" onchange="fetchFaculty()" class="mr-2">
              
-                    <option value="" disabled selected>Select Option</option>
+                    <option value="" disabled selected>Select Group</option>
      
-            </select>
-                <select id="yearbelongs" name="year">
-                    <option value="" disabled selected>Select Option</option>
+                </select>
+                <select id="yearbelongfeedback" name="year" onchange="fetchFaculty()" class="mr-2">
+                    <option value="" disabled selected>Select Year</option>
                     <option value="1st Year">1st Year</option>
                     <option value="2nd Year">2nd Year</option>
                     <option value="3rd Year">3rd Year</option>
+                </select>
+                <select id="facultybelongsfeedback" name="faculty_name" onchange="fetchFacultySubjects()" class="mr-2">
+             
+                    <option value="" disabled selected>Select Option</option>
+     
+                </select>
+                <select id="subjectbelongsfeedback" name="subject_facultyname" class="mr-2">
+             
+                    <option value="" disabled selected>Select Option</option>
+     
                 </select>
                 <button type="submit">Submit</button>
             </form>
@@ -208,23 +256,36 @@
             <div class="d-flex flex-row justify-content-end mb-3">
             <button id="downloadallfacultyfeedback" type="submit">Download To Excel</button>
             </div>
-            <table id="feedbackTable" border="1">
-                <tr>
-                    <th>Student Name</th>
-                    <th>Student Year</th>
-                    <th>Roll Number</th>
-                    <th>Group Name</th>
-                    <th>Faculty Name</th>
-                    <th>Faculty Subject</th>
-                    <th>Feed Back</th>
-                    <th>Rating</th>
-                    <th>Posted Date</th>
-                    <th>Overall Faculty Performance</th>
-                </tr>
-                <!-- Table rows will be dynamically added here -->
-            </table>
+            <div class="table-container">
+                <table id="feedbackTable" border="1">
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Faculty Name</th>
+                            <th>Subject</th>
+                            <th>Syllabus Covered</th>
+                            <th>Teacher Communicate</th>
+                            <th>Teacher Encourage</th>
+                            <th>Teacher Fairness</th>
+                            <th>Teacher Illustrate</th>
+                            <th>Teacher Per Discussion</th>
+                            <th>Teacher Uses Tools</th>
+                            <th>Teaching Approach</th>
+                            <th>Identify to Overcome</th>
+                            <th>Prepared for Classes</th>
+                            <th>Feedback Text</th>
+                            <th>Rating</th>
+                            <th>Overall Faculty Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
         </div>
+
         
         <div id="alumnifeedbackviewdoc" class="d-none mt-3">
             <form  id="courseForm">
@@ -238,12 +299,18 @@
                 </select>
                 <button type="submit">Submit</button>
             </form>
+          
             <div id="searchalumnidoc" class="d-none">
-                
+                <h1>Alumni Feedbacks</h1>
+                <button id="downloadalumnicorPdf">Download PDF</button>
+                <h1 id="oversearchalumnipercentage"></h1>
+                <div id="feedackbasedonsearch"></div>
                 <!-- Feedback section will be populated dynamically -->
             </div>
             <div id="allalumnifeedback" class="d-none">
+
                 <h1>Alumni Feedbacks</h1>
+                <button id="downloadPdf">Download PDF</button>
                 <h1 id="overallalumnipercentage"></h1>
                 <div id="feedbackList"></div>
               </div>
@@ -386,18 +453,105 @@
     </div>
 
             </div>
-
+            <div id="email-send-all" class="d-none">
+                <form id="emailForm" enctype="multipart/form-data" class="d-flex flex-column">
+                    <label for="emailcoursebelongs">Select Group:</label>
+                    <select id="emailcoursebelongs" name="course">
+                 
+                            <option value="" disabled selected>Select Option</option>
+             
+                    </select>
+                    <label for="emailyearbelongs">Select Year:</label>
+                    <select id="emailyearbelongs" name="year">
+                        <option value="" disabled selected>Select Option</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        
+                    </select>
+              
+            
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            
+                <label for="attachment">Attachment:</label>
+                <input type="file" id="attachment" name="attachment">
+            
+                <input type="submit" value="Send Message" class='btn-primary mt-3'>
+            </form>
+        </div>
+        </div>
     </div>
 
-        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="table2excel.js"></script>
         <script>
+
+function fetchFaculty() {
+            const course = document.getElementById('coursebelongsfeedback').value;
+            const year = document.getElementById('yearbelongfeedback').value;
+          
+            // Only fetch if both course and year are selected
+            if (course !== null && year !== null) {
+                
+                fetch(`/facultynamesforfeedback?course=${course}&year=${year}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const facultyDropdown = document.getElementById('facultybelongsfeedback');
+                        facultyDropdown.innerHTML = '<option value="" disabled selected>Select Faculty</option>';
+
+                        // Populate faculty dropdown with received data
+                        data.forEach(faculty => {
+                            const fullname = faculty.firstname +" "+ faculty.lastname
+                            const option = document.createElement('option');
+                            option.value = fullname;
+                            option.textContent = fullname;
+                            facultyDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching faculty:', error));
+            }
+        }
+        
+function fetchFacultySubjects() {
+            const course = document.getElementById('coursebelongsfeedback').value;
+            const year = document.getElementById('yearbelongfeedback').value;
+            const name = document.getElementById('facultybelongsfeedback').value;
+
+            // Only fetch if both course and year are selected
+            if (course && year) {
+                fetch(`/subjectsnamesforfeedback?course=${course}&year=${year}&name=${name}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const facultyDropdown = document.getElementById('subjectbelongsfeedback');
+                        facultyDropdown.innerHTML = '<option value="" disabled selected>Select Subject</option>';
+
+                        // Populate faculty dropdown with received data
+                        data.forEach(faculty => {
+    const subjects = faculty.teaching_subject.split(',');  // Split subjects by comma
+    
+    subjects.forEach(subject => {
+        const option = document.createElement('option');
+        option.value = subject.trim();  // Remove any leading/trailing whitespace
+        option.textContent = subject.trim();  // Set the text of the option
+        facultyDropdown.appendChild(option);  // Append option to dropdown
+    });
+});
+                    })
+                    .catch(error => console.error('Error fetching faculty:', error));
+            }
+        }
            $(document).ready(function () {
     // Fetch groups and populate dropdown
     $.get('http://localhost:3305/formgroups', function (data) {
         data.forEach(function (group) {
             $('#coursebelongs').append(`<option value="${group.name}">${group.name}</option>`);
+            $('#emailcoursebelongs').append(`<option value="${group.name}">${group.name}</option>`);
             $('#coursebelongsfeedback').append(`<option value="${group.name}">${group.name}</option>`);
         });
     });
@@ -413,6 +567,7 @@
         document.getElementById("viewstddocument").classList.add("d-none")
         document.getElementById("postalumnitalkdoc").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
         $(document).ready(function () {
             // Handle form submission to load table data
             $('#select-table-form').on('submit', function (e) {
@@ -586,6 +741,7 @@
         document.getElementById("viewstddocument").classList.add("d-none")
         document.getElementById("postalumnitalkdoc").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
         document.getElementById('uploadhallticketForm').addEventListener('submit', async (event) => {
             event.preventDefault()
       
@@ -615,27 +771,39 @@
              document.getElementById('coursebelongs').addEventListener('change', function() {
         console.log('Course changed:', this.value);
     });
-          document.getElementById("downloadallfacultyfeedback").onclick = () => {
-    const table2excel = new Table2Excel();
-    const tableToExport = document.querySelector("#feedbackTable");
-    table2excel.export(tableToExport);
-};
+        
 
-          document.getElementById("downloadsearchfacultyfeedback").onclick = () => {
-    const table2excel = new Table2Excel();
-    const tableToExport = document.querySelector("#feedbacksearchTable");
-    table2excel.export(tableToExport);
-};
+         
+     
+        document.getElementById("downloadallfacultyfeedback").onclick = () => {
+            const table2excel = new Table2Excel();
+            const tableToExport = document.querySelector("#feedbackTable");
+            table2excel.export(tableToExport);
+        };
+
 document.getElementById("downloadsearchstudent").onclick = () => {
     const table2excel = new Table2Excel();
     const tableToExport = document.querySelector("#studentsearchTable");
     table2excel.export(tableToExport);
 };
 document.getElementById("downloadstudent").onclick = () => {
-    const table2excel = new Table2Excel();
+    
     const tableToExport = document.querySelector("#studentsTable");
+
+    
+    const columnsToHide = tableToExport.querySelectorAll('th:nth-child(12), th:nth-child(14), td:nth-child(12), td:nth-child(14)');
+
+    columnsToHide.forEach(column => {
+        column.style.display = 'none';
+    });
+
+    const table2excel = new Table2Excel();
     table2excel.export(tableToExport);
+    columnsToHide.forEach(column => {
+        column.style.display = '';
+    });
 };
+
             document.getElementById("viewAlumniFeedback").onclick=()=>{
                 document.getElementById("courses").classList.add("d-none");
                 document.getElementById("importhallticektformdoc").classList.add("d-none");
@@ -646,6 +814,7 @@ document.getElementById("downloadstudent").onclick = () => {
         document.getElementById("viewstddocument").classList.add("d-none")
         document.getElementById("postalumnitalkdoc").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
        
                 fetch('/api/alumniFeedback')
       .then(response => response.json())
@@ -654,9 +823,10 @@ document.getElementById("downloadstudent").onclick = () => {
         feedbackList.innerHTML="";
         // Iterate through the fetched data and create HTML elements for display
         data.forEach(feedback => {
-            console.log(feedback);
+         
            document.getElementById("overallalumnipercentage").textContent = `Overall Average Rating:- ${parseInt(feedback.average_rating)}%`;
           const feedbackSection = document.createElement('section');
+          
           feedbackSection.innerHTML = `
             <div class="heading-names-feedback">
               <h3 id="outputName">${feedback.name_of_alumnus}</h3>
@@ -679,6 +849,18 @@ document.getElementById("downloadstudent").onclick = () => {
 
           feedbackList.appendChild(feedbackSection);
         });
+        document.getElementById('downloadPdf').onclick = () => {
+            const element = document.getElementById('feedbackList'); // Target the container with feedback sections
+            
+            const options = {
+        margin: [0.3, 0.5, 2.5, 0.5], // Margin format: [top, right, bottom, left]
+        filename: 'Feedback_Report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+            html2pdf().from(element).set(options).save();
+        };
         document.getElementById("allalumnifeedback").classList.remove("d-none");
       })
       .catch(error => console.error('Error fetching alumni feedback:', error));
@@ -700,16 +882,13 @@ document.getElementById("downloadstudent").onclick = () => {
             document.getElementById("allalumnifeedback").classList.add("d-none");
             document.getElementById("searchalumnidoc").classList.remove("d-none");
             if (alumniFeedbackData.length > 0) {
-                searchAlumniDoc.innerHTML = ''; // Clear previous content
-                
+                searchAlumniDoc.innerHTML = ' <h1>Alumni Feedbacks</h1><button id="downloadalumnicorPdf">Download PDF</button><h1 id="oversearchalumnipercentage"></h1><div id="feedackbasedonsearch"></div>'
                 const overallRating = alumniFeedbackData[0].average_rating;
-                const headingSearchele = document.createElement("h1");
-                headingSearchele.textContent = 'Alumni Searched Feedbacks';
-                searchAlumniDoc.appendChild(headingSearchele);
-                const overallRatingSection = document.createElement('h1');
-                overallRatingSection.textContent = `Overall Rating: ${overallRating}%`;
-                searchAlumniDoc.appendChild(overallRatingSection);
-
+                console.log(overallRating)
+            
+                document.getElementById("oversearchalumnipercentage").textContent = `Overall Rating: ${overallRating}%`
+                
+                const feedackbasedonsearch = document.getElementById('feedackbasedonsearch');
                 alumniFeedbackData.forEach(feedback => {
                     const feedbackSection = document.createElement('section');
                     feedbackSection.innerHTML = `
@@ -732,8 +911,20 @@ document.getElementById("downloadstudent").onclick = () => {
                             <li><strong>Few More Words</strong><br>${feedback.suggestion_text}</li>
                         </ul>
                     `;
-                    searchAlumniDoc.appendChild(feedbackSection);
+                    feedackbasedonsearch.appendChild(feedbackSection);
                 });
+                document.getElementById('downloadalumnicorPdf').onclick = () => {
+            const element = document.getElementById('feedackbasedonsearch'); // Target the container with feedback sections
+            
+            const options = {
+        margin: [0.3, 0.5, 2.5, 0.5], // Margin format: [top, right, bottom, left]
+        filename: 'ALUMNIFeedback_Report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+            html2pdf().from(element).set(options).save();
+        };
                 
             } else {
                 searchAlumniDoc.innerHTML = '<p>No feedback found for the selected course.</p>';
@@ -748,7 +939,7 @@ document.getElementById("downloadstudent").onclick = () => {
 
             document.getElementById("viewFeedback").onclick=()=>{
                 document.getElementById("courses").classList.add("d-none");
-            document.getElementById("importhallticektformdoc").classList.add("d-none");
+                document.getElementById("importhallticektformdoc").classList.add("d-none");
             document.getElementById("searchfeedbackdoc").classList.add("d-none");
             document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
                 document.getElementById("viewfeedbackdoc").classList.remove("d-none");
@@ -757,40 +948,93 @@ document.getElementById("downloadstudent").onclick = () => {
         document.getElementById("allfacultyfeedbackdoc").classList.remove("d-none");
         document.getElementById("postalumnitalkdoc").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
                
                 const feedbackTable = document.getElementById('feedbackTable');
                 const searchtablefaculty = document.getElementById('feedbacksearchTable');
                 feedbackTable.innerHTML="";
                 searchtablefaculty.innerHTML="";
-                feedbackTable.innerHTML=`<tr>
-                        <th>Student Name</th>
-                        <th>Student Year</th>
-                        <th>Roll Number</th>
-                        <th>Group Name</th>
-                        <th>Faculty Name</th>
-                        <th>Faculty Subject</th>
-                        <th>Feed Back</th>
-                        <th>Rating</th>
-                        <th>Posted Date</th>
-                        <th>Overall Faculty Performance</th>
-                    </tr>`;
+                feedbackTable.innerHTML=`
+                       <table id="feedbackTable" border="1">
+            <thead>
+                <tr>
+                    <th>Roll Number</th>
+                    <th>Faculty Name</th>
+                    <th>Subject</th>
+                    <th>Syllabus Covered</th>
+                    <th>Teacher Communicate</th>
+                    <th>Teacher Encourage</th>
+                    <th>Teacher Fairness</th>
+                    <th>Teacher Illustrate</th>
+                    <th>Teacher Per Discussion</th>
+                    <th>Teacher Uses Tools</th>
+                    <th>Teaching Approach</th>
+                    <th>Identify to Overcome</th>
+                    <th>Prepared for Classes</th>
+                    <th>Feedback Text</th>
+                 <th>Rating</th>
+                            <th>Overall Subject Average</th>
+                </tr>
+            </thead>
+            <tbody >
+                <!-- Table rows will be dynamically added here -->
+            </tbody>`;
     // Fetch feedback data from API endpoint
     fetch('/apiadmin/feedback')
         .then(response => response.json())
         .then(feedbackData => {
             console.log(feedbackData);
 
-            feedbackData.forEach(feedback => {
-                const row = feedbackTable.insertRow();
-                const { fname,lname, year, rollnumber, group_name, firstname,lastname, subjectName, feedback_text, ATA, posted_date, AverageOverall} = feedback;
-                const StudentFullname = fname +" " +lname;
-                const FacultyFullname = firstname+" "+lastname;
-                [StudentFullname, year,rollnumber, group_name, FacultyFullname, subjectName, feedback_text, ATA, posted_date, AverageOverall].forEach(value => {
-                    const cell = row.insertCell();
-                    cell.textContent = value;
-                });
-            });
-           
+            // Mapping function to convert numeric ratings to descriptive text
+function getRatingText(rating) {
+    if (rating >= 90) return "Excellent";
+    if (rating >= 75) return "Good";
+    if (rating >= 50) return "Average";
+    if (rating >= 30) return "Poor";
+    return "Outstanding"; // For any rating below 30 or any other case
+}
+
+// Assuming feedbackData is an array of feedback objects
+feedbackData.forEach(feedback => {
+    const row = feedbackTable.insertRow();
+    const {
+        fname, lname, year, rollnumber, group_name,
+        firstname, lastname, subjectName, feedback_text,
+        ATA, posted_date, AverageOverall, syllabus_covered,
+        teachercommunicate, teacherencourage, teacherfairneess,
+        teacherillustrate, teacherperdiscess, teacheruses_tools,
+        identifytoovercome, prepapreforclasses, teaching_approrach
+    } = feedback;
+
+    const StudentFullname = `${fname} ${lname}`;
+    const FacultyFullname = `${firstname} ${lastname}`;
+
+    [
+        rollnumber, FacultyFullname, subjectName, syllabus_covered,
+        teachercommunicate, teacherencourage, teacherfairneess,
+        teacherillustrate, teacherperdiscess, teacheruses_tools,
+        teaching_approrach, identifytoovercome, prepapreforclasses,
+        feedback_text, ATA, AverageOverall
+    ].forEach((value, index) => {
+        const cell = row.insertCell();
+        if (index >= 13 || index ===0 ) { // Assuming ATA and AverageOverall are at indices 13 and 14
+            // Directly show the numeric value for ATA and AverageOverall
+            cell.textContent = value;
+            cell.style.fontSize = '14px'; 
+            cell.style.padding = '0px'; 
+        } else {
+            // Convert numeric values to descriptive text
+            if (!isNaN(value) && value !== "N/A") {
+                cell.textContent = getRatingText(parseInt(value));
+            } else {
+                // Display non-numeric values as they are
+                cell.textContent = value;
+            }
+        }
+    });
+
+});
+
         })
         
         .catch(error => console.error('Error fetching feedback data:', error));
@@ -805,41 +1049,212 @@ document.getElementById("downloadstudent").onclick = () => {
         const formfacultyData = new FormData(coursefacultyForm);
         const selectedCourse = formfacultyData.get('course');
         const selectedYear = formfacultyData.get('year');
+        const selectedfname = formfacultyData.get('faculty_name');
+        const selectedsub = formfacultyData.get('subject_facultyname');
        
         searchtablefaculty.innerHTML="";
         
-        searchtablefaculty.innerHTML=`<tr>
-                        <th>Student Name</th>
-                        <th>Student Year</th>
-                        <th>Roll Number</th>
-                        <th>Group Name</th>
-                        <th>Faculty Name</th>
-                        <th>Faculty Subject</th>
-                        <th>Feed Back</th>
-                        <th>Rating</th>
-                        <th>Posted Date</th>
-                        <th>Overall Faculty Performance</th>
-                    </tr>`;
-        const response = await fetch(`/api/faculty-feedback?course=${selectedCourse}&year=${selectedYear}`);
-            const facultyFeedbackData = await response.json();
-            
-           
-            if (facultyFeedbackData.length > 0) {
-                // Clear previous content
-                facultyFeedbackData.forEach(feedback => {
+        searchtablefaculty.innerHTML=` <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Faculty Name</th>
+                <th>Subject</th>
+                <th>Syllabus Covered</th>
+                <th>Teacher Communicate</th>
+                <th>Teacher Encourage</th>
+                <th>Teacher Fairness</th>
+                <th>Teacher Illustrate</th>
+                <th>Teacher Per Discussion</th>
+                <th>Teacher Uses Tools</th>
+                <th>Teaching Approach</th>
+                <th>Identify to Overcome</th>
+                <th>Prepared for Classes</th>
+                <th>Feedback Text</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" style="font-weight:bold;">Average per Question</td>
                 
-                const row = searchtablefaculty.insertRow();
-                const { fname,lname, year, rollnumber,group_name, firstname,lastname, subjectName, feedback_text, ATA, posted_date, AverageOverall} = feedback;
-                console.log(fname);
-                const StudentFullname = fname +" " +lname;
-                const FacultyFullname = firstname+" "+lastname;
-                [StudentFullname, year,rollnumber, group_name, FacultyFullname, subjectName, feedback_text, ATA, posted_date, AverageOverall].forEach(value => {
-                    const cell = row.insertCell();
-                    cell.textContent = value;
-              
-            });
-                })    
+                <td id="avgSyllabus"></td>
+                <td id="avgCommunicate"></td>
+                <td id="avgEncourage"></td>
+                <td id="avgFairness"></td>
+                <td id="avgIllustrate"></td>
+                <td id="avgDiscussion"></td>
+                <td id="avgTools"></td>
+                <td id="avgApproach"></td>
+                <td id="avgIdentify"></td>
+                <td id="avgPrepared"></td>
+               
+            </tr>
+        
+            <tr>
+            <td colspan="3" style="font-weight:bold;">Overall Faculty Performance</td>
+            <td id="ofper" colspan="10"></td>
+                 </tr>
+        </tfoot>`;
+       
+// Fetch feedback data from the API
+       // Mapping function to convert numeric ratings to descriptive text
+function getRatingText(rating) {
+    if (rating >= 90) return "Excellent";
+    if (rating >= 75) return "Good";
+    if (rating >= 50) return "Average";
+    if (rating >= 30) return "Poor";
+    return "Outstanding"; // For any rating below 30 or any other case
+}
+let FacultyFullname = '';
+const response = await fetch(`/api/faculty-feedback?course=${selectedCourse}&year=${selectedYear}&name=${selectedfname}&subject=${selectedsub}`);
+const facultyFeedbackData = await response.json();
+
+if (facultyFeedbackData.length > 0) {
+    let totalOverallPerformance = 0;
+    // Set FacultyFullname from the first feedback entry
+    const { firstname, lastname } = facultyFeedbackData[0];
+    FacultyFullname = `${firstname} ${lastname}`;
+    searchtablefaculty.innerHTML="";
+        
+        searchtablefaculty.innerHTML=` <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Faculty Name</th>
+                <th>Subject</th>
+                <th>Syllabus Covered</th>
+                <th>Teacher Communicate</th>
+                <th>Teacher Encourage</th>
+                <th>Teacher Fairness</th>
+                <th>Teacher Illustrate</th>
+                <th>Teacher Per Discussion</th>
+                <th>Teacher Uses Tools</th>
+                <th>Teaching Approach</th>
+                <th>Identify to Overcome</th>
+                <th>Prepared for Classes</th>
+                <th>Feedback Text</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" style="font-weight:bold;">Average per Question</td>
+                
+                <td id="avgSyllabus"></td>
+                <td id="avgCommunicate"></td>
+                <td id="avgEncourage"></td>
+                <td id="avgFairness"></td>
+                <td id="avgIllustrate"></td>
+                <td id="avgDiscussion"></td>
+                <td id="avgTools"></td>
+                <td id="avgApproach"></td>
+                <td id="avgIdentify"></td>
+                <td id="avgPrepared"></td>
+               
+            </tr>
+        
+            <tr>
+            <td colspan="3" style="font-weight:bold;">Overall Faculty Performance</td>
+            <td id="ofper" colspan="10"></td>
+                 </tr>
+        </tfoot>`;
+       
+    facultyFeedbackData.forEach(feedback => {
+        const row = searchtablefaculty.querySelector("tbody").insertRow();
+        
+        // Extract values from the feedback data
+        const { rollnumber, subjectName, syllabus_covered, teachercommunicate, teacherencourage, teacherfairneess, teacherillustrate, teacherperdiscess, teacheruses_tools, teaching_approrach, identifytoovercome, prepapreforclasses, feedback_text,AverageOverall } = feedback;
+        
+        
+        // Add cells to the row
+        const values = [
+        rollnumber, 
+        FacultyFullname, 
+        subjectName, 
+        syllabus_covered, 
+        teachercommunicate, 
+        teacherencourage, 
+        teacherfairneess, 
+        teacherillustrate, 
+        teacherperdiscess, 
+        teacheruses_tools, 
+        teaching_approrach, 
+        identifytoovercome, 
+        prepapreforclasses, 
+        feedback_text,
+     
+    ];
+
+    // Add cells to the row and convert numeric values to descriptive text
+    values.forEach((value, index) => {
+        const cell = row.insertCell();
+           if (index === 0){
+            cell.textContent = value;
+
+           }else{
+
+             // Convert numeric values to descriptive text using getRatingText function
+             if (!isNaN(value) && value !== "N/A") {
+                cell.textContent = getRatingText(parseInt(value));
+            } else {
+                // Display non-numeric values as they are (e.g., names, subjects, feedback_text)
+                cell.textContent = value;
             }
+           }
+        
+           
+    
+        });
+        totalOverallPerformance += parseFloat(AverageOverall);
+       
+    });
+
+    // Optional: Calculate averages and update the footer
+    let totalSyllabus = 0, totalCommunicate = 0, totalEncourage = 0, totalFairness = 0;
+    let totalIllustrate = 0, totalDiscussion = 0, totalTools = 0, totalApproach = 0;
+    let totalIdentify = 0, totalPrepared = 0;
+   
+
+    facultyFeedbackData.forEach(feedback => {
+        totalSyllabus += parseInt(feedback.syllabus_covered);
+        totalCommunicate += parseInt(feedback.teachercommunicate);
+        totalEncourage += parseInt(feedback.teacherencourage);
+        totalFairness += parseInt(feedback.teacherfairneess);
+        totalIllustrate += parseInt(feedback.teacherillustrate);
+        totalDiscussion += parseInt(feedback.teacherperdiscess);
+        totalTools += parseInt(feedback.teacheruses_tools);
+        totalApproach += parseInt(feedback.teaching_approrach);
+        totalIdentify += parseInt(feedback.identifytoovercome);
+        totalPrepared += parseInt(feedback.prepapreforclasses);
+    });
+
+    const feedbackCount = facultyFeedbackData.length;
+
+    document.getElementById('avgSyllabus').textContent = (totalSyllabus / feedbackCount).toFixed(2);
+    document.getElementById('avgCommunicate').textContent = (totalCommunicate / feedbackCount).toFixed(2);
+    document.getElementById('avgEncourage').textContent = (totalEncourage / feedbackCount).toFixed(2);
+    document.getElementById('avgFairness').textContent = (totalFairness / feedbackCount).toFixed(2);
+    document.getElementById('avgIllustrate').textContent = (totalIllustrate / feedbackCount).toFixed(2);
+    document.getElementById('avgDiscussion').textContent = (totalDiscussion / feedbackCount).toFixed(2);
+    document.getElementById('avgTools').textContent = (totalTools / feedbackCount).toFixed(2);
+    document.getElementById('avgApproach').textContent = (totalApproach / feedbackCount).toFixed(2);
+    document.getElementById('avgIdentify').textContent = (totalIdentify / feedbackCount).toFixed(2);
+    document.getElementById('avgPrepared').textContent = (totalPrepared / feedbackCount).toFixed(2);
+    const overallPerformanceAverage = (totalOverallPerformance / feedbackCount).toFixed(2);
+    document.getElementById('ofper').textContent = overallPerformanceAverage;
+}
+ 
+ document.getElementById("downloadsearchfacultyfeedback").onclick = () => {
+    const table2excel = new Table2Excel();
+    const tableToExport = document.querySelector("#feedbacksearchTable");
+   
+    // Use FacultyFullname for the file name
+    table2excel.export(tableToExport);
+        };
+
             });
             }
             document.getElementById("viewfaculty").onclick = () => {
@@ -926,13 +1341,14 @@ document.getElementById("downloadstudent").onclick = () => {
     document.getElementById("viewstddocument").classList.add("d-none");
     document.getElementById("postalumnitalkdoc").classList.add("d-none");
     document.getElementById("posteventsformdoc").classList.add("d-none");
+    document.getElementById("email-send-all").classList.add("d-none");
 };
 
             document.getElementById("viewstd").onclick=()=>{
                 const studentssearchTable = document.getElementById('studentsearchTable');
                 document.getElementById("coursestudentForm").addEventListener("submit", function (event) {
 
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 document.getElementById("viewstudents").classList.add("d-none");
     const formData = new FormData(this);
     const searchParams = new URLSearchParams(formData).toString();
@@ -949,8 +1365,9 @@ document.getElementById("viewstudents").classList.add("d-none");
                         <th>Program</th>
                         <th>Studying_year</th>
                         <th>Roll Number</th>
+                         <th>Photo</th>
                         <th>Register_date</th>
-                        <th>Photo</th>
+                       
                         <th>Remove</th>
                     </tr>`;
     fetch(`/search-students?${searchParams}`)
@@ -962,7 +1379,7 @@ document.getElementById("viewstudents").classList.add("d-none");
             students.forEach(student => {
         const row = studentssearchTable.insertRow();
         Object.entries(student).forEach(([key, value]) => {
-            if (key !== 'student_id') { // Skip inserting student_id into the table
+            if (key !== 'student_id') { 
                 const cell = row.insertCell();
                 if (typeof value === 'string' && value.includes('.jpg')) {
                     const img = document.createElement('img');
@@ -1058,6 +1475,7 @@ document.getElementById("viewstudents").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
         document.getElementById("viewstudents").classList.remove("d-none");
         document.getElementById("viewsearchstudents").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
         })
         .catch(error => console.error('Error fetching data:', error));
         const deleteStudent = (studentId, row) => {
@@ -1087,6 +1505,7 @@ document.getElementById("postalumnitalkbtn").onclick=()=>{
         document.getElementById("importhallticektformdoc").classList.add("d-none");
         document.getElementById("postalumnitalkdoc").classList.remove("d-none");
         document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
 }
 document.getElementById("posteventsbtn").onclick=()=>{
     document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
@@ -1097,6 +1516,7 @@ document.getElementById("posteventsbtn").onclick=()=>{
         document.getElementById("importhallticektformdoc").classList.add("d-none");
         document.getElementById("postalumnitalkdoc").classList.add("d-none");
         document.getElementById("posteventsformdoc").classList.remove("d-none");
+        document.getElementById("email-send-all").classList.add("d-none");
 }
 document.getElementById('homebtn').addEventListener('click', () => {
   fetch('/adminlogout') // Assuming your logout endpoint is '/logout'
@@ -1115,7 +1535,77 @@ document.getElementById('homebtn').addEventListener('click', () => {
     });
 });
 
+document.getElementById('mailbtn').onclick=()=>{
+    document.getElementById("alumnifeedbackviewdoc").classList.add("d-none");
+                document.getElementById("viewfeedbackdoc").classList.add("d-none");
+                document.getElementById("viewfacultydoc").classList.add("d-none");
+        document.getElementById("viewstddocument").classList.add("d-none");
+        document.getElementById("courses").classList.add("d-none");
+        document.getElementById("importhallticektformdoc").classList.add("d-none");
+        document.getElementById("postalumnitalkdoc").classList.add("d-none");
+        document.getElementById("posteventsformdoc").classList.add("d-none");
+        document.getElementById("email-send-all").classList.remove("d-none");
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
 
+    // Get form values
+    const course = document.getElementById('emailcoursebelongs').value;
+    const year = document.getElementById('emailyearbelongs').value;
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const attachment = document.getElementById('attachment').files[0];
+
+    // Validation
+    if (course === '') {
+        alert('Please select a course.');
+        return;
+    }
+    if (year === '') {
+        alert('Please select a year.');
+        return;
+    }
+    if (subject === '') {
+        alert('Please enter a subject.');
+        return;
+    }
+    if (message === '') {
+        alert('Please enter a message.');
+        return;
+    }
+
+    // If validation passes, submit form data using fetch
+    const formData = new FormData();
+    formData.append('course', course);
+    formData.append('year', year);
+    formData.append('subject', subject);
+    formData.append('message', message);
+    if (attachment) {
+        formData.append('attachment', attachment);
+    }
+
+    // Submit the form using fetch (AJAX)
+    fetch('/send-respectiveemail', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Check if response is OK (status code 200)
+        if (!response.ok) {
+            return response.text().then(error => { throw new Error(error); });
+        }
+        return response.text();
+    })
+    .then(data => {
+        alert('Email sent successfully!');
+        
+         document.getElementById('emailForm').reset();
+    })
+    .catch(error => {
+        alert('Error: ' + error.message);
+   
+    });
+});
+}
         </script>
     </body>
 </html>

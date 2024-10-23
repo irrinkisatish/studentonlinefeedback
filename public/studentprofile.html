@@ -303,10 +303,10 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
             
                 </div>
                                     <form action="/updatefacultyfeedback" method="post" class="d-flex flex-column">
-                                        <input type="hidden" name="feedback_id" value="${feedback.feedbackId}">
-                                         <input type="hidden" name="studentid" value="${student_id}">
+                                        <input type="hidden" name="feedback_id" value="${feedback.feedbackId}" required>
+                                         <input type="hidden" name="studentid" value="${student_id}" required>
                                     <label for="syllabuscoveredq">How much of the syllabus was covered in the class?</label>
-                                      <select id="syllabuscoveredq"name="syllabus_covered">
+                                      <select id="syllabuscoveredq"name="syllabus_covered" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -316,7 +316,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label for="teachertoolusedq">What percentage of teachers use ICT tools such as LCD projector, Multimedia, etc. while teaching ?</label>
-                                      <select id="teachertoolusedq"name="teacheruses_tools">
+                                      <select id="teachertoolusedq"name="teacheruses_tools" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Below 30%</option>
                                           <option value="47">30 to 54%</option>
@@ -326,7 +326,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                        <label for="prepapreforclassesq">How well did the teachers prepare for the classes?</label>
-                                      <select id="prepapreforclassesq"name="prepapreforclasses">
+                                      <select id="prepapreforclassesq"name="prepapreforclasses" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30"> Won’t teach at all</option>
                                           <option value="47">Indifferently</option>
@@ -336,7 +336,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                        <label for="teachingapproachq">The teacher’s approach to teaching can best be described as ?</label>
-                                      <select id="teachingapproachq"name="teaching_approrach">
+                                      <select id="teachingapproachq"name="teaching_approrach" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Poor</option>
                                           <option value="47">Fair</option>
@@ -346,7 +346,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                         <label for="identifytoovercomeq">Teachers are able to identify your weaknesses and help you to overcome them ?</label>
-                                      <select id="identifytoovercomeq"name="identifytoovercome">
+                                      <select id="identifytoovercomeq"name="identifytoovercome" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -356,7 +356,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label for="teachercommunicateq">How well were the teachers able to communicate ?</label>
-                                      <select id="teachercommunicateq" name="teachercommunicate" >
+                                      <select id="teachercommunicateq" name="teachercommunicate" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Very poor communication </option>
                                           <option value="47">Generally ineffective</option>
@@ -366,7 +366,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label for="teacherillustrateq">The teachers illustrate the concepts through examples and applications ?</label>
-                                      <select id="teacherillustrateq" name="teacherillustrate" >
+                                      <select id="teacherillustrateq" name="teacherillustrate" required >
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -376,7 +376,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label for="teacherencourageq"> Teachers encourage you to participate in extracurricular activities ?</label>
-                                      <select id="teacherencourageq" name="teacherencourage" >
+                                      <select id="teacherencourageq" name="teacherencourage" required>
                                         <option value="" disabled selected>Select Option</option>
                                           <option value="30">Strongly disagree</option>
                                           <option value="47">Disagree </option>
@@ -386,7 +386,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
     
                                       </select>
                                       <label for="teacherperdiscessq"> Was your performance in assignments discussed with you? ?</label>
-                                      <select id="teacherperdiscessq" name="teacherperdiscess" >
+                                      <select id="teacherperdiscessq" name="teacherperdiscess" required >
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -396,7 +396,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label for="teacherfairneessq">Fairness of the internal evaluation process by the teachers ?</label>
-                                      <select id="teacherfairneessq" name="teacherfairneess" >
+                                      <select id="teacherfairneessq" name="teacherfairneess"  required>
                                         <option value="" disabled selected>Select Option</option>
                                         <option value="30">Never</option>
                                           <option value="47">Rarely</option>
@@ -406,7 +406,7 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                                           
                                       </select>
                                       <label id="feedback">Write your opinion in text:-</label>
-                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something"></textarea>
+                                   <textarea id="feedback"type="text" name="feedback" placeholder="write something" required></textarea>
                                    <div class="d-flex flex-row justify-content-end mt-3">
                                    <button type="submit"  class="btn btn-primary feedbackbtn">Submit</button>
                                    </div>
@@ -470,24 +470,19 @@ const { student_id, fname, lname, email, image_url, gender, dob, address, phone,
                 </select>
 
                 <label for="branch">Branch:</label>
-                <select id="branchSelect" name="branch" onchange="updateGroups()" required>
-                    <option value="" disabled selected>Select Branch</option>
-                    <option value="B.Sc">B.Sc</option>
-                    <option value="B.Com">B.Com</option>
-                    <option value="BA">BA</option>
-                    <option value="PG">PG</option>
-                </select>
-
-                <label for="group">Group:</label>
-                <select type="text" id="groupSelect" name="group">
-                    <!-- Options for groups will be dynamically populated based on the branch selection -->
-                </select>
+            <select type="text" id="branchSelect" name="branch" onchange="updateGroups()" required>
+            <option value="" disabled selected>Select Option</option>
+        </select>
+        <label for="group" class="head-label" >Group:</label>
+        <select type="text" id="groupSelect" name="group" required>
+            <option value="" disabled selected>Select group</option>  
+        </select>
 
                 <label for="rollnumber">Roll Number:</label>
                 <input type="text" id="rollnumber" name="rollnumber" required><br>
 
                 <label for="file">Choose File:</label>
-                <input type="file" id="file" name="file" accept="image/*"><br>
+                <input type="file" id="file" name="file" accept="image/*" required><br>
 
                 <div class="d-flex flex-row justify-content-center">
                     <button type="submit" class="btn btn-success">Submit</button>
@@ -514,82 +509,52 @@ function openModal(modeltype, modelId) {
   modal.show();
 }
 
+            function updateGroups() {
+            const branchSelect = document.getElementById('branchSelect');
+            const branchName = branchSelect.value;
+            const groupSelect = document.getElementById('groupSelect');
 
+            // Clear the group select dropdown
+            groupSelect.innerHTML = '<option value="" disabled selected>Select group</option>';
 
-    
-      function updateGroups() {
-                var branchSelect = document.getElementById('branchSelect');
-                var groupSelect = document.getElementById('groupSelect');
-                var selectedBranch = branchSelect.value;
-
-                // Clear existing options
-                groupSelect.innerHTML = '';
-                groupSelect.innerHTML='<option value="" disabled selected>Select Group</option>';
-
-                // Define the groups for each branchs
-                var branchGroups = {
-                    'B.Sc': ['MPCS',
-                        'MECS',
-                        'MCCS',
-                        'MPC',
-                        'MSCS'
-                           ],
-                    'B.Com': ['English Literature',
-                        'History',
-                        'Psychology',
-                        'Sociology',
-                        'Economics',
-                        'Political Science',
-                        'Anthropology',
-                        'Philosophy',
-                        'Fine Arts','others'],
-                    'BA': [ 'English Literature',
-                        'History',
-                        'Psychology',
-                        'Sociology',
-                        'Economics',
-                        'Political Science',
-                        'Anthropology',
-                        'Philosophy',
-                        'Fine Arts',
-                        'Music',
-                        'Drama and Theatre Arts',
-                        'Languages (e.g., French, Spanish, German)',
-                        'Religious Studies',
-                        'Women\'s Studies',
-                        'Cultural Studies',
-                        'Media Studies',
-                        'Education',
-                        'Environmental Studies',
-                        'International Relations',
-                        'Legal Studies',
-                        'Communication Studies',
-                        'Archaeology',
-                        'Geography',
-                        'Social Work',
-                        'Linguistics',
-                        'Creative Writing',
-                        'Humanities'],
-                    'PG': ['MSC','MCA']
-                };
-
-                // Add options based on the selected branch
-                if (branchGroups[selectedBranch]) {
-                    branchGroups[selectedBranch].forEach(function(group) {
-                        var option = document.createElement('option');
-                        option.text = group;
-                        option.value = group;
+            // Fetch groups related to the selected branch
+            fetch(`http://localhost:3305/groups/${branchName}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the group select options
+                    data.forEach(group => {
+                        const option = document.createElement('option');
+                        option.value = group.name;
+                        option.text = group.name;
                         groupSelect.add(option);
                     });
-                } else {
-                    var defaultOption = document.createElement('option');
-                    defaultOption.text = 'Select Group';
-                    groupSelect.add(defaultOption);
-                }
-            }
+                })
+                .catch(error => console.error(`Error fetching groups for branch ${branchName}:`, error));
+        }
+             document.addEventListener('DOMContentLoaded', function () {
+        // Function to populate the branch select dropdown
+        function fetchBranches() {
+            fetch('http://localhost:3305/branches')
+                .then(response => response.json())
+                .then(data => {
+                    const branchSelect = document.getElementById('branchSelect');
+                    // Populate the branch select options
+                    data.forEach(branch => {
+                        const option = document.createElement('option');
+                        option.value = branch.name;
+                        option.text = branch.name;
+                        branchSelect.add(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching branches:', error));
+        }
 
-            // Initially populate groups based on the default selected branch
-            updateGroups();
+        // Function to update groups based on selected branch
+       
+
+        // Initially populate the branch select on page load
+        fetchBranches();
+    });
             </script>
             
     </body>
