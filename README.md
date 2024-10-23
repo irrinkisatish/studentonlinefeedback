@@ -7,7 +7,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#project-api-endpoints)
-- [Faculty Module](#faculty-module)
+
 
 
 ---
@@ -15,6 +15,10 @@
 ## Project Overview
 
 The **Student Online Feedback System** is a web application designed to streamline the feedback process in educational institutions. Students can log in, provide feedback on faculty members, courses, and facilities, while administrators and faculty can view and analyze feedback for continuous improvement. The system includes an attendance module for faculty, allowing them to manage and track attendance.
+
+
+
+https://github.com/user-attachments/assets/12c508f1-a475-4ff9-a5b9-4f99c31bc24d
 
 
 ---
@@ -26,9 +30,11 @@ The **Student Online Feedback System** is a web application designed to streamli
 - **Student Feedback**: Students can submit feedback for courses and faculty via an easy-to-use interface.
 - **Admin Dashboard**: Admins can view all feedback, filter it by faculty or course, and generate reports.
 - **Faculty Module**: Faculty members can manage student attendance and view anonymous feedback related to their courses.
-- **Real-time Notifications**: Admins receive email notifications about new feedback.
+- **Real-time Notifications**: Students receive email notifications about their attendance.
 - **Secure Authentication**: JWT-based authentication for students, admins, and faculty.
 - **Mobile Friendly**: The app is responsive and works across all devices.
+- **Alumni Feedback**: Alumni can provide feedback on their educational experiences, including suggestions for improvements and ratings for various aspects of their time at the institution.
+
 
 ---
 
@@ -57,11 +63,11 @@ The **Student Online Feedback System** is a web application designed to streamli
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/student-online-feedback-system.git
+   git clone https://github.com/irrinkisatish/studentonlinefeedback/
 
 2. **Navigate into the project directory**:
    ```bash
-   cd student-online-feedback-system
+   cd studentonlinefeedback
 
 3. Install the dependencies:
    ```bash
@@ -74,21 +80,57 @@ Open your browser and visit http://localhost:3305 to use the application.
 
 # Usage
 
-## Students:
-- Students log in using their credentials.
-- They can select the faculty or course they wish to provide feedback on.
-- Students fill out a form rating different aspects of the course or faculty.
+### Students:
+- **Login**: Students log in using their credentials.
+- **Feedback Submission**: They can select the faculty course for which they wish to provide feedback.
+- **Rating**: Students fill out a form rating various aspects of the course or faculty, such as teaching effectiveness and course materials.
 
-## Admin:
-- Admins log in with their credentials to access the dashboard.
-- They can view feedback submitted by students, filter by course or faculty, and generate reports.
-- Admins receive notifications when new feedback is submitted.
+### Admin:
+- **Login**: Admins log in with their credentials to access a comprehensive dashboard.
+- **Feedback Management**: They can view all feedback submitted by students and filter it by course or faculty.
+- **Reporting**: Admins have the ability to generate reports based on the feedback data.
+- **Notifications**: Admins receive notifications when new feedback is submitted, ensuring timely oversight and response.
 
-## Faculty:
-- Faculty can log in and view the feedback related to their courses.
-- Faculty members can give attendance for their classes and view the attendance records.
-- Feedback is displayed anonymously, meaning faculty cannot view individual student details for privacy.
+### Faculty:
+- **Login**: Faculty members can log in to view feedback related to their courses.
+- **Attendance Management**: Faculty can take attendance for their classes and view attendance records.
+- **Anonymous Feedback**: Feedback is displayed anonymously, ensuring that faculty cannot view individual student details, which protects student privacy.
 
+### Alumni:
+- **Feedback Submission**: Alumni can provide feedback on their experiences and suggest improvements based on their time at the institution.
+- **Comprehensive Feedback Form**: Alumni can rate various aspects of their educational experience, including curriculum relevance, infrastructure facilities, faculty interaction, and overall satisfaction.
+- **Continued Engagement**: This system helps maintain a connection between the institution and its alumni, allowing for continuous improvement based on past student experiences.
+
+---
+
+# Authentication Middleware
+
+This application uses two middleware functions to authenticate users: one for students and one for faculty. 
+
+## Middleware Functions
+
+### 1. Student Authentication (`authenticatestudentToken`)
+
+- **Purpose:** Validates the JWT token for students.
+- **Response:**
+ ```
+  - **200 OK:** If the token is valid, the request proceeds to the next route.
+  - **401 Unauthorized:** If the token is missing or invalid, a response is sent indicating an invalid JWT token.
+  ```
+### 2. Faculty Authentication (`authenticatefacultyToken`)
+
+- **Purpose:** Validates the JWT token for faculty members.
+- **Response:**
+ ```
+  - **200 OK:** If the token is valid, the request proceeds to the next route.
+  - **401 Unauthorized:** If the token is missing or invalid, a response is sent indicating an invalid JWT token.
+```
+
+### Conclusion
+
+These middleware functions ensure secure access to protected routes for both students and faculty members by requiring valid JWT tokens for authentication.
+
+---
 
 # Project API Endpoints
 
@@ -558,7 +600,7 @@ This is a RESTful API for managing faculty data, student feedback, attendance, a
 All API responses include appropriate status codes and messages to indicate success or failure. Ensure to handle these responses in your front-end application.
 
 ---
-# Admin API Documentation
+# Admin API 
 
 This document outlines the available API endpoints for the Student Online Feedback System's admin module, detailing the request formats, response structures, and descriptions of each endpoint.
 
@@ -602,13 +644,13 @@ Example Response:
 **POST**:  /add-row/:tableName
 Adds a row to the specified table.
 
-**Parameters:**
+- **Parameters:**
 `tableName: The name of the table.`
 
-**Request Body:**
+- **Request Body:**
 `Key-value pairs representing the data to insert.`
 
-**Response:**
+- **Response:**
 `Message confirming successful row addition.`
 
 Example Response:
@@ -618,16 +660,17 @@ Example Response:
 }
 ```
 ### 4. Delete a Row from a Table
-**POST**:  /delete-row/:tableName
+
+- **POST**:  /delete-row/:tableName
 Deletes a row from the specified table.
 
-**Parameters:**
+- **Parameters:**
 tableName: The name of the table.
 
-**Request Body:**
+- **Request Body:**
 `id: The ID of the row to delete.`
 
-**Response:**
+- **Response:**
 `Message confirming successful deletion.`
 
 Example Response:
@@ -640,10 +683,11 @@ Example Response:
 ```
 
 ### 5. Get All Students
-**GET**:  /adminapi/students
+
+- **GET**:  /adminapi/students
 Fetches all students in descending order based on student_id.
 
-**Response:**
+- **Response:**
 List of students excluding passwords.
 Example Response:
 
@@ -655,22 +699,24 @@ Example Response:
 ]
 ```
 ### 6.  Delete a Student Record
-**DELETE:**  /apidelete/students/:id
+- **DELETE:**  /apidelete/students/:id
 Deletes a student record.
 
-**Parameters:**
+- **Parameters:**
 `id: The ID of the student.`
 
-**Response:**
+- **Response:**
 `204 No Content on success.`
 
 ### 7. Get All Faculty
-**GET**:  /apiadmin/faculty
+
+- **GET**:  /apiadmin/faculty
 Fetches all faculty records.
 
-**Response:**
+- **Response:**
 List of faculty excluding passwords.
-Example Response:
+
+- **Example Response:**
 
 ```json
 
@@ -680,22 +726,25 @@ Example Response:
 ]
 ```
 ### 8. Delete a Faculty Record
-**DELETE**:  /apidelete/faculty/:id
+
+- **DELETE**:  /apidelete/faculty/:id
 Deletes a faculty record.
 
-**Parameters:**
-id: The ID of the faculty.
+- **Parameters:**
+`id: The ID of the faculty.`
 
-Response:
-204 No Content on success.
+- **Response:**
+`204 No Content on success.`
 
 ### 9. Fetch Feedback Data
-Endpoint: GET /apiadmin/feedback
+
+- **GET**:  /apiadmin/feedback
 Fetches feedback data along with average overall feedback for each faculty.
 
-Response:
-Feedback details along with computed averages.
-Example Response:
+- **Response:**
+`Feedback details along with computed averages.`
+
+- **Example Response:**
 
 ```json
 
@@ -709,19 +758,23 @@ Example Response:
     "overall_average": 8.5
   }
 ]
+```
 
 ### 10. Search Students Based on Course and Year
-Endpoint: GET /search-students
+
+- **GET**:  /search-students
 Searches students based on course and year.
 
-Query Parameters:
-
+- **Query Parameters:**
+``
 course: The name of the course.
 year: The year of study.
-Response:
-List of students.
+``
 
-Example Response:
+- **Response:**
+`List of students.`
+
+- **Example Response:**
 
 ```json
 
@@ -729,72 +782,88 @@ Example Response:
   {"student_id": 1, "name": "John Doe", "rollnumber": "101"},
   {"student_id": 2, "name": "Jane Doe", "rollnumber": "102"}
 ]
+```
 ### 11. Alumni Talks Upload
-Endpoint: POST /alumnitalkserverpost
+
+- **POST**:  /alumnitalkserverpost
 Uploads alumni talk details including images and videos.
 
-Request Body:
+- **Request Body:**
 
 alumniname: Name of the alumni.
 alumnitopic: Topic of the talk.
 alumniabout: About the alumni.
-Files:
+
+- **Files:**
 
 alumniimage: Image of the alumni.
 alumnivideo: Video of the talk.
-Response:
-Redirects to the admin page upon success.
+
+- **Response:**
+`Redirects to the admin page upon success.`
 
 ### 12. Event Post Upload
-Endpoint: POST /eventpostserver
+
+- **POST**:  /eventpostserver
 Uploads event details including images and videos.
 
-Request Body:
-
+- **Request Body:**
+  
+```
 eventname: Name of the event.
 eventtopic: Topic of the event.
 eventabout: Description of the event.
-Files:
 
+**Files:**
 eventimage: Image of the event.
 eventvideo: Video of the event.
-Response:
-Redirects to the admin page upon success.
+
+```
+- **Response:**
+`Redirects to the admin page upon success.`
 
 ### 13. Admin Logout
-Endpoint: GET /adminlogout
+
+- **GET**: /adminlogout
 Logs out the admin.
 
-Response:
-Message confirming successful logout.
-Example Response:
+- **Response:**
+`Message confirming successful logout.`
+
+- **Example Response:**
 
 ```json
 
 {
   "message": "Logout successful"
 }
+```
+
 ### 14. Admin Login
-Endpoint: POST /loginadmin
+
+- **POST**:  /loginadmin
 Logs in the admin.
 
-Request Body:
+- **Request Body:**
 
 ```json
+{
 username: Admin username.
 password: Admin password.
+}
+```
+- **Response:**
 
-Response:
-
-Redirects to the admin page upon successful login.
+`Redirects to the admin page upon successful login.`
 
 ### 15. Fetch Alumni Feedback
-Endpoint: GET /api/indedoverallfacFeedback
+
+- **GET**:  /api/indedoverallfacFeedback
 Fetches aggregated alumni feedback data.
 
-Response:
-Aggregated feedback averages.
-Example Response:
+- **Response:**
+`Aggregated feedback averages.`
+- **Example Response:**
 
 ```json
 
@@ -805,45 +874,184 @@ Example Response:
     "overall_average": 8.75
   }
 ]
+```
 
 ### 16. Upload Hall Ticket Excel
-Endpoint: POST /uploadhallticketexcel
+
+- **POST**:  /uploadhallticketexcel
 Uploads an Excel file containing hall ticket data.
 
 Files:
 
 excelFile: The Excel file to upload.
-Response:
-Message confirming data insertion.
+- **Response:**
+`Message confirming data insertion.`
 
-Example Response:
+- **Example Response:**
 
 ```json
 
 {
   "message": "File uploaded and data inserted into database"
 }
+```
+
 ### 17. Send Emails with Attachments
-Endpoint: POST /send-respectiveemail
+
+- **POST**:  /send-respectiveemail
 Sends emails to students of a specific course and year with optional attachments.
 
-Request Body:
+- **Request Body:**
 
 course: The course name.
 year: The year of study.
 subject: The email subject.
 message: The email message.
+
 Files:
 
 attachment: Optional email attachment.
-Response:
-Message confirming successful email sending.
 
-Example Response:
+- **Response:**
+`Message confirming successful email sending.`
 
 ```json
 {
   "message": "Emails sent successfully"
 }
+```
+
+### 18. Fetch Faculty Feedback
+
+- **Endpoint:** `/api/faculty-feedback`
+
+- **Method:** `GET`
+
+- **Query Parameters:**
+- `course`: The course for which feedback is requested.
+- `year`: The year of the course.
+- `subject`: The subject for which feedback is requested.
+- `name`: The full name of the faculty (first and last).
+
+- **Response:**
+`Returns an array of feedback objects containing details about student feedback, including scores on various aspects of teaching.`
+
+-  **Example Request:**
+```http
+GET /api/faculty-feedback?course=CS&year=2023&subject=Data+Structures&name=John+Doe
+```
+### 19. Fetch Alumni Feedback by Course
+- **Endpoint:** /api/alumni-feedback
+
+- **Method:** GET
+
+- **Query Parameters:**
+
+course: The course for which alumni feedback is requested.
+Response: Returns alumni feedback data, including personal details and ratings, related to their course experience.
+
+- **Example Request:**
+
+```http
+GET /api/alumni-feedback?course=CS
+```
+
+### 20. Fetch All Alumni Feedback
+
+- **Endpoint:** /api/alumniFeedback
+
+- **Method:** GET
+
+- **Response:**
+  
+`Returns all alumni feedback data along with an overall average rating across all alumni.`
+
+- **Example Request:**
+
+```http
+
+GET /api/alumniFeedback
+```
+
+**Database Structure**
+- **Feedback Table**
+```
+rollnumber: Roll number of the student.
+firstname: First name of the faculty.
+lastname: Last name of the faculty.
+feedback_text: The feedback text from the student.
+subjectName: The name of the subject.
+Other teaching-related evaluation metrics.
+```
+
+- **Alumni Table**
+```
+alumni_id: Unique identifier for the alumnus.
+name_of_alumnus: Name of the alumnus.
+year: Graduation year.
+rating: Overall rating.
+course: The course completed.
+Feedback Answers and Questions Tables
+```
+# Alumni Feedback API 
+
+This document provides an overview of the Alumni Feedback API, including endpoint descriptions, request and response formats, and example usage.
+
+## API Endpoints
+
+### 1. Submit Alumni Feedback
+
+- **POST:** ` /submitAlumniFeedback`
+
+- **Description:** 
+This endpoint allows alumni to submit feedback regarding their experience at the institution. It captures various aspects of the alumni's experience, including curriculum relevance, infrastructure, faculty interaction, and overall satisfaction.
+
+- #### Request
+
+ **Headers:**
+ `Content-Type: application/json`
+
+ **Body:**
+```json
+{
+  "name": "John Doe",
+  "year": "2023",
+  "statusaddress": "123 Main St, City",
+  "number": "1234567890",
+  "email": "johndoe@example.com",
+  "course": "Computer Science",
+  "suggestion_text": "Great program, but could improve labs.",
+  "rating": 5,
+  "relevance_of_curriculum": "Very relevant",
+  "infrastructure_facilities": "Good",
+  "guest_lecturers_arrangement": "Satisfactory",
+  "student_teacher_interaction": "Excellent",
+  "cooperation_from_staff": "Good",
+  "teaching_faculties_availability": "Very available",
+  "overall_facilities_satisfaction": "Satisfied",
+  "contribution_to_college": "Very good"
+}
+```
+
+### Response
+
+- **Success Response:**
+
+```
+Status Code: 302 Found
+Location: Redirects to alumni.html with success message
+```
+
+**Error Response:**
+
+`Status Code: 500 Internal Server Error`
+
+- **Body:**
+- 
+```json
+{
+  "error": "Error submitting alumni feedback."
+}
+```
 Note: All responses will include appropriate error messages if any issues occur during the execution of the request.
 
