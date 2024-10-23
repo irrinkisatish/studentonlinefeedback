@@ -16,6 +16,7 @@
 
 The **Student Online Feedback System** is a web application designed to streamline the feedback process in educational institutions. Students can log in, provide feedback on faculty members, courses, and facilities, while administrators and faculty can view and analyze feedback for continuous improvement. The system includes an attendance module for faculty, allowing them to manage and track attendance.
 
+
 ---
 
 
@@ -557,5 +558,292 @@ This is a RESTful API for managing faculty data, student feedback, attendance, a
 All API responses include appropriate status codes and messages to indicate success or failure. Ensure to handle these responses in your front-end application.
 
 ---
+# Admin API Documentation
 
+This document outlines the available API endpoints for the Student Online Feedback System's admin module, detailing the request formats, response structures, and descriptions of each endpoint.
+
+## API Endpoints
+
+### 1. Get All Groups
+**GET**: ` /formgroups`  
+Fetches all groups from the `group_details` table.
+
+- **Response**:  
+  List of groups.
+
+**Example Response**:
+    ```json
+        [
+         {"group_id": 1, "group_name": "Group A"},
+      {"group_id": 2, "group_name": "Group B"}
+     ]```
+     
+### 2. Get Subjects by Group ID
+**GET**:  /subjects/:groupId
+Fetches subjects related to a specific group.
+
+**Parameters:**
+`groupId: The ID of the group.`
+
+**Response:**
+`List of subjects related to the group.`
+
+Example Response:
+
+    ```json
+      [
+         {"subject_id": 1, "subject_name": "Mathematics"},
+             {"subject_id": 2, "subject_name": "Science"}
+       ]
+       ```
+       
+### 3. Add a Row to a Table
+
+**POST**:  /add-row/:tableName
+Adds a row to the specified table.
+
+**Parameters:**
+`tableName: The name of the table.`
+
+**Request Body:**
+`Key-value pairs representing the data to insert.`
+
+**Response:**
+`Message confirming successful row addition.`
+
+Example Response:
+```json
+{
+  "message": "Row added successfully"
+}
+```
+### 4. Delete a Row from a Table
+**POST**:  /delete-row/:tableName
+Deletes a row from the specified table.
+
+**Parameters:**
+tableName: The name of the table.
+
+**Request Body:**
+`id: The ID of the row to delete.`
+
+**Response:**
+`Message confirming successful deletion.`
+
+Example Response:
+
+```json
+
+{
+  "message": "Row deleted successfully"
+}
+```
+
+### 5. Get All Students
+**GET**:  /adminapi/students
+Fetches all students in descending order based on student_id.
+
+**Response:**
+List of students excluding passwords.
+Example Response:
+
+```json
+
+[
+  {"student_id": 1, "name": "John Doe", "email": "john@example.com"},
+  {"student_id": 2, "name": "Jane Doe", "email": "jane@example.com"}
+]
+```
+### 6.  Delete a Student Record
+**DELETE:**  /apidelete/students/:id
+Deletes a student record.
+
+**Parameters:**
+`id: The ID of the student.`
+
+**Response:**
+`204 No Content on success.`
+
+### 7. Get All Faculty
+**GET**:  /apiadmin/faculty
+Fetches all faculty records.
+
+**Response:**
+List of faculty excluding passwords.
+Example Response:
+
+```json
+
+[
+  {"id": 1, "name": "Dr. Smith", "email": "smith@example.com"},
+  {"id": 2, "name": "Dr. Brown", "email": "brown@example.com"}
+]
+```
+### 8. Delete a Faculty Record
+**DELETE**:  /apidelete/faculty/:id
+Deletes a faculty record.
+
+**Parameters:**
+id: The ID of the faculty.
+
+Response:
+204 No Content on success.
+
+### 9. Fetch Feedback Data
+Endpoint: GET /apiadmin/feedback
+Fetches feedback data along with average overall feedback for each faculty.
+
+Response:
+Feedback details along with computed averages.
+Example Response:
+
+```json
+
+[
+  {
+    "student_id": 1,
+    "faculty_id": 2,
+    "subjectName": "Mathematics",
+    "teaching_approrach": 8,
+    "syllabus_covered": 9,
+    "overall_average": 8.5
+  }
+]
+
+### 10. Search Students Based on Course and Year
+Endpoint: GET /search-students
+Searches students based on course and year.
+
+Query Parameters:
+
+course: The name of the course.
+year: The year of study.
+Response:
+List of students.
+
+Example Response:
+
+```json
+
+[
+  {"student_id": 1, "name": "John Doe", "rollnumber": "101"},
+  {"student_id": 2, "name": "Jane Doe", "rollnumber": "102"}
+]
+### 11. Alumni Talks Upload
+Endpoint: POST /alumnitalkserverpost
+Uploads alumni talk details including images and videos.
+
+Request Body:
+
+alumniname: Name of the alumni.
+alumnitopic: Topic of the talk.
+alumniabout: About the alumni.
+Files:
+
+alumniimage: Image of the alumni.
+alumnivideo: Video of the talk.
+Response:
+Redirects to the admin page upon success.
+
+### 12. Event Post Upload
+Endpoint: POST /eventpostserver
+Uploads event details including images and videos.
+
+Request Body:
+
+eventname: Name of the event.
+eventtopic: Topic of the event.
+eventabout: Description of the event.
+Files:
+
+eventimage: Image of the event.
+eventvideo: Video of the event.
+Response:
+Redirects to the admin page upon success.
+
+### 13. Admin Logout
+Endpoint: GET /adminlogout
+Logs out the admin.
+
+Response:
+Message confirming successful logout.
+Example Response:
+
+```json
+
+{
+  "message": "Logout successful"
+}
+### 14. Admin Login
+Endpoint: POST /loginadmin
+Logs in the admin.
+
+Request Body:
+
+```json
+username: Admin username.
+password: Admin password.
+
+Response:
+
+Redirects to the admin page upon successful login.
+
+### 15. Fetch Alumni Feedback
+Endpoint: GET /api/indedoverallfacFeedback
+Fetches aggregated alumni feedback data.
+
+Response:
+Aggregated feedback averages.
+Example Response:
+
+```json
+
+[
+  {
+    "avg_syllabus_covered": 8.5,
+    "avg_teacheruses_tools": 9.0,
+    "overall_average": 8.75
+  }
+]
+
+### 16. Upload Hall Ticket Excel
+Endpoint: POST /uploadhallticketexcel
+Uploads an Excel file containing hall ticket data.
+
+Files:
+
+excelFile: The Excel file to upload.
+Response:
+Message confirming data insertion.
+
+Example Response:
+
+```json
+
+{
+  "message": "File uploaded and data inserted into database"
+}
+### 17. Send Emails with Attachments
+Endpoint: POST /send-respectiveemail
+Sends emails to students of a specific course and year with optional attachments.
+
+Request Body:
+
+course: The course name.
+year: The year of study.
+subject: The email subject.
+message: The email message.
+Files:
+
+attachment: Optional email attachment.
+Response:
+Message confirming successful email sending.
+
+Example Response:
+
+```json
+{
+  "message": "Emails sent successfully"
+}
+Note: All responses will include appropriate error messages if any issues occur during the execution of the request.
 
