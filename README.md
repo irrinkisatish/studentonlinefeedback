@@ -121,6 +121,51 @@ Use the following MySQL command to import the database:
 - **Feedback Management**: They can view all feedback submitted by students and filter it by course or faculty.
 - **Reporting**: Admins have the ability to generate reports based on the feedback data.
 - **Notifications**: Admins receive notifications when new feedback is submitted, ensuring timely oversight and response.
+**Admin Panel:** Hall Ticket Management
+
+- The admin panel includes functionality for importing hall ticket numbers into the system. This process allows the admin to add hall ticket numbers to the database, after which students can register using their respective hall ticket number.
+
+**1. Submitting Hall Ticket Numbers**
+
+- Admins can upload a file containing student hall ticket numbers. These hall tickets will be added to the database, allowing students to use them during their registration process.
+
+**Sample Hall Ticket File**
+
+- The hall ticket file should be placed in the following directory:
+
+The file can be in `.txt` or `.csv` format and should follow the structure below:
+
+- Each line contains one hall ticket number.
+- Ensure that each hall ticket number is unique and valid.
+
+**Example:**
+```
+1253552
+6266262
+8473772
+```
+
+
+**2. Importing Hall Ticket File**
+
+- To import the hall ticket file and register the numbers in the database, follow these steps:
+
+1. Navigate to the admin panel.
+2. Select the **Import Hall Tickets** option.
+3. Browse and select the file from the `/studentfeedback/hallticket.text or .csv /` directory.
+4. Click **Submit** to upload and process the file.
+
+- The system will automatically add the hall ticket numbers to the database, making them available for student registration.
+
+**3. Student Registration**
+
+- Once the hall ticket numbers have been added to the database, students can register using their hall ticket number by accessing the student registration page.
+
+
+**4. Security Considerations**
+
+- Only admins with the proper credentials can upload and manage hall ticket numbers.
+- Uploaded files are securely processed and stored to prevent unauthorized access.
 
 ### Faculty:
 - **Login**: Faculty members can log in to view feedback related to their courses.
