@@ -118,9 +118,12 @@ Use the following MySQL command to import the database:
 
 ### Admin:
 - **Login**: Admins log in with their credentials to access a comprehensive dashboard.
-- **Feedback Management**: They can view all feedback submitted by students and filter it by course or faculty.
+- **Feedback Management**: They can view all feedback submitted by students and filter it by course or faculty and he can view alumni feedbacks also if neccessary he can download feedback data by clicking download button.
 - **Reporting**: Admins have the ability to generate reports based on the feedback data.
-- **Notifications**: Admins receive notifications when new feedback is submitted, ensuring timely oversight and response.
+- **Emails Sending**: Admins can send emails to the students who are registered in this web application. The admins can also send particular email for particular branch students by applying filer.
+- **Course Curriculum**: Admins have the ability to manage subjects and groups in the system. This includes adding new subjects and groups, as well as deleting them based on their unique ID.
+- **Posting**: Admin can upload alumni talk videos and college events. There are visible in student/faculty page and alumni page also.
+  
 **Admin Panel:** Hall Ticket Management
 
 - The admin panel includes functionality for importing hall ticket numbers into the system. This process allows the admin to add hall ticket numbers to the database, after which students can register using their respective hall ticket number.
@@ -169,7 +172,7 @@ The file can be in `.txt` or `.csv` format and should follow the structure below
 
 ### Faculty:
 - **Login**: Faculty members can log in to view feedback related to their courses.
-- **Attendance Management**: Faculty can take attendance for their classes and view attendance records.
+- **Attendance Management**: Faculty can take attendance for their classes and view attendance records he can download attendance records by clicking download button.
 - **Anonymous Feedback**: Feedback is displayed anonymously, ensuring that faculty cannot view individual student details, which protects student privacy.
 
 ### Alumni:
