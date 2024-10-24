@@ -5,6 +5,7 @@
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
+- [Database Creation](#database-setup)
 - [Usage](#usage)
 - [API Endpoints](#project-api-endpoints)
 
@@ -77,6 +78,36 @@ https://github.com/user-attachments/assets/12c508f1-a475-4ff9-a5b9-4f99c31bc24d
    ```bash
    npm start
 Open your browser and visit http://localhost:3305 to use the application.
+
+# Database Setup
+
+This project requires a MySQL database setup. The SQL script is provided in the `database` folder and contains the necessary table structures and initial data.
+
+## SQL File Location
+
+The SQL script for setting up the database can be found in the following directory:
+
+
+## How to Import the SQL File
+
+To import the provided `.sql` file into your MySQL database, follow these steps:
+
+1. Open a terminal or command prompt.
+2. Navigate to the folder containing the `.sql` file:
+   
+   ```bash
+   cd /path/to/databasefile
+Use the following MySQL command to import the database:
+
+ ```bash
+    mysql -u [username] -p [database_name] < yourfile.sql
+```
+Replace **[username]** with your MySQL username.
+Replace **[database_name]** with the name of the database where you want to import the tables.
+
+Replace **studentfeedback_db.sql** with the name of your SQL file.
+`Enter your MySQL password when prompted.`
+Once the import is complete, your database will be set up with the necessary tables and initial data as defined in the SQL file.
 
 # Usage
 
