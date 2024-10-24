@@ -81,7 +81,7 @@ Open your browser and visit http://localhost:3305 to use the application.
 
 # Database Setup
 
-This project requires a MySQL database setup. The SQL script is provided in the `database` folder and contains the necessary table structures and initial data.
+This project requires a MySQL database setup. The SQL script is provided in the `directory` folder and contains the necessary table structures and initial data.
 
 ## SQL File Location
 
@@ -96,11 +96,11 @@ To import the provided `.sql` file into your MySQL database, follow these steps:
 2. Navigate to the folder containing the `.sql` file:
    
    ```bash
-   cd /path/to/databasefile
+   cd /path/to/studentfeedback_db.sql
 Use the following MySQL command to import the database:
 
  ```bash
-    mysql -u [username] -p [database_name] < yourfile.sql
+    mysql -u [username] -p [database_name] < studentfeedback_db.sql
 ```
 - Replace **[username]** with your MySQL username.
 - Replace **[database_name]** with the name of the database where you want to import the tables.
