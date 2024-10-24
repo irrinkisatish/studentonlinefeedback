@@ -102,12 +102,12 @@ Use the following MySQL command to import the database:
  ```bash
     mysql -u [username] -p [database_name] < yourfile.sql
 ```
-Replace **[username]** with your MySQL username.
-Replace **[database_name]** with the name of the database where you want to import the tables.
+- Replace **[username]** with your MySQL username.
+- Replace **[database_name]** with the name of the database where you want to import the tables.
 
-Replace **studentfeedback_db.sql** with the name of your SQL file.
+- Replace **studentfeedback_db.sql** with the name of your SQL file.
 `Enter your MySQL password when prompted.`
-Once the import is complete, your database will be set up with the necessary tables and initial data as defined in the SQL file.
+- Once the import is complete, your database will be set up with the necessary tables and initial data as defined in the SQL file.
 
 # Usage
 
